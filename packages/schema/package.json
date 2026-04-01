@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "zod": "~4.1.12"
+  },
+  "devDependencies": {
+    "@wpg/tsconfig": "*",
+    "typescript": "5.9.3"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "name": "@wpg/schema",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -w --preserveWatchOutput",
+    "typecheck": "tsc --noEmit"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
