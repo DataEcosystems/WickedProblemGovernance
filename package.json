@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "@biomejs/biome": "2.4.9",
+    "depcheck": "~1.4.7",
+    "syncpack": "~14.3.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "name": "wpg",
+  "optionalDependencies": {
+    "@biomejs/cli-linux-x64": "2.4.9"
+  },
+  "packageManager": "npm@11.11.0",
+  "private": true,
+  "scripts": {
+    "check": "biome check .",
+    "check:write": "biome check --write .",
+    "check:write:unsafe": "biome check --write --unsafe .",
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev --workspaces --if-present",
+    "syncpack:fix-mismatches": "syncpack fix-mismatches",
+    "syncpack:lint": "syncpack lint",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

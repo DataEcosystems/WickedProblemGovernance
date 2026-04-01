@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/syncpack/schema.json",
+  "semverGroups": [
+    {
+      "dependencies": ["**"],
+      "label": "Tilde ranges for apps",
+      "packages": ["apps/*"],
+      "range": "~"
+    },
+    {
+      "dependencies": ["**"],
+      "label": "Tilde ranges for packages",
+      "packages": ["packages/*"],
+      "range": "~"
+    }
+  ],
+  "versionGroups": [
+    {
+      "dependencies": ["@wpg/*"],
+      "isIgnored": true,
+      "label": "Local workspace packages",
+      "packages": ["**"]
+    }
+  ]
+}
