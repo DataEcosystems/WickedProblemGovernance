@@ -3,9 +3,12 @@
   "_version": "2.0.0",
 
   "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
     "lib": ["ES2022"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "sourceMap": true,
     "target": "es2022"
   },
   "extends": ["./base.json"]
