@@ -9,7 +9,7 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "name": "@wpg/schema",
+  "name": "@wpg/model",
   "private": true,
   "scripts": {
     "build": "tsc -b",
