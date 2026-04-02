@@ -1,0 +1,26 @@
+name: Continuous Integration
+on:
+  push:
+  workflow_dispatch:
+env:
+  NODE_OPTIONS: "--max-old-space-size=4096"
+jobs:
+  build-test:
+    env:
+      DO_NOT_TRACK: 1
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version: 24
+      - name: Install dependencies
+        run: npm ci
+      - name: Biome check
+        run: npm run check
+      - name: Type check
+        run: npm run typecheck
+      - name: Test
+        run: npm run test
