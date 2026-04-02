@@ -38,6 +38,8 @@
 
 * Develop a demo web application that:
     * Lets user enter data that conforms to the model.
-        * Use the domain models in `model` to drive data entry screens ([model-driven engineering](https://en.wikipedia.org/wiki/Model-driven_engineering)) rather than redefining the model in the web application.
+        * Use the domain models in `model` to
+            * create a Sequelize model from the hints in model meta()
+            * drive data entry screens ([model-driven engineering](https://en.wikipedia.org/wiki/Model-driven_engineering)) rather than redefining the model in the web application.
         * Future: let the user upload a document, give the document and the model to an LLM, and ask it to extract model-conformant data.
     * Uses the formulas defined in the model to produce reports from user-entered data.
