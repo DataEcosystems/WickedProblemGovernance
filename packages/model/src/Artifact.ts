@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { CommitteeMinutesArtifact } from "./CommitteeMinutesArtifact.js";
-import { EmailArtifact } from "./EmailArtifact.js";
-import { ProvisioningLogArtifact } from "./ProvisioningLogArtifact.js";
+import { ArtifactType } from "./ArtifactType.js";
+import { Id } from "./Id.js";
 
-export const Artifact = z.discriminatedUnion("type", [
-  CommitteeMinutesArtifact,
-  EmailArtifact,
-  ProvisioningLogArtifact,
-]);
+export const Artifact = z.object({
+  id: Id,
+  type: ArtifactType,
+});
+
+export type Artifact = z.infer<typeof Artifact>;
