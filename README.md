@@ -27,6 +27,7 @@
 * Translate the domain models from the [IJPDS paper](./docs/2026-03-15%20IJPDS%20submission.pdf) into TypeScript and Zod
   * Phase 1: layers (e.g., Event) and their variables (e.g., timestamp)
   * Phase 2: formulas (e.g., how episode indicators are calculated from events)
+  * Phase 3: coding instructions for the codebook
 
 ### Codebook
 
