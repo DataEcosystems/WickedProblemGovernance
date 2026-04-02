@@ -10,6 +10,10 @@
 
     npm install
 
+## Building
+
+    npm run build
+
 ## Structure of this repository
 
 * `packages/`
