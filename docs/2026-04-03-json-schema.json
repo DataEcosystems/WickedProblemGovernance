@@ -40,10 +40,7 @@
   "$defs": {
     "ArchitectureType": {
       "type": "string",
-      "enum": [
-        "custodial",
-        "federated"
-      ],
+      "enum": ["custodial", "federated"],
       "id": "ArchitectureType"
     },
     "Artifact": {
@@ -65,11 +62,7 @@
           "$ref": "#/$defs/ArtifactType"
         }
       },
-      "required": [
-        "id",
-        "partnerIds",
-        "type"
-      ],
+      "required": ["id", "partnerIds", "type"],
       "additionalProperties": false
     },
     "__schema0": {
@@ -77,11 +70,7 @@
     },
     "ArtifactType": {
       "type": "string",
-      "enum": [
-        "committee_minutes",
-        "email",
-        "signed_agreement"
-      ],
+      "enum": ["committee_minutes", "email", "signed_agreement"],
       "id": "ArtifactType"
     },
     "Domain": {
@@ -96,10 +85,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "Ecosystem": {
@@ -304,21 +290,12 @@
           "$ref": "#/$defs/EventType"
         }
       },
-      "required": [
-        "artifactId",
-        "id",
-        "timestamp",
-        "type"
-      ],
+      "required": ["artifactId", "id", "timestamp", "type"],
       "additionalProperties": false
     },
     "EventType": {
       "type": "string",
-      "enum": [
-        "agreement_executed",
-        "approval_issued",
-        "request_submitted"
-      ],
+      "enum": ["agreement_executed", "approval_issued", "request_submitted"],
       "id": "EventType"
     },
     "InstitutionalLayer": {
@@ -333,10 +310,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "Partner": {
@@ -365,12 +339,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "domainIds",
-        "id",
-        "layerIds",
-        "name"
-      ],
+      "required": ["domainIds", "id", "layerIds", "name"],
       "additionalProperties": false
     },
     "Project": {
