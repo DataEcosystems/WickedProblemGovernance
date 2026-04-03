@@ -9,8 +9,8 @@ import { table } from "./table.js";
 export const Artifact = z
   .object({
     id: Id.meta(primaryKey()),
-    partnerIds: z.array(Id).meta(foreignKey(Partner, "id")).readonly(),
-    type: ArtifactType,
+    partnerIds: z.array(Id).readonly().meta(foreignKey(Partner, "id")),
+    typeId: Id.meta(foreignKey(ArtifactType, "id")),
   })
   .readonly()
   .meta(table("artifact"));

@@ -9,6 +9,14 @@ export const InstitutionalLayer = z
     name: z.string(),
   })
   .readonly()
-  .meta(table("institutional_layer"));
+  .meta(
+    table("institutional_layer", {
+      seedData: [
+        { id: "local", name: "Local" },
+        { id: "regional", name: "Regional" },
+        { id: "state", name: "State" },
+      ],
+    }),
+  );
 
 export type InstitutionalLayer = z.infer<typeof InstitutionalLayer>;

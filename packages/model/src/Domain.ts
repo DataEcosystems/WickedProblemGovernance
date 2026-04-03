@@ -9,6 +9,15 @@ export const Domain = z
     name: z.string(),
   })
   .readonly()
-  .meta(table("domain"));
+  .meta(
+    table("domain", {
+      seedData: [
+        { id: "education", name: "Education" },
+        { id: "health", name: "Health" },
+        { id: "human_services", name: "Human Services" },
+        { id: "justice", name: "Justice" },
+      ],
+    }),
+  );
 
 export type Domain = z.infer<typeof Domain>;

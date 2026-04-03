@@ -12,7 +12,7 @@ export const Event = z
     artifactId: Id.meta(foreignKey(Artifact, "id")),
     id: Id.meta(primaryKey()),
     timestamp: Timestamp,
-    type: EventType,
+    typeId: Id.meta(foreignKey(EventType, "id")),
   })
   .readonly()
   .meta(table("event"));

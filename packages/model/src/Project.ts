@@ -9,7 +9,7 @@ import { table } from "./table.js";
 
 export const Project = z
   .object({
-    architectureType: ArchitectureType,
+    architectureTypeId: Id.meta(foreignKey(ArchitectureType, "id")),
     deliveryCouplingProxy: z.number().nullable(),
     deliveryEpisodeId: Id.nullable().meta(foreignKey(Episode, "id")),
     episodeCount: z.number().int(),

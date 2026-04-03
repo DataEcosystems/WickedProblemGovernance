@@ -1,5 +1,8 @@
 import { ObjectMeta } from "./ObjectMeta.js";
 
-export function table(name: string): ObjectMeta {
-  return { table: { name } };
+export function table(
+  name: string,
+  options?: Omit<ObjectMeta, "table">,
+): ObjectMeta {
+  return { table: { name }, ...options };
 }
