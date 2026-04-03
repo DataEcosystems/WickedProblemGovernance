@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { Domain } from "./Domain.js";
 import { foreignKey } from "./foreignKey.js";
+import { Id } from "./Id.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
-import { Id } from "./index.js";
 import { primaryKey } from "./primaryKey.js";
 import { table } from "./table.js";
 
