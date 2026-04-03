@@ -2,7 +2,8 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
     "depcheck": "~1.4.7",
-    "syncpack": "~14.3.0"
+    "syncpack": "~14.3.0",
+    "tsx": "~4.21.0"
   },
   "engines": {
     "node": ">=24"
