@@ -50,10 +50,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "__schema0": {
@@ -78,11 +75,7 @@
           "$ref": "#/$defs/__schema0"
         }
       },
-      "required": [
-        "id",
-        "partnerIds",
-        "typeId"
-      ],
+      "required": ["id", "partnerIds", "typeId"],
       "additionalProperties": false
     },
     "ArtifactType": {
@@ -97,10 +90,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "Domain": {
@@ -115,10 +105,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "Ecosystem": {
@@ -323,12 +310,7 @@
           "$ref": "#/$defs/__schema0"
         }
       },
-      "required": [
-        "artifactId",
-        "id",
-        "timestamp",
-        "typeId"
-      ],
+      "required": ["artifactId", "id", "timestamp", "typeId"],
       "additionalProperties": false
     },
     "EventType": {
@@ -343,10 +325,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "InstitutionalLayer": {
@@ -361,10 +340,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name"
-      ],
+      "required": ["id", "name"],
       "additionalProperties": false
     },
     "Partner": {
@@ -393,12 +369,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "domainIds",
-        "id",
-        "layerIds",
-        "name"
-      ],
+      "required": ["domainIds", "id", "layerIds", "name"],
       "additionalProperties": false
     },
     "Project": {
