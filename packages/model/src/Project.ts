@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ArchitectureType } from "./ArchitectureType.js";
+import { Architecture } from "./Architecture.js";
 import { Episode } from "./Episode.js";
 import { foreignKey } from "./foreignKey.js";
 import { Id } from "./Id.js";
@@ -9,7 +9,7 @@ import { table } from "./table.js";
 
 export const Project = z
   .object({
-    architectureTypeId: Id.meta(foreignKey(ArchitectureType, "id")),
+    architectureId: Id.meta(foreignKey(Architecture, "id")),
     deliveryCouplingProxy: z.number().nullable(),
     deliveryEpisodeId: Id.nullable().meta(foreignKey(Episode, "id")),
     episodeCount: z.number().int(),

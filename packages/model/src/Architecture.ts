@@ -3,14 +3,14 @@ import { Id } from "./Id.js";
 import { primaryKey } from "./primaryKey.js";
 import { table } from "./table.js";
 
-export const ArchitectureType = z
+export const Architecture = z
   .object({
     id: Id.meta(primaryKey()),
     name: z.string(),
   })
   .readonly()
   .meta(
-    table("architecture_type", {
+    table("architecture", {
       seedData: [
         { id: "custodial", name: "Custodial" },
         { id: "federated", name: "Federated" },
@@ -18,4 +18,4 @@ export const ArchitectureType = z
     }),
   );
 
-export type ArchitectureType = z.infer<typeof ArchitectureType>;
+export type Architecture = z.infer<typeof Architecture>;

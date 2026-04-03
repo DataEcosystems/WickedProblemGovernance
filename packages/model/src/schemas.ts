@@ -1,4 +1,4 @@
-import { ArchitectureType } from "./ArchitectureType.js";
+import { ArchitectureType } from "./Architecture.js";
 import { Artifact } from "./Artifact.js";
 import { ArtifactType } from "./ArtifactType.js";
 import { Domain } from "./Domain.js";

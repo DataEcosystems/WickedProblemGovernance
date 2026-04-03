@@ -1,4 +1,4 @@
-export * from "./ArchitectureType.js";
+export * from "./Architecture.js";
 export * from "./Artifact.js";
 export * from "./Domain.js";
 export * from "./Episode.js";
