@@ -1,4 +1,4 @@
-import { ArchitectureType } from "./Architecture.js";
+import { Architecture } from "./Architecture.js";
 import { Artifact } from "./Artifact.js";
 import { ArtifactType } from "./ArtifactType.js";
 import { Domain } from "./Domain.js";
@@ -11,7 +11,7 @@ import { Partner } from "./Partner.js";
 import { Project } from "./Project.js";
 
 export const schemas = {
-  ArchitectureType,
+  Architecture,
   Artifact,
   ArtifactType,
   Domain,
