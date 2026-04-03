@@ -5,12 +5,16 @@ import { foreignKey } from "./foreignKey.js";
 import { Id } from "./Id.js";
 import { primaryKey } from "./primaryKey.js";
 import { Timestamp } from "./Timestamp.js";
+import { table } from "./table.js";
 
-export const Event = z.object({
-  artifactId: Id.meta(foreignKey(Artifact, "id")),
-  id: Id.meta(primaryKey()),
-  timestamp: Timestamp,
-  type: EventType,
-});
+export const Event = z
+  .object({
+    artifactId: Id.meta(foreignKey(Artifact, "id")),
+    id: Id.meta(primaryKey()),
+    timestamp: Timestamp,
+    type: EventType,
+  })
+  .readonly()
+  .meta(table("event"));
 
 export type Event = z.infer<typeof Event>;

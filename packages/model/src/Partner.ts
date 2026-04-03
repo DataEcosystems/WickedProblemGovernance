@@ -8,11 +8,12 @@ import { table } from "./table.js";
 
 export const Partner = z
   .object({
-    domainId: Id.meta(foreignKey(Domain, "id")),
+    domainIds: z.array(Id).readonly().meta(foreignKey(Domain, "id")),
     id: Id.meta(primaryKey()),
-    layerId: Id.meta(foreignKey(InstitutionalLayer, "id")),
+    layerIds: z.array(Id).readonly().meta(foreignKey(InstitutionalLayer, "id")),
     name: z.string(),
   })
+  .readonly()
   .meta(table("partner"));
 
 export type Partner = z.infer<typeof Partner>;

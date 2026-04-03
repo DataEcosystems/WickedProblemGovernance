@@ -8,6 +8,7 @@ export const Domain = z
     id: Id.meta(primaryKey()),
     name: z.string(),
   })
+  .readonly()
   .meta(table("domain"));
 
 export type Domain = z.infer<typeof Domain>;

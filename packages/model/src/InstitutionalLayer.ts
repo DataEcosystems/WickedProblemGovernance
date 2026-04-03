@@ -8,6 +8,7 @@ export const InstitutionalLayer = z
     id: Id.meta(primaryKey()),
     name: z.string(),
   })
+  .readonly()
   .meta(table("institutional_layer"));
 
 export type InstitutionalLayer = z.infer<typeof InstitutionalLayer>;
