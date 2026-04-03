@@ -28,18 +28,20 @@
   * Phase 1: layers (e.g., Event) and their variables (e.g., timestamp)
   * Phase 2: formulas (e.g., how episode indicators are calculated from events)
   * Phase 3: coding instructions for the codebook
+* Develop a tool to translate data from the IJPDS paper into JSON that conforms to the model
+* Develop a script to generate JSON Schema from the model
+
+### Demo web application
+
+* Develop a demo web application that:
+    * Lets user enter data that conform to the domain models in `model`.
+        * Rather than redefining the model in the web application, use `model` (or derived JSON Schema) to
+            * create a Sequelize model from the hints in model `meta()`
+            * drive data entry screens ([model-driven engineering](https://en.wikipedia.org/wiki/Model-driven_engineering)) 
+    * Uses the formulas defined in the `model` to produce reports from user-entered data.
+    * Future: let the user upload a document, give the document and the model to an LLM, and ask it to extract model-conformant data.
 
 ### Codebook
 
 * Generate a human-readable [codebook](https://en.wikipedia.org/wiki/Codebook#Social_sciences) as a PDF
   * Use the domain models in `model` as input to the generator rather than redefining the model in human-readable text
-
-### Demo web application
-
-* Develop a demo web application that:
-    * Lets user enter data that conforms to the model.
-        * Use the domain models in `model` to
-            * create a Sequelize model from the hints in model meta()
-            * drive data entry screens ([model-driven engineering](https://en.wikipedia.org/wiki/Model-driven_engineering)) rather than redefining the model in the web application.
-        * Future: let the user upload a document, give the document and the model to an LLM, and ask it to extract model-conformant data.
-    * Uses the formulas defined in the model to produce reports from user-entered data.
