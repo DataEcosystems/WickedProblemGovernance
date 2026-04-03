@@ -5,4 +5,5 @@ export const ArtifactType = z.enum([
   "email",
   "signed_agreement",
 ]);
+
 export type ArtifactType = z.infer<typeof ArtifactType>;
