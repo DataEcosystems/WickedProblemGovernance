@@ -1,19 +1,15 @@
 import { z } from "zod";
 import { Domain } from "./Domain.js";
-import { foreignKey } from "./foreignKey.js";
-import { Id } from "./Id.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
-import { primaryKey } from "./primaryKey.js";
-import { table } from "./table.js";
+import { Iri } from "./Iri.js";
+import { JsonLdBase } from "./JsonLdBase.js";
+import { range } from "./range.js";
 
-export const Partner = z
-  .object({
-    domainIds: z.array(Id).readonly().meta(foreignKey(Domain, "id")),
-    id: Id.meta(primaryKey()),
-    layerIds: z.array(Id).readonly().meta(foreignKey(InstitutionalLayer, "id")),
-    name: z.string(),
-  })
-  .readonly()
-  .meta(table("partner"));
+export const Partner = JsonLdBase.extend({
+  "@type": z.literal("Partner"),
+  domains: z.array(Iri).readonly().meta(range(Domain)),
+  layers: z.array(Iri).readonly().meta(range(InstitutionalLayer)),
+  name: z.string(),
+}).readonly();
 
 export type Partner = z.infer<typeof Partner>;

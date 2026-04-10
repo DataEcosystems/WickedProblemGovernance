@@ -1,21 +1,16 @@
 import { z } from "zod";
-import { Id } from "./Id.js";
-import { primaryKey } from "./primaryKey.js";
-import { table } from "./table.js";
+import { JsonLdBase } from "./JsonLdBase.js";
 
-export const Architecture = z
-  .object({
-    id: Id.meta(primaryKey()),
-    name: z.string(),
-  })
+export const Architecture = JsonLdBase.extend({
+  "@type": z.literal("Architecture"),
+  name: z.string(),
+})
   .readonly()
-  .meta(
-    table("architecture", {
-      seedData: [
-        { id: "custodial", name: "Custodial" },
-        { id: "federated", name: "Federated" },
-      ],
-    }),
-  );
+  .meta({
+    namedIndividuals: [
+      { "@id": "wpg:CustodialArchitecture", name: "Custodial" },
+      { "@id": "wpg:FederatedArchitecture", name: "Federated" },
+    ],
+  });
 
 export type Architecture = z.infer<typeof Architecture>;

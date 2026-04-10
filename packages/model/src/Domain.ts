@@ -1,23 +1,16 @@
 import { z } from "zod";
-import { Id } from "./Id.js";
-import { primaryKey } from "./primaryKey.js";
-import { table } from "./table.js";
+import { JsonLdBase } from "./JsonLdBase.js";
 
-export const Domain = z
-  .object({
-    id: Id.meta(primaryKey()),
-    name: z.string(),
-  })
+export const Domain = JsonLdBase.extend({
+  "@type": z.literal("Domain"),
+  name: z.string(),
+})
   .readonly()
-  .meta(
-    table("domain", {
-      seedData: [
-        { id: "education", name: "Education" },
-        { id: "health", name: "Health" },
-        { id: "human_services", name: "Human Services" },
-        { id: "justice", name: "Justice" },
-      ],
-    }),
-  );
-
-export type Domain = z.infer<typeof Domain>;
+  .meta({
+    namedIndividuals: [
+      { "@id": "wpg:EducationDomain", name: "Education" },
+      { "@id": "wpg:HealthDomain", name: "Health" },
+      { "@id": "wpg:HumanServicesDomain", name: "Human Services" },
+      { "@id": "wpg:JusticeDomain", name: "Justice" },
+    ],
+  });

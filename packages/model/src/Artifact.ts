@@ -1,18 +1,14 @@
 import { z } from "zod";
 import { ArtifactType } from "./ArtifactType.js";
-import { foreignKey } from "./foreignKey.js";
-import { Id } from "./Id.js";
+import { Iri } from "./Iri.js";
+import { JsonLdBase } from "./JsonLdBase.js";
 import { Partner } from "./Partner.js";
-import { primaryKey } from "./primaryKey.js";
-import { table } from "./table.js";
+import { range } from "./range.js";
 
-export const Artifact = z
-  .object({
-    id: Id.meta(primaryKey()),
-    partnerIds: z.array(Id).readonly().meta(foreignKey(Partner, "id")),
-    typeId: Id.meta(foreignKey(ArtifactType, "id")),
-  })
-  .readonly()
-  .meta(table("artifact"));
+export const Artifact = JsonLdBase.extend({
+  "@type": z.literal("Artifact"),
+  artifactType: Iri.meta(range(ArtifactType)),
+  partners: z.array(Iri).readonly().meta(range(Partner)),
+}).readonly();
 
 export type Artifact = z.infer<typeof Artifact>;

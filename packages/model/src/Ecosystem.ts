@@ -1,20 +1,16 @@
 import { z } from "zod";
-import { foreignKey } from "./foreignKey.js";
-import { Id } from "./Id.js";
+import { Iri } from "./Iri.js";
+import { JsonLdBase } from "./JsonLdBase.js";
 import { Project } from "./Project.js";
-import { primaryKey } from "./primaryKey.js";
-import { table } from "./table.js";
+import { range } from "./range.js";
 
-export const Ecosystem = z
-  .object({
-    id: Id.meta(primaryKey()),
-    meanNormalizedBurden: z.number().nullable(),
-    meanTimeToValue: z.number().nullable(),
-    name: z.string(),
-    projectIds: z.array(Id).readonly().meta(foreignKey(Project, "id")),
-    stdTimeToValue: z.number().nullable(),
-  })
-  .readonly()
-  .meta(table("ecosystem"));
+export const Ecosystem = JsonLdBase.extend({
+  "@type": z.literal("Ecosystem"),
+  meanNormalizedBurden: z.number().nullable(),
+  meanTimeToValue: z.number().nullable(),
+  name: z.string(),
+  projects: z.array(Iri).readonly().meta(range(Project)),
+  stdTimeToValue: z.number().nullable(),
+}).readonly();
 
 export type Ecosystem = z.infer<typeof Ecosystem>;

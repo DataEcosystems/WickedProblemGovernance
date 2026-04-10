@@ -1,20 +1,16 @@
 import z from "zod";
 import { Artifact } from "./Artifact.js";
 import { EventType } from "./EventType.js";
-import { foreignKey } from "./foreignKey.js";
-import { Id } from "./Id.js";
-import { primaryKey } from "./primaryKey.js";
+import { Iri } from "./Iri.js";
+import { JsonLdBase } from "./JsonLdBase.js";
+import { range } from "./range.js";
 import { Timestamp } from "./Timestamp.js";
-import { table } from "./table.js";
 
-export const Event = z
-  .object({
-    artifactId: Id.meta(foreignKey(Artifact, "id")),
-    id: Id.meta(primaryKey()),
-    timestamp: Timestamp,
-    typeId: Id.meta(foreignKey(EventType, "id")),
-  })
-  .readonly()
-  .meta(table("event"));
+export const Event = JsonLdBase.extend({
+  "@type": z.literal("Event"),
+  artifact: Iri.meta(range(Artifact)),
+  eventType: Iri.meta(range(EventType)),
+  timestamp: Timestamp,
+}).readonly();
 
 export type Event = z.infer<typeof Event>;
