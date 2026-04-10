@@ -19,3 +19,5 @@ export const EventType = JsonLdBase.extend({
       { "@id": "wpg:WithdrawalEventType", name: "Withdrawal" },
     ],
   });
+
+export type EventType = z.infer<typeof EventType>;

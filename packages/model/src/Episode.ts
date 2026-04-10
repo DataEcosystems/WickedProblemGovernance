@@ -1,8 +1,7 @@
 import { z } from "zod";
-import { Event } from "./Event.js";
 import { Iri } from "./Iri.js";
 import { JsonLdBase } from "./JsonLdBase.js";
-import { Partner } from "./Partner.js";
+import { Project } from "./Project.js";
 import { range } from "./range.js";
 import { Timestamp } from "./Timestamp.js";
 
@@ -10,17 +9,16 @@ export const Episode = JsonLdBase.extend({
   "@type": z.literal("Episode"),
   couplingProxy: z.number(),
   domainHeterogeneity: z.number(),
-  events: z.array(Iri).readonly().meta(range(Event)),
   layerHeterogeneity: z.number(),
-  normalizedBurden: z.number().nullable(),
+  normalizedBurden: z.number().optional(),
   partnerCount: z.number().int(),
-  partners: z.array(Iri).optional().readonly().meta(range(Partner)),
+  project: Iri.meta(range(Project)),
   stall: z.boolean(),
   t0: Timestamp,
-  t1: Timestamp.nullable(),
-  t2: Timestamp.nullable(),
-  tau1: z.number().nullable(),
-  tau2: z.number().nullable(),
+  t1: Timestamp.optional(),
+  t2: Timestamp.optional(),
+  tau1: z.number().optional(),
+  tau2: z.number().optional(),
 }).readonly();
 
 export type Episode = z.infer<typeof Episode>;

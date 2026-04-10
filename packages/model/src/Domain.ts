@@ -14,3 +14,5 @@ export const Domain = JsonLdBase.extend({
       { "@id": "wpg:JusticeDomain", name: "Justice" },
     ],
   });
+
+export type Domain = z.infer<typeof Domain>;

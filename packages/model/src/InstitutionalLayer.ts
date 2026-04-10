@@ -13,3 +13,5 @@ export const InstitutionalLayer = JsonLdBase.extend({
       { "@id": "wpg:StateInstitutionalLayer", name: "State" },
     ],
   });
+
+export type InstitutionalLayer = z.infer<typeof InstitutionalLayer>;
