@@ -13,7 +13,7 @@ const externalDependencies = {
   zod: "~4.1.12",
 } as const;
 
-type PackageName = "model" | "transformers";
+type PackageName = "model";
 
 interface Workspace {
   bin?: Record<string, string>;
@@ -33,13 +33,6 @@ const packages: Readonly<Record<PackageName, Workspace>> = {
       external: ["zod"],
     },
   },
-
-  transformers: {
-    dependencies: {
-      external: ["zod"],
-      internal: ["transformers"],
-    },
-  },
 } as const;
 
 const workspaces = {
@@ -50,7 +43,7 @@ const workspaces = {
       },
       dependencies: {
         external: ["cmd-ts", "pino", "pino-pretty", "zod"],
-        internal: ["model", "transformers"],
+        internal: ["model"],
       },
     },
   } satisfies Record<string, Workspace>,

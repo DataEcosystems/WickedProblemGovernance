@@ -4,7 +4,6 @@
   },
   "dependencies": {
     "@wpg/model": "0.0.0",
-    "@wpg/transformers": "0.0.0",
     "cmd-ts": "~0.15.0",
     "pino": "~10.3.1",
     "pino-pretty": "~13.1.3",
