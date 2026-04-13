@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { GovernanceEpisodeType } from "./GovernanceEpisodeType.js";
 import { Iri } from "./Iri.js";
 import { JsonLdBase } from "./JsonLdBase.js";
 import { Project } from "./Project.js";
@@ -9,6 +10,7 @@ export const GovernanceEpisode = JsonLdBase.extend({
   "@type": z.literal("GovernanceEpisode"),
   couplingProxy: z.number(),
   domainHeterogeneity: z.number(),
+  governanceEpisodeType: Iri.meta(range(GovernanceEpisodeType)),
   layerHeterogeneity: z.number(),
   normalizedBurden: z.number().optional(),
   partnerCount: z.number().int(),
