@@ -1,8 +1,18 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "outDir": "dist"
+    "baseUrl": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": false,
+    "outDir": "dist",
+    "sourceMap": true
   },
-  "extends": "@wpg/tsconfig/lib.json",
-  "include": ["src/**/*"]
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

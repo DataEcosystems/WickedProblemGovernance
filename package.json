@@ -1,9 +1,12 @@
 {
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
+    "@tsconfig/strictest": "~2.0.8",
+    "@types/node": "^24",
     "depcheck": "~1.4.7",
-    "syncpack": "~14.3.0",
-    "tsx": "~4.21.0"
+    "tsx": "~4.21.0",
+    "typescript": "5.9.3",
+    "vitest": "~4.0.18"
   },
   "engines": {
     "node": ">=24"
@@ -20,8 +23,6 @@
     "check:write:unsafe": "biome check --write --unsafe .",
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspaces --if-present",
-    "syncpack:fix-mismatches": "syncpack fix-mismatches",
-    "syncpack:lint": "syncpack lint",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },

@@ -2,20 +2,23 @@
   "dependencies": {
     "zod": "~4.1.12"
   },
-  "devDependencies": {
-    "@wpg/tsconfig": "*",
-    "typescript": "5.9.3"
-  },
-  "exports": {
-    ".": "./src/index.ts"
-  },
+  "devDependencies": {},
+  "files": [
+    "dist/*.d.ts",
+    "dist/*.js"
+  ],
+  "main": "./dist/index.js",
   "name": "@wpg/model",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asemio/WickedProblemGovernance.git"
+  },
   "scripts": {
     "build": "tsc -b",
+    "depcheck": "depcheck .",
     "dev": "tsc -w --preserveWatchOutput",
     "typecheck": "tsc --noEmit"
   },
-  "type": "module",
   "version": "0.0.0"
 }
