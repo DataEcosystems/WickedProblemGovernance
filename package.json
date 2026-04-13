@@ -28,7 +28,7 @@
     "typecheck:watch": "tsc --build --noEmit --preserveWatchOutput -w"
   },
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "packages/model",
+    "apps/*"
   ]
 }
