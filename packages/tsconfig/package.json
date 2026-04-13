@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@tsconfig/strictest": "~2.0.8"
-  },
-  "name": "@wpg/tsconfig",
-  "private": true,
-  "version": "0.0.0"
-}
