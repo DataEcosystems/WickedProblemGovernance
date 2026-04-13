@@ -10,14 +10,14 @@ export const Project = JsonLdBase.extend({
   "@type": z.literal("Project"),
   architecture: Iri.meta(range(Architecture)),
   deliveryCouplingProxy: z.number().optional(),
-  deliveryEpisode: Iri.optional().meta(range("Episode")),
+  deliveryEpisode: Iri.optional().meta(range("GovernanceEpisode")),
   ecosystem: Iri.meta(range(Ecosystem)),
   episodeCount: z.number().int(),
   normalizedBurden: z.number().optional(),
   partnerCount: z.number().int(),
-  stallFraction: z.number().optional(),
+  stallFraction: z.number(),
   stewardPresence: z.boolean(),
-  t0: Timestamp,
+  t0: Timestamp.optional(),
   tau2: z.number().optional(),
 }).readonly();
 

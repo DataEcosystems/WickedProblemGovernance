@@ -14,7 +14,7 @@ export const GovernanceEpisode = JsonLdBase.extend({
   partnerCount: z.number().int(),
   project: Iri.meta(range(Project)),
   stall: z.boolean(),
-  t0: Timestamp,
+  t0: Timestamp.optional(),
   t1: Timestamp.optional(),
   t2: Timestamp.optional(),
   tau1: z.number().optional(),
