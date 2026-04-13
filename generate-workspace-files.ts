@@ -138,6 +138,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             url: "git+https://github.com/asemio/WickedProblemGovernance.git",
           },
           scripts: {
+            clean: "rimraf dist",
             build: "tsc -b",
             depcheck: "depcheck .",
           },
@@ -153,7 +154,6 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
       JSON.stringify(
         {
           compilerOptions: {
-            baseUrl: "src",
             composite: true,
             declaration:
               workspacesDirectoryName === "packages" ? true : undefined,
@@ -166,6 +166,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             moduleResolution: "node16",
             noUncheckedIndexedAccess: false,
             outDir: "dist",
+            rootDir: "src",
             sourceMap:
               workspacesDirectoryName === "packages" ? true : undefined,
             target: "es2022",

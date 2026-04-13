@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "composite": true,
     "exactOptionalPropertyTypes": false,
     "forceConsistentCasingInFileNames": true,
@@ -11,6 +10,7 @@
     "moduleResolution": "node16",
     "noUncheckedIndexedAccess": false,
     "outDir": "dist",
+    "rootDir": "src",
     "target": "es2022"
   },
   "extends": [

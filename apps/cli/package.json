@@ -5,6 +5,11 @@
     "cmd-ts": "~0.15.0"
   },
   "devDependencies": {},
+  "files": [
+    "dist/*.d.ts",
+    "dist/*.js"
+  ],
+  "main": "./dist/index.js",
   "name": "@wpg/cli",
   "private": true,
   "repository": {
@@ -12,6 +17,7 @@
     "url": "git+https://github.com/asemio/WickedProblemGovernance.git"
   },
   "scripts": {
+    "clean": "rimraf dist",
     "build": "tsc -b",
     "depcheck": "depcheck ."
   },

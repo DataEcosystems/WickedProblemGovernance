@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "composite": true,
     "declaration": true,
     "declarationMap": true,
@@ -13,6 +12,7 @@
     "moduleResolution": "node16",
     "noUncheckedIndexedAccess": false,
     "outDir": "dist",
+    "rootDir": "src",
     "sourceMap": true,
     "target": "es2022"
   },
