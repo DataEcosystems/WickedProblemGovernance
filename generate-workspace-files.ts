@@ -7,6 +7,7 @@ import url from "node:url";
 const VERSION = "0.0.0";
 
 const externalDependencies = {
+  "cmd-ts": "~0.15.0",
   zod: "~4.1.12",
 } as const;
 
@@ -39,8 +40,15 @@ const packages: Readonly<Record<PackageName, Workspace>> = {
 } as const;
 
 const workspaces = {
+  apps: {
+    cli: {
+      dependencies: {
+        external: ["cmd-ts"],
+        internal: ["model", "transformers"],
+      },
+    },
+  } satisfies Record<string, Workspace>,
   packages,
-  // tools: { cli: {} },
 } as const;
 
 const myDirPath = path.dirname(url.fileURLToPath(import.meta.url));
@@ -48,9 +56,7 @@ const myDirPath = path.dirname(url.fileURLToPath(import.meta.url));
 for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
   workspaces,
 )) {
-  const workspacesDirectoryName = workspacesDirectoryAny as
-    | "packages"
-    | "tools";
+  const workspacesDirectoryName = workspacesDirectoryAny as "apps" | "packages";
   for (const [workspaceName, workspaceAny] of Object.entries(workspaces_)) {
     const workspace = workspaceAny as Workspace;
 
@@ -150,8 +156,10 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
         {
           compilerOptions: {
             baseUrl: "src",
-            declaration: true,
-            declarationMap: true,
+            declaration:
+              workspacesDirectoryName === "packages" ? true : undefined,
+            declarationMap:
+              workspacesDirectoryName === "packages" ? true : undefined,
             exactOptionalPropertyTypes: false,
             forceConsistentCasingInFileNames: true,
             lib: ["ES2022"],
@@ -159,7 +167,8 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             moduleResolution: "node16",
             noUncheckedIndexedAccess: false,
             outDir: "dist",
-            sourceMap: true,
+            sourceMap:
+              workspacesDirectoryName === "packages" ? true : undefined,
             target: "es2022",
           },
           extends: ["@tsconfig/strictest/tsconfig.json"],

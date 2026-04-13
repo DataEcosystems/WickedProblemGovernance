@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "ES2022"
+    ],
+    "module": "node16",
+    "moduleResolution": "node16",
+    "noUncheckedIndexedAccess": false,
+    "outDir": "dist",
+    "target": "es2022"
+  },
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
+}

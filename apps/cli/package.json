@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@wpg/model": "0.0.0",
+    "@wpg/transformers": "0.0.0",
+    "cmd-ts": "~0.15.0"
+  },
+  "devDependencies": {},
+  "name": "@wpg/cli",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asemio/WickedProblemGovernance.git"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "depcheck": "depcheck .",
+    "dev": "tsc -w --preserveWatchOutput",
+    "typecheck": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}
