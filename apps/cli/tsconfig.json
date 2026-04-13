@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "declaration": true,
     "exactOptionalPropertyTypes": false,
     "forceConsistentCasingInFileNames": true,
     "lib": [

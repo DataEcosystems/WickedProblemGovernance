@@ -15,8 +15,8 @@
     "url": "git+https://github.com/asemio/WickedProblemGovernance.git"
   },
   "scripts": {
-    "clean": "rimraf dist",
     "build": "tsc -b",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "depcheck": "depcheck ."
   },
   "version": "0.0.0"

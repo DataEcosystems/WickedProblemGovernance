@@ -8,12 +8,15 @@ const VERSION = "0.0.0";
 
 const externalDependencies = {
   "cmd-ts": "~0.15.0",
+  pino: "~10.3.1",
+  "pino-pretty": "~13.1.3",
   zod: "~4.1.12",
 } as const;
 
 type PackageName = "model" | "transformers";
 
 interface Workspace {
+  bin?: Record<string, string>;
   dependencies?: {
     external?: readonly (keyof typeof externalDependencies)[];
     internal?: readonly PackageName[];
@@ -42,8 +45,11 @@ const packages: Readonly<Record<PackageName, Workspace>> = {
 const workspaces = {
   apps: {
     cli: {
+      bin: {
+        wpg: "dist/cli.js",
+      },
       dependencies: {
-        external: ["cmd-ts"],
+        external: ["cmd-ts", "pino", "pino-pretty", "zod"],
         internal: ["model", "transformers"],
       },
     },
@@ -97,6 +103,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
       path.join(packageDirectoryPath, "package.json"),
       `${JSON.stringify(
         {
+          bin: workspace.bin,
           dependencies: {
             ...(workspace.dependencies?.internal ?? []).toSorted().reduce(
               (map, packageName) => {
@@ -138,8 +145,14 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             url: "git+https://github.com/asemio/WickedProblemGovernance.git",
           },
           scripts: {
-            clean: "rimraf dist",
-            build: "tsc -b",
+            build: `tsc -b${
+              workspace.bin
+                ? ` && ${Object.values(workspace.bin)
+                    .map((bin) => `chmod +x ${bin}`)
+                    .join(" && ")}`
+                : ""
+            }`,
+            clean: "rimraf dist tsconfig.tsbuildinfo",
             depcheck: "depcheck .",
           },
           version: VERSION,
@@ -155,8 +168,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
         {
           compilerOptions: {
             composite: true,
-            declaration:
-              workspacesDirectoryName === "packages" ? true : undefined,
+            declaration: true,
             // declarationMap:
             //   workspacesDirectoryName === "packages" ? true : undefined,
             exactOptionalPropertyTypes: false,
