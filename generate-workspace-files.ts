@@ -157,8 +157,8 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             composite: true,
             declaration:
               workspacesDirectoryName === "packages" ? true : undefined,
-            declarationMap:
-              workspacesDirectoryName === "packages" ? true : undefined,
+            // declarationMap:
+            //   workspacesDirectoryName === "packages" ? true : undefined,
             exactOptionalPropertyTypes: false,
             forceConsistentCasingInFileNames: true,
             lib: ["ES2022"],
@@ -167,8 +167,8 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             noUncheckedIndexedAccess: false,
             outDir: "dist",
             rootDir: "src",
-            sourceMap:
-              workspacesDirectoryName === "packages" ? true : undefined,
+            // sourceMap:
+            //   workspacesDirectoryName === "packages" ? true : undefined,
             target: "es2022",
           },
           extends: ["@tsconfig/strictest/tsconfig.json"],

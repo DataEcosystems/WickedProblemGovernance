@@ -2,7 +2,6 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
-    "declarationMap": true,
     "exactOptionalPropertyTypes": false,
     "forceConsistentCasingInFileNames": true,
     "lib": [
@@ -13,7 +12,6 @@
     "noUncheckedIndexedAccess": false,
     "outDir": "dist",
     "rootDir": "src",
-    "sourceMap": true,
     "target": "es2022"
   },
   "extends": [
