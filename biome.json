@@ -13,7 +13,13 @@
     }
   },
   "files": {
-    "includes": ["**", "!**/dist", "!**/node_modules"],
+    "includes": [
+      "**",
+      "!data",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/tsconfig.json"
+    ],
     "maxSize": 8388608
   },
   "formatter": {
