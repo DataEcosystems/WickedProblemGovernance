@@ -8,4 +8,5 @@ export * from "./GovernanceEventType.js";
 export * from "./InstitutionalLayer.js";
 export * from "./Partner.js";
 export * from "./Project.js";
+export * from "./Schema.js";
 export * from "./schemas.js";
