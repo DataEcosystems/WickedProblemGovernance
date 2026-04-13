@@ -1,11 +1,11 @@
 import { Architecture } from "./Architecture.js";
-import { Artifact } from "./Artifact.js";
-import { ArtifactType } from "./ArtifactType.js";
 import { Domain } from "./Domain.js";
 import { Ecosystem } from "./Ecosystem.js";
-import { Episode } from "./Episode.js";
-import { Event } from "./Event.js";
-import { EventType } from "./EventType.js";
+import { Artifact } from "./GovernanceArtifact.js";
+import { ArtifactType } from "./GovernanceArtifactType.js";
+import { Episode } from "./GovernanceEpisode.js";
+import { Event } from "./GovernanceEvent.js";
+import { EventType } from "./GovernanceEventType.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
 import { Partner } from "./Partner.js";
 import { Project } from "./Project.js";

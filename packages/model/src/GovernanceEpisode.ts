@@ -5,8 +5,8 @@ import { Project } from "./Project.js";
 import { range } from "./range.js";
 import { Timestamp } from "./Timestamp.js";
 
-export const Episode = JsonLdBase.extend({
-  "@type": z.literal("Episode"),
+export const GovernanceEpisode = JsonLdBase.extend({
+  "@type": z.literal("GovernanceEpisode"),
   couplingProxy: z.number(),
   domainHeterogeneity: z.number(),
   layerHeterogeneity: z.number(),
@@ -21,4 +21,4 @@ export const Episode = JsonLdBase.extend({
   tau2: z.number().optional(),
 }).readonly();
 
-export type Episode = z.infer<typeof Episode>;
+export type GovernanceEpisode = z.infer<typeof GovernanceEpisode>;
