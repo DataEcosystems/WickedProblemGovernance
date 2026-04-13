@@ -5,9 +5,15 @@
     "declarationMap": true,
     "exactOptionalPropertyTypes": false,
     "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "ES2022"
+    ],
+    "module": "node16",
+    "moduleResolution": "node16",
     "noUncheckedIndexedAccess": false,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "target": "es2022"
   },
   "extends": [
     "@tsconfig/strictest/tsconfig.json"

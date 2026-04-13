@@ -27,7 +27,6 @@
     "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "workspaces": [
-    "apps/*",
     "packages/*"
   ]
 }
