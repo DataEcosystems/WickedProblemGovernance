@@ -13,9 +13,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "depcheck": "depcheck .",
-    "dev": "tsc -w --preserveWatchOutput",
-    "typecheck": "tsc --noEmit"
+    "depcheck": "depcheck ."
   },
   "version": "0.0.0"
 }

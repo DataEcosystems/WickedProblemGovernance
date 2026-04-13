@@ -51,7 +51,7 @@ const workspaces = {
   packages,
 } as const;
 
-const myDirPath = path.dirname(url.fileURLToPath(import.meta.url));
+const thisDirectoryPath = path.dirname(url.fileURLToPath(import.meta.url));
 
 for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
   workspaces,
@@ -61,7 +61,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
     const workspace = workspaceAny as Workspace;
 
     const packageDirectoryPath = path.join(
-      myDirPath,
+      thisDirectoryPath,
       workspacesDirectoryName,
       workspaceName,
     );
@@ -140,8 +140,6 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
           scripts: {
             build: "tsc -b",
             depcheck: "depcheck .",
-            dev: "tsc -w --preserveWatchOutput",
-            typecheck: "tsc --noEmit",
           },
           version: VERSION,
         },
@@ -156,6 +154,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
         {
           compilerOptions: {
             baseUrl: "src",
+            composite: true,
             declaration:
               workspacesDirectoryName === "packages" ? true : undefined,
             declarationMap:
@@ -180,3 +179,21 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
     );
   }
 }
+
+// Root tsconfig.json
+fs.writeFileSync(
+  path.join(thisDirectoryPath, "tsconfig.json"),
+  JSON.stringify(
+    {
+      files: [],
+      references: Object.entries(workspaces).flatMap(
+        ([workspacesDirectoryName, workspaces]) =>
+          Object.keys(workspaces).map((workspaceName) => ({
+            path: `${workspacesDirectoryName}/${workspaceName}`,
+          })),
+      ),
+    },
+    undefined,
+    2,
+  ),
+);
