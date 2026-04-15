@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 import fs from "node:fs/promises";
-import { command, positional, run, subcommands } from "cmd-ts";
+import path from "node:path";
+import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
 // import { pino } from "pino";
 import { generateJsonSchema } from "./generateJsonSchema.js";
+import { generateJsonSchemas } from "./generateJsonSchemas.js";
 import {
   IjpdsDataset,
   transformIjpdsDataset,
@@ -29,11 +31,30 @@ run(
         cmds: {
           "json-schema": command({
             args: {},
-            description: "generate JSON schema",
+            description: "generate a single JSON schemas",
             handler: () => {
               process.stdout.write(
                 JSON.stringify(generateJsonSchema(), null, 2),
               );
+            },
+            name: "json-schema",
+          }),
+          "json-schemas": command({
+            args: {
+              outputDirectoryPath: option({
+                long: "--output",
+                short: "o",
+              }),
+            },
+            description: "generate JSON schemas to an output directory",
+            handler: async ({ outputDirectoryPath }) => {
+              await fs.mkdir(outputDirectoryPath, { recursive: true });
+              for (const [name, jsonSchema] of generateJsonSchemas()) {
+                await fs.writeFile(
+                  path.resolve(outputDirectoryPath, `${name}.schema.json`),
+                  JSON.stringify(jsonSchema, null, 2),
+                );
+              }
             },
             name: "json-schema",
           }),
