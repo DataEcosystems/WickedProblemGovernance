@@ -30,22 +30,26 @@ export function* generateJsonSchemas() {
   }
 
   for (const [name, schema] of Object.entries(schemas)) {
-    yield [
-      name,
-      z.toJSONSchema(schema, {
-        override: (ctx) => {
-          // If this sub-schema has an id and isn't the root, replace with a $ref
-          const meta = registry.get(ctx.zodSchema);
-          if (meta?.id && meta.id !== name) {
-            // Wipe the generated schema and replace with a $ref
-            for (const key of Object.keys(ctx.jsonSchema)) {
-              delete ctx.jsonSchema[key];
-            }
-            ctx.jsonSchema["$ref"] = `./${meta.id}.schema.json`;
+    const jsonSchema = z.toJSONSchema(schema, {
+      override: (ctx) => {
+        // If this sub-schema has an id and isn't the root, replace with a $ref
+        const meta = registry.get(ctx.zodSchema);
+        if (meta?.id && meta.id !== name) {
+          // Wipe the generated schema and replace with a $ref
+          for (const key of Object.keys(ctx.jsonSchema)) {
+            delete ctx.jsonSchema[key];
           }
-        },
-        target: "draft-7",
-      }),
-    ];
+          ctx.jsonSchema["$ref"] = `./${meta.id}.schema.json`;
+        }
+      },
+      target: "draft-7",
+    });
+
+    if (jsonSchema.id) {
+      jsonSchema["$id"] = jsonSchema.id;
+      delete jsonSchema.id;
+    }
+
+    yield [name, jsonSchema];
   }
 }
