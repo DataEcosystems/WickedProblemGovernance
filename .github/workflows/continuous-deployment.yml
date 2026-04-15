@@ -28,7 +28,7 @@ jobs:
       - name: Generate documentation
         run: |
           apps/cli/dist/cli.js generate json-schemas -o docs/model/schema.json
-          npm exec jsonschema2md -- -d docs/model/schema.json -o docs/model/md -x docs/model/md
+          npm exec jsonschema2md -- -d docs/model/schema.json -h false -o docs/model/md -p range -x docs/model/md
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "generated docs"
