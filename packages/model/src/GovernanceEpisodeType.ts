@@ -7,6 +7,7 @@ export const GovernanceEpisodeType = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "GovernanceEpisodeType",
     namedIndividuals: [
       { "@id": "wpg:AgreementGovernanceEpisodeType", name: "Agreement" },
       { "@id": "wpg:AllocationGovernanceEpisodeType", name: "Allocation" },

@@ -19,6 +19,10 @@ export const Project = JsonLdBase.extend({
   stewardPresence: z.boolean(),
   t0: Timestamp.optional(),
   tau2: z.number().optional(),
-}).readonly();
+})
+  .readonly()
+  .meta({
+    id: "Project",
+  });
 
 export type Project = z.infer<typeof Project>;

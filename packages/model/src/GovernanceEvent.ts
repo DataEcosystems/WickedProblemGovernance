@@ -14,7 +14,11 @@ export const GovernanceEvent = JsonLdBase.extend({
   episode: Iri.meta(range(GovernanceEpisode)),
   governanceEventType: Iri.meta(range(GovernanceEventType)),
   partners: z.array(Iri).readonly().meta(range(Partner)),
-  timestamp: Timestamp.optional(),
-}).readonly();
+  timestamp: Timestamp,
+})
+  .readonly()
+  .meta({
+    id: "GovernanceEvent",
+  });
 
 export type GovernanceEvent = z.infer<typeof GovernanceEvent>;

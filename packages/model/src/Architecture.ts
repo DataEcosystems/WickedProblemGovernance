@@ -7,10 +7,10 @@ export const Architecture = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "Architecture",
     namedIndividuals: [
       { "@id": "wpg:CustodialArchitecture", name: "Custodial" },
       { "@id": "wpg:FederatedArchitecture", name: "Federated" },
     ],
   });
-
 export type Architecture = z.infer<typeof Architecture>;

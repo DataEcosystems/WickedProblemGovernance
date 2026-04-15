@@ -7,6 +7,7 @@ export const GovernanceEventType = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "GovernanceEventType",
     namedIndividuals: [
       {
         "@id": "wpg:AgreementExecutedGovernanceEventType",
@@ -16,6 +17,7 @@ export const GovernanceEventType = JsonLdBase.extend({
         "@id": "wpg:ApprovalIssuedGovernanceEventType",
         name: "Approval Issued",
       },
+      { "@id": "wpg:EscalationGovernanceEventType", name: "Escalation" },
       {
         "@id": "wpg:OutputDeliveredGovernanceEventType",
         name: "Output Delivered",
@@ -28,6 +30,9 @@ export const GovernanceEventType = JsonLdBase.extend({
         "@id": "wpg:RequestSubmittedGovernanceEventType",
         name: "Request Submitted",
       },
+      { "@id": "wpg:ReviewGovernanceEventType", name: "Review" },
       { "@id": "wpg:WithdrawalGovernanceEventType", name: "Withdrawal" },
     ],
   });
+
+export type GovernanceEventType = z.infer<typeof GovernanceEventType>;

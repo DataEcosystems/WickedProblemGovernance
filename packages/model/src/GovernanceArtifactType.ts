@@ -7,6 +7,7 @@ export const GovernanceArtifactType = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "GovernanceArtifactType",
     namedIndividuals: [
       {
         "@id": "wpg:CommitteeMinutesGovernanceArtifactType",

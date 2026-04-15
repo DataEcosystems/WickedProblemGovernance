@@ -10,6 +10,10 @@ export const Partner = JsonLdBase.extend({
   domains: z.array(Iri).readonly().meta(range(Domain)),
   layers: z.array(Iri).readonly().meta(range(InstitutionalLayer)),
   name: z.string(),
-}).readonly();
+})
+  .readonly()
+  .meta({
+    id: "Partner",
+  });
 
 export type Partner = z.infer<typeof Partner>;

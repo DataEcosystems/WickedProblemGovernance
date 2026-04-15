@@ -7,6 +7,7 @@ export const InstitutionalLayer = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "InstitutionalLayer",
     namedIndividuals: [
       { "@id": "wpg:LocalInstitutionalLayer", name: "Local" },
       { "@id": "wpg:RegionalInstitutionalLayer", name: "Regional" },

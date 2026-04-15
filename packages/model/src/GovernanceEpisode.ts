@@ -21,6 +21,10 @@ export const GovernanceEpisode = JsonLdBase.extend({
   t2: Timestamp.optional(),
   tau1: z.number().optional(),
   tau2: z.number().optional(),
-}).readonly();
+})
+  .readonly()
+  .meta({
+    id: "GovernanceEpisode",
+  });
 
 export type GovernanceEpisode = z.infer<typeof GovernanceEpisode>;

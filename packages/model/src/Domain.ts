@@ -7,6 +7,7 @@ export const Domain = JsonLdBase.extend({
 })
   .readonly()
   .meta({
+    id: "Domain",
     namedIndividuals: [
       { "@id": "wpg:EducationDomain", name: "Education" },
       { "@id": "wpg:HealthDomain", name: "Health" },

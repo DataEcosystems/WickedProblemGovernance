@@ -7,6 +7,10 @@ export const Ecosystem = JsonLdBase.extend({
   meanTimeToValue: z.number().optional(),
   name: z.string(),
   stdTimeToValue: z.number().optional(),
-}).readonly();
+})
+  .readonly()
+  .meta({
+    id: "Ecosystem",
+  });
 
 export type Ecosystem = z.infer<typeof Ecosystem>;
