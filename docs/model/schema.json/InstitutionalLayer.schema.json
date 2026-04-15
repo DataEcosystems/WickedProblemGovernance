@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "The jurisdictional level at which a partner organization operates.",
+  "id": "InstitutionalLayer",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:LocalInstitutionalLayer",
+      "name": "Local"
+    },
+    {
+      "@id": "wpg:RegionalInstitutionalLayer",
+      "name": "Regional"
+    },
+    {
+      "@id": "wpg:StateInstitutionalLayer",
+      "name": "State"
+    }
+  ],
+  "title": "Institutional Layer",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "InstitutionalLayer"
+    },
+    "name": {
+      "description": "Human-readable name of the institutional layer.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "name"
+  ],
+  "additionalProperties": false
+}

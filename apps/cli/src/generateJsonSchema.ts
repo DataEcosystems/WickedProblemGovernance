@@ -19,5 +19,6 @@ export function generateJsonSchema() {
   return z.toJSONSchema(Root, {
     metadata: registry,
     reused: "ref",
+    target: "draft-7",
   });
 }

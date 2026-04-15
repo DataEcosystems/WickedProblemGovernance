@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A timestamped occurrence in a governance process corresponding to a durable artifact.",
+  "id": "GovernanceEvent",
+  "title": "Governance Event",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceEvent"
+    },
+    "artifact": {
+      "description": "The durable source document associated with this event.",
+      "range": "GovernanceArtifact",
+      "title": "Artifact",
+      "type": "string"
+    },
+    "episode": {
+      "description": "The governance episode this event belongs to.",
+      "range": "GovernanceEpisode",
+      "title": "Episode",
+      "type": "string"
+    },
+    "governanceEventType": {
+      "description": "The governance function this event performs.",
+      "range": "GovernanceEventType",
+      "title": "Governance Event Type",
+      "type": "string"
+    },
+    "partners": {
+      "description": "The institutional actors involved in this event.",
+      "range": "Partner",
+      "title": "Partners",
+      "readOnly": true,
+      "type": "array",
+      "items": {
+        "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+        "type": "string"
+      }
+    },
+    "timestamp": {
+      "description": "The date or datetime on which this event occurred.",
+      "title": "Timestamp",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+        }
+      ]
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "episode",
+    "governanceEventType",
+    "partners"
+  ],
+  "additionalProperties": false
+}

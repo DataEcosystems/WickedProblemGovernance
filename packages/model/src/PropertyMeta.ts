@@ -1,6 +1,5 @@
-import { z } from "zod";
-
 export type PropertyMeta = {
-  readonly description?: string;
-  readonly range?: z.ZodType | string;
+  readonly description: string;
+  readonly range?: string;
+  readonly title: string;
 };
