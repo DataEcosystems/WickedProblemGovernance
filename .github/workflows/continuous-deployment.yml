@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   id-token: write
-  contents: read
+  contents: write
 jobs:
   build-test:
     env:
@@ -29,7 +29,7 @@ jobs:
         run: |
           apps/cli/dist/cli.js generate json-schemas -o docs/model/schema.json
           npm exec jsonschema2md -- -d docs/model/schema.json -o docs/model/md -x docs/model/md
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "generated docs"
           file_pattern: "docs/model/**"
