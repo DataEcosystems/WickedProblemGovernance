@@ -1,15 +1,3 @@
-# Architecture Schema
-
-```txt
-undefined
-```
-
-The data architecture governing how records are held and linked in an IDS project.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                  |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [Architecture.schema.json](Architecture.schema.json "open original schema") |
-
 ## Architecture Type
 
 `object` ([Architecture](architecture.md))

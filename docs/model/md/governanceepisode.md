@@ -1,15 +1,3 @@
-# Governance Episode Schema
-
-```txt
-undefined
-```
-
-A bounded governance authorization attempt aggregating a sequence of events.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                            |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------------------ |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [GovernanceEpisode.schema.json](GovernanceEpisode.schema.json "open original schema") |
-
 ## Governance Episode Type
 
 `object` ([Governance Episode](governanceepisode.md))
@@ -128,6 +116,8 @@ The type of governance authorization attempt.
 
 * defined in: [Governance Episode](governanceepisode-properties-governance-episode-type.md "undefined#/properties/governanceEpisodeType")
 
+* range: GovernanceEpisodeType
+
 ### governanceEpisodeType Type
 
 `string` ([Governance Episode Type](governanceepisode-properties-governance-episode-type.md))
@@ -205,6 +195,8 @@ The project this episode belongs to.
 * cannot be null
 
 * defined in: [Governance Episode](governanceepisode-properties-project.md "undefined#/properties/project")
+
+* range: Project
 
 ### project Type
 

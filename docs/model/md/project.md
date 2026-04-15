@@ -1,15 +1,3 @@
-# Project Schema
-
-```txt
-undefined
-```
-
-A group of episodes sharing a common governance boundary design and data architecture.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                        |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :---------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [Project.schema.json](Project.schema.json "open original schema") |
-
 ## Project Type
 
 `object` ([Project](project.md))
@@ -90,6 +78,8 @@ The data architecture governing how records are held and linked.
 
 * defined in: [Project](project-properties-architecture.md "undefined#/properties/architecture")
 
+* range: Architecture
+
 ### architecture Type
 
 `string` ([Architecture](project-properties-architecture.md))
@@ -126,6 +116,8 @@ The episode whose delivered value corresponds to the first data product.
 
 * defined in: [Project](project-properties-delivery-episode.md "undefined#/properties/deliveryEpisode")
 
+* range: GovernanceEpisode
+
 ### deliveryEpisode Type
 
 `string` ([Delivery Episode](project-properties-delivery-episode.md))
@@ -143,6 +135,8 @@ The ecosystem this project belongs to.
 * cannot be null
 
 * defined in: [Project](project-properties-ecosystem.md "undefined#/properties/ecosystem")
+
+* range: Ecosystem
 
 ### ecosystem Type
 

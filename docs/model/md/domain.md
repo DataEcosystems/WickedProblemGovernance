@@ -1,15 +1,3 @@
-# Domain Schema
-
-```txt
-undefined
-```
-
-The regulatory and institutional domain of a partner organization.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                      |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [Domain.schema.json](Domain.schema.json "open original schema") |
-
 ## Domain Type
 
 `object` ([Domain](domain.md))

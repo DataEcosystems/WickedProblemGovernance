@@ -1,15 +1,3 @@
-# Governance Event Schema
-
-```txt
-undefined
-```
-
-A timestamped occurrence in a governance process corresponding to a durable artifact.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                        |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [GovernanceEvent.schema.json](GovernanceEvent.schema.json "open original schema") |
-
 ## Governance Event Type
 
 `object` ([Governance Event](governanceevent.md))
@@ -84,6 +72,8 @@ The durable source document associated with this event.
 
 * defined in: [Governance Event](governanceevent-properties-artifact.md "undefined#/properties/artifact")
 
+* range: GovernanceArtifact
+
 ### artifact Type
 
 `string` ([Artifact](governanceevent-properties-artifact.md))
@@ -101,6 +91,8 @@ The governance episode this event belongs to.
 * cannot be null
 
 * defined in: [Governance Event](governanceevent-properties-episode.md "undefined#/properties/episode")
+
+* range: GovernanceEpisode
 
 ### episode Type
 
@@ -120,6 +112,8 @@ The governance function this event performs.
 
 * defined in: [Governance Event](governanceevent-properties-governance-event-type.md "undefined#/properties/governanceEventType")
 
+* range: GovernanceEventType
+
 ### governanceEventType Type
 
 `string` ([Governance Event Type](governanceevent-properties-governance-event-type.md))
@@ -137,6 +131,8 @@ The institutional actors involved in this event.
 * cannot be null
 
 * defined in: [Governance Event](governanceevent-properties-partners.md "undefined#/properties/partners")
+
+* range: Partner
 
 ### partners Type
 

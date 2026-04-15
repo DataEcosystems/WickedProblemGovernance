@@ -1,15 +1,3 @@
-# Partner Count Schema
-
-```txt
-undefined#/properties/partnerCount
-```
-
-Number of governance-relevant institutional actors in this episode.
-
-| Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                              |
-| :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [GovernanceEpisode.schema.json\*](GovernanceEpisode.schema.json "open original schema") |
-
 ## partnerCount Type
 
 `integer` ([Partner Count](governanceepisode-properties-partner-count.md))

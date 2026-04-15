@@ -1,15 +1,3 @@
-# Partner Schema
-
-```txt
-undefined
-```
-
-An institutional actor whose participation in an episode requires governance authorization.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                        |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :---------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [Partner.schema.json](Partner.schema.json "open original schema") |
-
 ## Partner Type
 
 `object` ([Partner](partner.md))
@@ -82,6 +70,8 @@ The regulatory and institutional domains of this partner.
 
 * defined in: [Partner](partner-properties-domains.md "undefined#/properties/domains")
 
+* range: Domain
+
 ### domains Type
 
 `string[]`
@@ -103,6 +93,8 @@ The jurisdictional levels at which this partner operates.
 * cannot be null
 
 * defined in: [Partner](partner-properties-institutional-layers.md "undefined#/properties/layers")
+
+* range: InstitutionalLayer
 
 ### layers Type
 

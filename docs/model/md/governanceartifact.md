@@ -1,15 +1,3 @@
-# Governance Artifact Schema
-
-```txt
-undefined
-```
-
-A durable source document from which a governance event was reconstructed.
-
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                              |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | Read only           | [GovernanceArtifact.schema.json](GovernanceArtifact.schema.json "open original schema") |
-
 ## Governance Artifact Type
 
 `object` ([Governance Artifact](governanceartifact.md))
@@ -79,6 +67,8 @@ The type of durable source document from which an event was reconstructed.
 * cannot be null
 
 * defined in: [Governance Artifact](governanceartifact-properties-governance-artifact-type.md "undefined#/properties/governanceArtifactType")
+
+* range: GovernanceArtifactType
 
 ### governanceArtifactType Type
 

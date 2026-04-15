@@ -1,15 +1,3 @@
-# Untitled string in Governance Episode Schema
-
-```txt
-undefined#/properties/t2/anyOf/0
-```
-
-
-
-| Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                              |
-| :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [GovernanceEpisode.schema.json\*](GovernanceEpisode.schema.json "open original schema") |
-
 ## 0 Type
 
 `string`
