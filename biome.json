@@ -16,6 +16,7 @@
     "includes": [
       "**",
       "!data",
+      "!docs",
       "!**/dist",
       "!**/node_modules",
       "!**/tsconfig.json"
