@@ -1,7 +1,4 @@
 {
-  "name": "wpg",
-  "main": "./packages/model/dist/index.js",                                                                                                     
-  "types": "./packages/model/dist/index.d.ts",
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
     "@tsconfig/strictest": "~2.0.8",
@@ -15,6 +12,7 @@
   "engines": {
     "node": ">=24"
   },
+  "name": "wpg",
   "optionalDependencies": {
     "@biomejs/cli-linux-x64": "2.4.9"
   },
@@ -27,9 +25,7 @@
     "build": "npm run build --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "typecheck": "tsc --build --noEmit",
-    "typecheck:watch": "tsc --build --noEmit --preserveWatchOutput -w",
-    "prepare": "npm run build",                                                                                                                 
-    "build": "npm run build --workspaces --if-present"
+    "typecheck:watch": "tsc --build --noEmit --preserveWatchOutput -w"
   },
   "workspaces": [
     "packages/model",
