@@ -3,10 +3,15 @@ import { JsonLdBase } from "./JsonLdBase.js";
 
 export const GovernanceEventType = JsonLdBase.extend({
   "@type": z.literal("GovernanceEventType"),
-  name: z.string(),
+  name: z.string().meta({
+    description: "Human-readable name of the event type.",
+    title: "Name",
+  }),
 })
   .readonly()
   .meta({
+    description:
+      "A classification of governance events by their function in the authorization process.",
     id: "GovernanceEventType",
     namedIndividuals: [
       {
@@ -33,6 +38,7 @@ export const GovernanceEventType = JsonLdBase.extend({
       { "@id": "wpg:ReviewGovernanceEventType", name: "Review" },
       { "@id": "wpg:WithdrawalGovernanceEventType", name: "Withdrawal" },
     ],
+    title: "Governance Event Type",
   });
 
 export type GovernanceEventType = z.infer<typeof GovernanceEventType>;

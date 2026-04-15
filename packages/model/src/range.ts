@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { ObjectMeta } from "./ObjectMeta.js";
-import { PropertyMeta } from "./PropertyMeta.js";
 
-export function range(target: z.ZodType | string): PropertyMeta {
+export function range(target: z.ZodType | string): { range: string } {
   if (typeof target === "string") {
     return { range: target };
   }
