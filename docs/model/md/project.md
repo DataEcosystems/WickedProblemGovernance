@@ -4,21 +4,21 @@
 
 # Project Properties
 
-| Property                                        | Type      | Required | Nullable       | Defined by                                                                                             |
-| :---------------------------------------------- | :-------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------- |
-| [@id](#id)                                      | `string`  | Required | cannot be null | [Project](project-properties-id.md "undefined#/properties/@id")                                        |
-| [@type](#type)                                  | `string`  | Required | cannot be null | [Project](project-properties-type.md "undefined#/properties/@type")                                    |
-| [architecture](#architecture)                   | `string`  | Required | cannot be null | [Project](project-properties-architecture.md "undefined#/properties/architecture")                     |
-| [deliveryCouplingProxy](#deliverycouplingproxy) | `number`  | Optional | cannot be null | [Project](project-properties-delivery-coupling-proxy.md "undefined#/properties/deliveryCouplingProxy") |
-| [deliveryEpisode](#deliveryepisode)             | `string`  | Optional | cannot be null | [Project](project-properties-delivery-episode.md "undefined#/properties/deliveryEpisode")              |
-| [ecosystem](#ecosystem)                         | `string`  | Required | cannot be null | [Project](project-properties-ecosystem.md "undefined#/properties/ecosystem")                           |
-| [episodeCount](#episodecount)                   | `integer` | Required | cannot be null | [Project](project-properties-episode-count.md "undefined#/properties/episodeCount")                    |
-| [normalizedBurden](#normalizedburden)           | `number`  | Optional | cannot be null | [Project](project-properties-normalized-burden.md "undefined#/properties/normalizedBurden")            |
-| [partnerCount](#partnercount)                   | `integer` | Required | cannot be null | [Project](project-properties-partner-count.md "undefined#/properties/partnerCount")                    |
-| [stallFraction](#stallfraction)                 | `number`  | Required | cannot be null | [Project](project-properties-stall-fraction.md "undefined#/properties/stallFraction")                  |
-| [stewardPresence](#stewardpresence)             | `boolean` | Required | cannot be null | [Project](project-properties-steward-presence.md "undefined#/properties/stewardPresence")              |
-| [t0](#t0)                                       | Merged    | Optional | cannot be null | [Project](project-properties-project-start.md "undefined#/properties/t0")                              |
-| [tau2](#tau2)                                   | `number`  | Optional | cannot be null | [Project](project-properties-time-to-delivered-value.md "undefined#/properties/tau2")                  |
+| Property                                        | Type      | Required | Nullable       | Defined by                                                                                           |
+| :---------------------------------------------- | :-------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------- |
+| [@id](#id)                                      | `string`  | Required | cannot be null | [Project](project-properties-id.md "Project#/properties/@id")                                        |
+| [@type](#type)                                  | `string`  | Required | cannot be null | [Project](project-properties-type.md "Project#/properties/@type")                                    |
+| [architecture](#architecture)                   | `string`  | Required | cannot be null | [Project](project-properties-architecture.md "Project#/properties/architecture")                     |
+| [deliveryCouplingProxy](#deliverycouplingproxy) | `number`  | Optional | cannot be null | [Project](project-properties-delivery-coupling-proxy.md "Project#/properties/deliveryCouplingProxy") |
+| [deliveryEpisode](#deliveryepisode)             | `string`  | Optional | cannot be null | [Project](project-properties-delivery-episode.md "Project#/properties/deliveryEpisode")              |
+| [ecosystem](#ecosystem)                         | `string`  | Required | cannot be null | [Project](project-properties-ecosystem.md "Project#/properties/ecosystem")                           |
+| [episodeCount](#episodecount)                   | `integer` | Required | cannot be null | [Project](project-properties-episode-count.md "Project#/properties/episodeCount")                    |
+| [normalizedBurden](#normalizedburden)           | `number`  | Optional | cannot be null | [Project](project-properties-normalized-burden.md "Project#/properties/normalizedBurden")            |
+| [partnerCount](#partnercount)                   | `integer` | Required | cannot be null | [Project](project-properties-partner-count.md "Project#/properties/partnerCount")                    |
+| [stallFraction](#stallfraction)                 | `number`  | Required | cannot be null | [Project](project-properties-stall-fraction.md "Project#/properties/stallFraction")                  |
+| [stewardPresence](#stewardpresence)             | `boolean` | Required | cannot be null | [Project](project-properties-steward-presence.md "Project#/properties/stewardPresence")              |
+| [t0](#t0)                                       | Merged    | Optional | cannot be null | [Project](project-properties-project-start.md "Project#/properties/t0")                              |
+| [tau2](#tau2)                                   | `number`  | Optional | cannot be null | [Project](project-properties-time-to-delivered-value.md "Project#/properties/tau2")                  |
 
 ## @id
 
@@ -32,7 +32,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Project](project-properties-id.md "undefined#/properties/@id")
+* defined in: [Project](project-properties-id.md "Project#/properties/@id")
 
 ### @id Type
 
@@ -50,7 +50,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Project](project-properties-type.md "undefined#/properties/@type")
+* defined in: [Project](project-properties-type.md "Project#/properties/@type")
 
 ### @type Type
 
@@ -76,7 +76,7 @@ The data architecture governing how records are held and linked.
 
 * cannot be null
 
-* defined in: [Project](project-properties-architecture.md "undefined#/properties/architecture")
+* defined in: [Project](project-properties-architecture.md "Project#/properties/architecture")
 
 * range: Architecture
 
@@ -96,7 +96,7 @@ The coupling proxy of the delivery episode.
 
 * cannot be null
 
-* defined in: [Project](project-properties-delivery-coupling-proxy.md "undefined#/properties/deliveryCouplingProxy")
+* defined in: [Project](project-properties-delivery-coupling-proxy.md "Project#/properties/deliveryCouplingProxy")
 
 ### deliveryCouplingProxy Type
 
@@ -114,7 +114,7 @@ The episode whose delivered value corresponds to the first data product.
 
 * cannot be null
 
-* defined in: [Project](project-properties-delivery-episode.md "undefined#/properties/deliveryEpisode")
+* defined in: [Project](project-properties-delivery-episode.md "Project#/properties/deliveryEpisode")
 
 * range: GovernanceEpisode
 
@@ -134,7 +134,7 @@ The ecosystem this project belongs to.
 
 * cannot be null
 
-* defined in: [Project](project-properties-ecosystem.md "undefined#/properties/ecosystem")
+* defined in: [Project](project-properties-ecosystem.md "Project#/properties/ecosystem")
 
 * range: Ecosystem
 
@@ -154,7 +154,7 @@ Number of governance episodes in this project.
 
 * cannot be null
 
-* defined in: [Project](project-properties-episode-count.md "undefined#/properties/episodeCount")
+* defined in: [Project](project-properties-episode-count.md "Project#/properties/episodeCount")
 
 ### episodeCount Type
 
@@ -178,7 +178,7 @@ Project time to delivered value per unit of delivery-episode coupling load.
 
 * cannot be null
 
-* defined in: [Project](project-properties-normalized-burden.md "undefined#/properties/normalizedBurden")
+* defined in: [Project](project-properties-normalized-burden.md "Project#/properties/normalizedBurden")
 
 ### normalizedBurden Type
 
@@ -196,7 +196,7 @@ Number of institutional actors contributing data in the delivery episode.
 
 * cannot be null
 
-* defined in: [Project](project-properties-partner-count.md "undefined#/properties/partnerCount")
+* defined in: [Project](project-properties-partner-count.md "Project#/properties/partnerCount")
 
 ### partnerCount Type
 
@@ -220,7 +220,7 @@ Proportion of episodes in the project that stalled.
 
 * cannot be null
 
-* defined in: [Project](project-properties-stall-fraction.md "undefined#/properties/stallFraction")
+* defined in: [Project](project-properties-stall-fraction.md "Project#/properties/stallFraction")
 
 ### stallFraction Type
 
@@ -238,7 +238,7 @@ Whether the project includes an authorized domain representative who mediates go
 
 * cannot be null
 
-* defined in: [Project](project-properties-steward-presence.md "undefined#/properties/stewardPresence")
+* defined in: [Project](project-properties-steward-presence.md "Project#/properties/stewardPresence")
 
 ### stewardPresence Type
 
@@ -256,7 +256,7 @@ The earliest episode initiation timestamp across all episodes in the project.
 
 * cannot be null
 
-* defined in: [Project](project-properties-project-start.md "undefined#/properties/t0")
+* defined in: [Project](project-properties-project-start.md "Project#/properties/t0")
 
 ### t0 Type
 
@@ -280,7 +280,7 @@ Calendar days from the earliest episode initiation to delivery of the first anal
 
 * cannot be null
 
-* defined in: [Project](project-properties-time-to-delivered-value.md "undefined#/properties/tau2")
+* defined in: [Project](project-properties-time-to-delivered-value.md "Project#/properties/tau2")
 
 ### tau2 Type
 

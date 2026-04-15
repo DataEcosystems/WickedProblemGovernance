@@ -4,23 +4,23 @@
 
 # Governance Episode Properties
 
-| Property                                        | Type      | Required | Nullable       | Defined by                                                                                                                  |
-| :---------------------------------------------- | :-------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| [@id](#id)                                      | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-id.md "undefined#/properties/@id")                                        |
-| [@type](#type)                                  | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-type.md "undefined#/properties/@type")                                    |
-| [couplingProxy](#couplingproxy)                 | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-coupling-proxy.md "undefined#/properties/couplingProxy")                  |
-| [domainHeterogeneity](#domainheterogeneity)     | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-domain-heterogeneity.md "undefined#/properties/domainHeterogeneity")      |
-| [governanceEpisodeType](#governanceepisodetype) | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-governance-episode-type.md "undefined#/properties/governanceEpisodeType") |
-| [layerHeterogeneity](#layerheterogeneity)       | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-layer-heterogeneity.md "undefined#/properties/layerHeterogeneity")        |
-| [normalizedBurden](#normalizedburden)           | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-normalized-burden.md "undefined#/properties/normalizedBurden")            |
-| [partnerCount](#partnercount)                   | `integer` | Required | cannot be null | [Governance Episode](governanceepisode-properties-partner-count.md "undefined#/properties/partnerCount")                    |
-| [project](#project)                             | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-project.md "undefined#/properties/project")                               |
-| [stall](#stall)                                 | `boolean` | Required | cannot be null | [Governance Episode](governanceepisode-properties-stall.md "undefined#/properties/stall")                                   |
-| [t0](#t0)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-episode-start.md "undefined#/properties/t0")                              |
-| [t1](#t1)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-first-durable-authorization.md "undefined#/properties/t1")                |
-| [t2](#t2)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-first-delivered-value.md "undefined#/properties/t2")                      |
-| [tau1](#tau1)                                   | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-authorization-latency.md "undefined#/properties/tau1")                    |
-| [tau2](#tau2)                                   | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-time-to-delivered-value.md "undefined#/properties/tau2")                  |
+| Property                                        | Type      | Required | Nullable       | Defined by                                                                                                                          |
+| :---------------------------------------------- | :-------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| [@id](#id)                                      | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-id.md "GovernanceEpisode#/properties/@id")                                        |
+| [@type](#type)                                  | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-type.md "GovernanceEpisode#/properties/@type")                                    |
+| [couplingProxy](#couplingproxy)                 | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-coupling-proxy.md "GovernanceEpisode#/properties/couplingProxy")                  |
+| [domainHeterogeneity](#domainheterogeneity)     | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-domain-heterogeneity.md "GovernanceEpisode#/properties/domainHeterogeneity")      |
+| [governanceEpisodeType](#governanceepisodetype) | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-governance-episode-type.md "GovernanceEpisode#/properties/governanceEpisodeType") |
+| [layerHeterogeneity](#layerheterogeneity)       | `number`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-layer-heterogeneity.md "GovernanceEpisode#/properties/layerHeterogeneity")        |
+| [normalizedBurden](#normalizedburden)           | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-normalized-burden.md "GovernanceEpisode#/properties/normalizedBurden")            |
+| [partnerCount](#partnercount)                   | `integer` | Required | cannot be null | [Governance Episode](governanceepisode-properties-partner-count.md "GovernanceEpisode#/properties/partnerCount")                    |
+| [project](#project)                             | `string`  | Required | cannot be null | [Governance Episode](governanceepisode-properties-project.md "GovernanceEpisode#/properties/project")                               |
+| [stall](#stall)                                 | `boolean` | Required | cannot be null | [Governance Episode](governanceepisode-properties-stall.md "GovernanceEpisode#/properties/stall")                                   |
+| [t0](#t0)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-episode-start.md "GovernanceEpisode#/properties/t0")                              |
+| [t1](#t1)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-first-durable-authorization.md "GovernanceEpisode#/properties/t1")                |
+| [t2](#t2)                                       | Merged    | Optional | cannot be null | [Governance Episode](governanceepisode-properties-first-delivered-value.md "GovernanceEpisode#/properties/t2")                      |
+| [tau1](#tau1)                                   | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-authorization-latency.md "GovernanceEpisode#/properties/tau1")                    |
+| [tau2](#tau2)                                   | `number`  | Optional | cannot be null | [Governance Episode](governanceepisode-properties-time-to-delivered-value.md "GovernanceEpisode#/properties/tau2")                  |
 
 ## @id
 
@@ -34,7 +34,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-id.md "undefined#/properties/@id")
+* defined in: [Governance Episode](governanceepisode-properties-id.md "GovernanceEpisode#/properties/@id")
 
 ### @id Type
 
@@ -52,7 +52,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-type.md "undefined#/properties/@type")
+* defined in: [Governance Episode](governanceepisode-properties-type.md "GovernanceEpisode#/properties/@type")
 
 ### @type Type
 
@@ -78,7 +78,7 @@ Composite measure of scale and structural heterogeneity of governance coordinati
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-coupling-proxy.md "undefined#/properties/couplingProxy")
+* defined in: [Governance Episode](governanceepisode-properties-coupling-proxy.md "GovernanceEpisode#/properties/couplingProxy")
 
 ### couplingProxy Type
 
@@ -96,7 +96,7 @@ Simpson-style diversity index measuring how evenly partners are distributed acro
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-domain-heterogeneity.md "undefined#/properties/domainHeterogeneity")
+* defined in: [Governance Episode](governanceepisode-properties-domain-heterogeneity.md "GovernanceEpisode#/properties/domainHeterogeneity")
 
 ### domainHeterogeneity Type
 
@@ -114,7 +114,7 @@ The type of governance authorization attempt.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-governance-episode-type.md "undefined#/properties/governanceEpisodeType")
+* defined in: [Governance Episode](governanceepisode-properties-governance-episode-type.md "GovernanceEpisode#/properties/governanceEpisodeType")
 
 * range: GovernanceEpisodeType
 
@@ -134,7 +134,7 @@ Simpson-style diversity index measuring how evenly partners are distributed acro
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-layer-heterogeneity.md "undefined#/properties/layerHeterogeneity")
+* defined in: [Governance Episode](governanceepisode-properties-layer-heterogeneity.md "GovernanceEpisode#/properties/layerHeterogeneity")
 
 ### layerHeterogeneity Type
 
@@ -152,7 +152,7 @@ Time to delivered value per unit of coupling load.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-normalized-burden.md "undefined#/properties/normalizedBurden")
+* defined in: [Governance Episode](governanceepisode-properties-normalized-burden.md "GovernanceEpisode#/properties/normalizedBurden")
 
 ### normalizedBurden Type
 
@@ -170,7 +170,7 @@ Number of governance-relevant institutional actors in this episode.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-partner-count.md "undefined#/properties/partnerCount")
+* defined in: [Governance Episode](governanceepisode-properties-partner-count.md "GovernanceEpisode#/properties/partnerCount")
 
 ### partnerCount Type
 
@@ -194,7 +194,7 @@ The project this episode belongs to.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-project.md "undefined#/properties/project")
+* defined in: [Governance Episode](governanceepisode-properties-project.md "GovernanceEpisode#/properties/project")
 
 * range: Project
 
@@ -214,7 +214,7 @@ Whether the episode shows sustained governance engagement but no qualifying dura
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-stall.md "undefined#/properties/stall")
+* defined in: [Governance Episode](governanceepisode-properties-stall.md "GovernanceEpisode#/properties/stall")
 
 ### stall Type
 
@@ -232,7 +232,7 @@ Timestamp of earliest event indicating entry into an approval workflow.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-episode-start.md "undefined#/properties/t0")
+* defined in: [Governance Episode](governanceepisode-properties-episode-start.md "GovernanceEpisode#/properties/t0")
 
 ### t0 Type
 
@@ -256,7 +256,7 @@ Timestamp of earliest qualifying authorization event for core scope.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-first-durable-authorization.md "undefined#/properties/t1")
+* defined in: [Governance Episode](governanceepisode-properties-first-durable-authorization.md "GovernanceEpisode#/properties/t1")
 
 ### t1 Type
 
@@ -280,7 +280,7 @@ Timestamp of earliest analytic output answering a stakeholder question.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-first-delivered-value.md "undefined#/properties/t2")
+* defined in: [Governance Episode](governanceepisode-properties-first-delivered-value.md "GovernanceEpisode#/properties/t2")
 
 ### t2 Type
 
@@ -304,7 +304,7 @@ Calendar days from episode initiation to first durable authorization.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-authorization-latency.md "undefined#/properties/tau1")
+* defined in: [Governance Episode](governanceepisode-properties-authorization-latency.md "GovernanceEpisode#/properties/tau1")
 
 ### tau1 Type
 
@@ -322,7 +322,7 @@ Calendar days from episode initiation to first delivered analytic output.
 
 * cannot be null
 
-* defined in: [Governance Episode](governanceepisode-properties-time-to-delivered-value.md "undefined#/properties/tau2")
+* defined in: [Governance Episode](governanceepisode-properties-time-to-delivered-value.md "GovernanceEpisode#/properties/tau2")
 
 ### tau2 Type
 

@@ -4,11 +4,11 @@
 
 # Governance Artifact Properties
 
-| Property                                          | Type     | Required | Nullable       | Defined by                                                                                                                      |
-| :------------------------------------------------ | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| [@id](#id)                                        | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-id.md "undefined#/properties/@id")                                          |
-| [@type](#type)                                    | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-type.md "undefined#/properties/@type")                                      |
-| [governanceArtifactType](#governanceartifacttype) | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-governance-artifact-type.md "undefined#/properties/governanceArtifactType") |
+| Property                                          | Type     | Required | Nullable       | Defined by                                                                                                                               |
+| :------------------------------------------------ | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| [@id](#id)                                        | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-id.md "GovernanceArtifact#/properties/@id")                                          |
+| [@type](#type)                                    | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-type.md "GovernanceArtifact#/properties/@type")                                      |
+| [governanceArtifactType](#governanceartifacttype) | `string` | Required | cannot be null | [Governance Artifact](governanceartifact-properties-governance-artifact-type.md "GovernanceArtifact#/properties/governanceArtifactType") |
 
 ## @id
 
@@ -22,7 +22,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Artifact](governanceartifact-properties-id.md "undefined#/properties/@id")
+* defined in: [Governance Artifact](governanceartifact-properties-id.md "GovernanceArtifact#/properties/@id")
 
 ### @id Type
 
@@ -40,7 +40,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Artifact](governanceartifact-properties-type.md "undefined#/properties/@type")
+* defined in: [Governance Artifact](governanceartifact-properties-type.md "GovernanceArtifact#/properties/@type")
 
 ### @type Type
 
@@ -66,7 +66,7 @@ The type of durable source document from which an event was reconstructed.
 
 * cannot be null
 
-* defined in: [Governance Artifact](governanceartifact-properties-governance-artifact-type.md "undefined#/properties/governanceArtifactType")
+* defined in: [Governance Artifact](governanceartifact-properties-governance-artifact-type.md "GovernanceArtifact#/properties/governanceArtifactType")
 
 * range: GovernanceArtifactType
 

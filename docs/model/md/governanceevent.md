@@ -4,15 +4,15 @@
 
 # Governance Event Properties
 
-| Property                                    | Type     | Required | Nullable       | Defined by                                                                                                          |
-| :------------------------------------------ | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------ |
-| [@id](#id)                                  | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-id.md "undefined#/properties/@id")                                    |
-| [@type](#type)                              | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-type.md "undefined#/properties/@type")                                |
-| [artifact](#artifact)                       | `string` | Optional | cannot be null | [Governance Event](governanceevent-properties-artifact.md "undefined#/properties/artifact")                         |
-| [episode](#episode)                         | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-episode.md "undefined#/properties/episode")                           |
-| [governanceEventType](#governanceeventtype) | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-governance-event-type.md "undefined#/properties/governanceEventType") |
-| [partners](#partners)                       | `array`  | Required | cannot be null | [Governance Event](governanceevent-properties-partners.md "undefined#/properties/partners")                         |
-| [timestamp](#timestamp)                     | Merged   | Optional | cannot be null | [Governance Event](governanceevent-properties-timestamp.md "undefined#/properties/timestamp")                       |
+| Property                                    | Type     | Required | Nullable       | Defined by                                                                                                                |
+| :------------------------------------------ | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| [@id](#id)                                  | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-id.md "GovernanceEvent#/properties/@id")                                    |
+| [@type](#type)                              | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-type.md "GovernanceEvent#/properties/@type")                                |
+| [artifact](#artifact)                       | `string` | Optional | cannot be null | [Governance Event](governanceevent-properties-artifact.md "GovernanceEvent#/properties/artifact")                         |
+| [episode](#episode)                         | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-episode.md "GovernanceEvent#/properties/episode")                           |
+| [governanceEventType](#governanceeventtype) | `string` | Required | cannot be null | [Governance Event](governanceevent-properties-governance-event-type.md "GovernanceEvent#/properties/governanceEventType") |
+| [partners](#partners)                       | `array`  | Required | cannot be null | [Governance Event](governanceevent-properties-partners.md "GovernanceEvent#/properties/partners")                         |
+| [timestamp](#timestamp)                     | Merged   | Optional | cannot be null | [Governance Event](governanceevent-properties-timestamp.md "GovernanceEvent#/properties/timestamp")                       |
 
 ## @id
 
@@ -26,7 +26,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-id.md "undefined#/properties/@id")
+* defined in: [Governance Event](governanceevent-properties-id.md "GovernanceEvent#/properties/@id")
 
 ### @id Type
 
@@ -44,7 +44,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-type.md "undefined#/properties/@type")
+* defined in: [Governance Event](governanceevent-properties-type.md "GovernanceEvent#/properties/@type")
 
 ### @type Type
 
@@ -70,7 +70,7 @@ The durable source document associated with this event.
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-artifact.md "undefined#/properties/artifact")
+* defined in: [Governance Event](governanceevent-properties-artifact.md "GovernanceEvent#/properties/artifact")
 
 * range: GovernanceArtifact
 
@@ -90,7 +90,7 @@ The governance episode this event belongs to.
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-episode.md "undefined#/properties/episode")
+* defined in: [Governance Event](governanceevent-properties-episode.md "GovernanceEvent#/properties/episode")
 
 * range: GovernanceEpisode
 
@@ -110,7 +110,7 @@ The governance function this event performs.
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-governance-event-type.md "undefined#/properties/governanceEventType")
+* defined in: [Governance Event](governanceevent-properties-governance-event-type.md "GovernanceEvent#/properties/governanceEventType")
 
 * range: GovernanceEventType
 
@@ -130,7 +130,7 @@ The institutional actors involved in this event.
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-partners.md "undefined#/properties/partners")
+* defined in: [Governance Event](governanceevent-properties-partners.md "GovernanceEvent#/properties/partners")
 
 * range: Partner
 
@@ -154,7 +154,7 @@ The date or datetime on which this event occurred.
 
 * cannot be null
 
-* defined in: [Governance Event](governanceevent-properties-timestamp.md "undefined#/properties/timestamp")
+* defined in: [Governance Event](governanceevent-properties-timestamp.md "GovernanceEvent#/properties/timestamp")
 
 ### timestamp Type
 

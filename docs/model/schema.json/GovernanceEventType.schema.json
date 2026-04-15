@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "A classification of governance events by their function in the authorization process.",
-  "id": "GovernanceEventType",
   "namedIndividuals": [
     {
       "@id": "wpg:AgreementExecutedGovernanceEventType",
@@ -59,5 +58,6 @@
     "@type",
     "name"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "GovernanceEventType"
 }

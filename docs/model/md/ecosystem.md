@@ -6,12 +6,12 @@
 
 | Property                                      | Type     | Required | Nullable       | Defined by                                                                                               |
 | :-------------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------- |
-| [@id](#id)                                    | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-id.md "undefined#/properties/@id")                                      |
-| [@type](#type)                                | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-type.md "undefined#/properties/@type")                                  |
-| [meanNormalizedBurden](#meannormalizedburden) | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-mean-normalized-burden.md "undefined#/properties/meanNormalizedBurden") |
-| [meanTimeToValue](#meantimetovalue)           | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-mean-time-to-value.md "undefined#/properties/meanTimeToValue")          |
-| [name](#name)                                 | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-name.md "undefined#/properties/name")                                   |
-| [stdTimeToValue](#stdtimetovalue)             | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-std-dev-time-to-value.md "undefined#/properties/stdTimeToValue")        |
+| [@id](#id)                                    | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-id.md "Ecosystem#/properties/@id")                                      |
+| [@type](#type)                                | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-type.md "Ecosystem#/properties/@type")                                  |
+| [meanNormalizedBurden](#meannormalizedburden) | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-mean-normalized-burden.md "Ecosystem#/properties/meanNormalizedBurden") |
+| [meanTimeToValue](#meantimetovalue)           | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-mean-time-to-value.md "Ecosystem#/properties/meanTimeToValue")          |
+| [name](#name)                                 | `string` | Required | cannot be null | [Ecosystem](ecosystem-properties-name.md "Ecosystem#/properties/name")                                   |
+| [stdTimeToValue](#stdtimetovalue)             | `number` | Optional | cannot be null | [Ecosystem](ecosystem-properties-std-dev-time-to-value.md "Ecosystem#/properties/stdTimeToValue")        |
 
 ## @id
 
@@ -25,7 +25,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-id.md "undefined#/properties/@id")
+* defined in: [Ecosystem](ecosystem-properties-id.md "Ecosystem#/properties/@id")
 
 ### @id Type
 
@@ -43,7 +43,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-type.md "undefined#/properties/@type")
+* defined in: [Ecosystem](ecosystem-properties-type.md "Ecosystem#/properties/@type")
 
 ### @type Type
 
@@ -69,7 +69,7 @@ Average project normalized burden across projects in this ecosystem.
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-mean-normalized-burden.md "undefined#/properties/meanNormalizedBurden")
+* defined in: [Ecosystem](ecosystem-properties-mean-normalized-burden.md "Ecosystem#/properties/meanNormalizedBurden")
 
 ### meanNormalizedBurden Type
 
@@ -87,7 +87,7 @@ Average project time to delivered value across projects in this ecosystem.
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-mean-time-to-value.md "undefined#/properties/meanTimeToValue")
+* defined in: [Ecosystem](ecosystem-properties-mean-time-to-value.md "Ecosystem#/properties/meanTimeToValue")
 
 ### meanTimeToValue Type
 
@@ -105,7 +105,7 @@ Human-readable name of the ecosystem.
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-name.md "undefined#/properties/name")
+* defined in: [Ecosystem](ecosystem-properties-name.md "Ecosystem#/properties/name")
 
 ### name Type
 
@@ -123,7 +123,7 @@ Standard deviation of project time to delivered value across projects in this ec
 
 * cannot be null
 
-* defined in: [Ecosystem](ecosystem-properties-std-dev-time-to-value.md "undefined#/properties/stdTimeToValue")
+* defined in: [Ecosystem](ecosystem-properties-std-dev-time-to-value.md "Ecosystem#/properties/stdTimeToValue")
 
 ### stdTimeToValue Type
 

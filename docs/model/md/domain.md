@@ -4,11 +4,11 @@
 
 # Domain Properties
 
-| Property       | Type     | Required | Nullable       | Defined by                                                        |
-| :------------- | :------- | :------- | :------------- | :---------------------------------------------------------------- |
-| [@id](#id)     | `string` | Required | cannot be null | [Domain](domain-properties-id.md "undefined#/properties/@id")     |
-| [@type](#type) | `string` | Required | cannot be null | [Domain](domain-properties-type.md "undefined#/properties/@type") |
-| [name](#name)  | `string` | Required | cannot be null | [Domain](domain-properties-name.md "undefined#/properties/name")  |
+| Property       | Type     | Required | Nullable       | Defined by                                                     |
+| :------------- | :------- | :------- | :------------- | :------------------------------------------------------------- |
+| [@id](#id)     | `string` | Required | cannot be null | [Domain](domain-properties-id.md "Domain#/properties/@id")     |
+| [@type](#type) | `string` | Required | cannot be null | [Domain](domain-properties-type.md "Domain#/properties/@type") |
+| [name](#name)  | `string` | Required | cannot be null | [Domain](domain-properties-name.md "Domain#/properties/name")  |
 
 ## @id
 
@@ -22,7 +22,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Domain](domain-properties-id.md "undefined#/properties/@id")
+* defined in: [Domain](domain-properties-id.md "Domain#/properties/@id")
 
 ### @id Type
 
@@ -40,7 +40,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Domain](domain-properties-type.md "undefined#/properties/@type")
+* defined in: [Domain](domain-properties-type.md "Domain#/properties/@type")
 
 ### @type Type
 
@@ -66,7 +66,7 @@ Human-readable name of the domain.
 
 * cannot be null
 
-* defined in: [Domain](domain-properties-name.md "undefined#/properties/name")
+* defined in: [Domain](domain-properties-name.md "Domain#/properties/name")
 
 ### name Type
 

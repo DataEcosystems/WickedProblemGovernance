@@ -4,11 +4,11 @@
 
 # Governance Artifact Type Properties
 
-| Property       | Type     | Required | Nullable       | Defined by                                                                                          |
-| :------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------- |
-| [@id](#id)     | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-id.md "undefined#/properties/@id")     |
-| [@type](#type) | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-type.md "undefined#/properties/@type") |
-| [name](#name)  | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-name.md "undefined#/properties/name")  |
+| Property       | Type     | Required | Nullable       | Defined by                                                                                                       |
+| :------------- | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------- |
+| [@id](#id)     | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-id.md "GovernanceArtifactType#/properties/@id")     |
+| [@type](#type) | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-type.md "GovernanceArtifactType#/properties/@type") |
+| [name](#name)  | `string` | Required | cannot be null | [Governance Artifact Type](governanceartifacttype-properties-name.md "GovernanceArtifactType#/properties/name")  |
 
 ## @id
 
@@ -22,7 +22,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Artifact Type](governanceartifacttype-properties-id.md "undefined#/properties/@id")
+* defined in: [Governance Artifact Type](governanceartifacttype-properties-id.md "GovernanceArtifactType#/properties/@id")
 
 ### @id Type
 
@@ -40,7 +40,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Governance Artifact Type](governanceartifacttype-properties-type.md "undefined#/properties/@type")
+* defined in: [Governance Artifact Type](governanceartifacttype-properties-type.md "GovernanceArtifactType#/properties/@type")
 
 ### @type Type
 
@@ -66,7 +66,7 @@ Human-readable name of the artifact type.
 
 * cannot be null
 
-* defined in: [Governance Artifact Type](governanceartifacttype-properties-name.md "undefined#/properties/name")
+* defined in: [Governance Artifact Type](governanceartifacttype-properties-name.md "GovernanceArtifactType#/properties/name")
 
 ### name Type
 

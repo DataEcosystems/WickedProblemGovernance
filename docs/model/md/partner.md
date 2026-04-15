@@ -4,13 +4,13 @@
 
 # Partner Properties
 
-| Property            | Type     | Required | Nullable       | Defined by                                                                           |
-| :------------------ | :------- | :------- | :------------- | :----------------------------------------------------------------------------------- |
-| [@id](#id)          | `string` | Required | cannot be null | [Partner](partner-properties-id.md "undefined#/properties/@id")                      |
-| [@type](#type)      | `string` | Required | cannot be null | [Partner](partner-properties-type.md "undefined#/properties/@type")                  |
-| [domains](#domains) | `array`  | Required | cannot be null | [Partner](partner-properties-domains.md "undefined#/properties/domains")             |
-| [layers](#layers)   | `array`  | Required | cannot be null | [Partner](partner-properties-institutional-layers.md "undefined#/properties/layers") |
-| [name](#name)       | `string` | Required | cannot be null | [Partner](partner-properties-name.md "undefined#/properties/name")                   |
+| Property            | Type     | Required | Nullable       | Defined by                                                                         |
+| :------------------ | :------- | :------- | :------------- | :--------------------------------------------------------------------------------- |
+| [@id](#id)          | `string` | Required | cannot be null | [Partner](partner-properties-id.md "Partner#/properties/@id")                      |
+| [@type](#type)      | `string` | Required | cannot be null | [Partner](partner-properties-type.md "Partner#/properties/@type")                  |
+| [domains](#domains) | `array`  | Required | cannot be null | [Partner](partner-properties-domains.md "Partner#/properties/domains")             |
+| [layers](#layers)   | `array`  | Required | cannot be null | [Partner](partner-properties-institutional-layers.md "Partner#/properties/layers") |
+| [name](#name)       | `string` | Required | cannot be null | [Partner](partner-properties-name.md "Partner#/properties/name")                   |
 
 ## @id
 
@@ -24,7 +24,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Partner](partner-properties-id.md "undefined#/properties/@id")
+* defined in: [Partner](partner-properties-id.md "Partner#/properties/@id")
 
 ### @id Type
 
@@ -42,7 +42,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Partner](partner-properties-type.md "undefined#/properties/@type")
+* defined in: [Partner](partner-properties-type.md "Partner#/properties/@type")
 
 ### @type Type
 
@@ -68,7 +68,7 @@ The regulatory and institutional domains of this partner.
 
 * cannot be null
 
-* defined in: [Partner](partner-properties-domains.md "undefined#/properties/domains")
+* defined in: [Partner](partner-properties-domains.md "Partner#/properties/domains")
 
 * range: Domain
 
@@ -92,7 +92,7 @@ The jurisdictional levels at which this partner operates.
 
 * cannot be null
 
-* defined in: [Partner](partner-properties-institutional-layers.md "undefined#/properties/layers")
+* defined in: [Partner](partner-properties-institutional-layers.md "Partner#/properties/layers")
 
 * range: InstitutionalLayer
 
@@ -116,7 +116,7 @@ Human-readable name of the partner organization.
 
 * cannot be null
 
-* defined in: [Partner](partner-properties-name.md "undefined#/properties/name")
+* defined in: [Partner](partner-properties-name.md "Partner#/properties/name")
 
 ### name Type
 

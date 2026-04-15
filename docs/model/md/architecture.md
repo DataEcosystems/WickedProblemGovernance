@@ -4,11 +4,11 @@
 
 # Architecture Properties
 
-| Property       | Type     | Required | Nullable       | Defined by                                                                    |
-| :------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------- |
-| [@id](#id)     | `string` | Required | cannot be null | [Architecture](architecture-properties-id.md "undefined#/properties/@id")     |
-| [@type](#type) | `string` | Required | cannot be null | [Architecture](architecture-properties-type.md "undefined#/properties/@type") |
-| [name](#name)  | `string` | Required | cannot be null | [Architecture](architecture-properties-name.md "undefined#/properties/name")  |
+| Property       | Type     | Required | Nullable       | Defined by                                                                       |
+| :------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------- |
+| [@id](#id)     | `string` | Required | cannot be null | [Architecture](architecture-properties-id.md "Architecture#/properties/@id")     |
+| [@type](#type) | `string` | Required | cannot be null | [Architecture](architecture-properties-type.md "Architecture#/properties/@type") |
+| [name](#name)  | `string` | Required | cannot be null | [Architecture](architecture-properties-name.md "Architecture#/properties/name")  |
 
 ## @id
 
@@ -22,7 +22,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Architecture](architecture-properties-id.md "undefined#/properties/@id")
+* defined in: [Architecture](architecture-properties-id.md "Architecture#/properties/@id")
 
 ### @id Type
 
@@ -40,7 +40,7 @@ An Internationalized Resource Identifier (IRI). May be a full IRI or a compact I
 
 * cannot be null
 
-* defined in: [Architecture](architecture-properties-type.md "undefined#/properties/@type")
+* defined in: [Architecture](architecture-properties-type.md "Architecture#/properties/@type")
 
 ### @type Type
 
@@ -66,7 +66,7 @@ Human-readable name of the architecture type.
 
 * cannot be null
 
-* defined in: [Architecture](architecture-properties-name.md "undefined#/properties/name")
+* defined in: [Architecture](architecture-properties-name.md "Architecture#/properties/name")
 
 ### name Type
 

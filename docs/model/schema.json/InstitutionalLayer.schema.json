@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "The jurisdictional level at which a partner organization operates.",
-  "id": "InstitutionalLayer",
   "namedIndividuals": [
     {
       "@id": "wpg:LocalInstitutionalLayer",
@@ -39,5 +38,6 @@
     "@type",
     "name"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "InstitutionalLayer"
 }
