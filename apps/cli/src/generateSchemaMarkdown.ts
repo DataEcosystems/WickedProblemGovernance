@@ -251,7 +251,7 @@ function buildSchemaSection(name: string, schema: z.ZodType): RootContent[] {
 // ENTRY POINT
 // =============================================================================
 
-export function generateCodebookMarkdown(): string {
+export function generateSchemaMarkdown(): string {
   const children: RootContent[] = [];
 
   children.push(yaml("title: IDS Governance Measurement Framework — Codebook"));
