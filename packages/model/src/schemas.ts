@@ -4,6 +4,7 @@ import { Ecosystem } from "./Ecosystem.js";
 import { GovernanceArtifact } from "./GovernanceArtifact.js";
 import { GovernanceArtifactType } from "./GovernanceArtifactType.js";
 import { GovernanceEpisode } from "./GovernanceEpisode.js";
+import { GovernanceEpisodeType } from "./GovernanceEpisodeType.js";
 import { GovernanceEvent } from "./GovernanceEvent.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
@@ -17,6 +18,7 @@ export const schemas = {
   GovernanceArtifact,
   GovernanceArtifactType,
   GovernanceEpisode,
+  GovernanceEpisodeType,
   GovernanceEvent,
   GovernanceEventType,
   InstitutionalLayer,

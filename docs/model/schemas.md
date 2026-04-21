@@ -103,6 +103,25 @@ A bounded governance authorization attempt aggregating a sequence of events.
 | `tau1`                  | Authorization Latency       | number           |    No    | —                                               | Calendar days from episode initiation to first durable authorization.                                    |
 | `tau2`                  | Time to Delivered Value     | number           |    No    | —                                               | Calendar days from episode initiation to first delivered analytic output.                                |
 
+## Governance Episode Type
+
+A classification of governance episodes by the nature of the authorization attempt.
+
+### Named Individuals
+
+| IRI                                       | Name            |
+| :---------------------------------------- | :-------------- |
+| `wpg:AgreementGovernanceEpisodeType`      | Agreement       |
+| `wpg:AllocationGovernanceEpisodeType`     | Allocation      |
+| `wpg:PolicyAdoptionGovernanceEpisodeType` | Policy Adoption |
+| `wpg:ProductGovernanceEpisodeType`        | Product         |
+
+### Properties
+
+| Property | Title | Type   | Required | Range | Description                              |
+| :------- | :---- | :----- | :------: | :---- | :--------------------------------------- |
+| `name`   | Name  | string |    Yes   | —     | Human-readable name of the episode type. |
+
 ## Governance Event
 
 A timestamped occurrence in a governance process corresponding to a durable artifact.
