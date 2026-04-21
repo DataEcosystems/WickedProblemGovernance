@@ -19,5 +19,6 @@
     "clean": "rimraf dist tsconfig.tsbuildinfo",
     "depcheck": "depcheck ."
   },
+  "type": "module",
   "version": "0.0.0"
 }
