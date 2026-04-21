@@ -8,8 +8,10 @@ import { GovernanceEpisodeType } from "./GovernanceEpisodeType.js";
 import { GovernanceEvent } from "./GovernanceEvent.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
-import { Partner } from "./Partner.js";
+import { Organization } from "./Organization.js";
 import { Project } from "./Project.js";
+import { ProjectPartner } from "./ProjectPartner.js";
+import { ProjectPartnerRole } from "./ProjectPartnerRole.js";
 
 export const schemas = {
   Architecture,
@@ -22,6 +24,8 @@ export const schemas = {
   GovernanceEvent,
   GovernanceEventType,
   InstitutionalLayer,
-  Partner,
+  Organization,
+  ProjectPartner,
+  ProjectPartnerRole,
   Project,
 };
