@@ -173,6 +173,13 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
 // DOCUMENT GENERATION
 // =============================================================================
 
+function schemaAnchor(schemaName: string): string {
+  const schema = (schemas as Record<string, z.ZodType>)[schemaName];
+  const meta = schema?.meta() as ObjectMeta | undefined;
+  const title = meta?.title ?? schemaName;
+  return `#${title.toLowerCase().replace(/\s+/g, "-")}`;
+}
+
 function buildNamedIndividualsTable(
   individuals: readonly Record<string, unknown>[],
 ): RootContent[] {
@@ -203,7 +210,7 @@ function buildPropertiesTable(properties: PropertyInfo[]): RootContent[] {
 
   const dataRows = properties.map((prop) => {
     const rangeContent: PhrasingContent[] = prop.range
-      ? [link(`#${prop.range.toLowerCase()}`, [text(prop.range)])]
+      ? [link(schemaAnchor(prop.range), [text(prop.range)])]
       : [text("—")];
 
     return row([
@@ -254,9 +261,13 @@ function buildSchemaSection(name: string, schema: z.ZodType): RootContent[] {
 export function generateSchemaMarkdown(): string {
   const children: RootContent[] = [];
 
-  children.push(yaml("title: IDS Governance Measurement Framework — Codebook"));
   children.push(
-    heading(1, [text("IDS Governance Measurement Framework — Codebook")]),
+    yaml("title: IDS Governance Measurement Framework — Schema Reference"),
+  );
+  children.push(
+    heading(1, [
+      text("IDS Governance Measurement Framework — Schema Reference"),
+    ]),
   );
 
   const sortedEntries = Object.entries(schemas).sort(([a], [b]) =>
