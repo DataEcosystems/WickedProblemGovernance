@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
+import { generateCodebookMarkdown } from "./generateCodebookMarkdown.js";
 // import { pino } from "pino";
 import { generateJsonSchema } from "./generateJsonSchema.js";
 import { generateJsonSchemas } from "./generateJsonSchemas.js";
@@ -29,6 +30,14 @@ run(
     cmds: {
       generate: subcommands({
         cmds: {
+          "codebook-markdown": command({
+            args: {},
+            description: "generate codebook Markdown",
+            handler: () => {
+              process.stdout.write(generateCodebookMarkdown());
+            },
+            name: "codebook-markdown",
+          }),
           "json-schema": command({
             args: {},
             description: "generate a single JSON schemas",
