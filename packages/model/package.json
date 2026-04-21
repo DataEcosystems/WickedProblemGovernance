@@ -3,11 +3,13 @@
     "zod": "~4.1.12"
   },
   "devDependencies": {},
+  "author": "Asemio",
   "files": [
     "dist/*.d.ts",
     "dist/*.js",
     "dist/context.json"
   ],
+  "license": "Apache-2.0",
   "main": "./dist/index.js",
   "name": "@wpg/model",
   "private": true,

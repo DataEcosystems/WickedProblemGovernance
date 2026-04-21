@@ -9,9 +9,11 @@
     "typescript": "5.9.3",
     "vitest": "~4.0.18"
   },
+  "author": "Asemio",
   "engines": {
     "node": ">=24"
   },
+  "license": "Apache-2.0",
   "name": "wpg",
   "optionalDependencies": {
     "@biomejs/cli-linux-x64": "2.4.9"
