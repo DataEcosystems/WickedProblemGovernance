@@ -86,22 +86,35 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
       files.add("README.md");
     }
     const srcDirectoryPath = path.join(packageDirectoryPath, "src");
-    if (workspaceName !== "forms" && fs.existsSync(srcDirectoryPath)) {
+    if (fs.existsSync(srcDirectoryPath)) {
       for (const dirent of fs.readdirSync(srcDirectoryPath, {
         withFileTypes: true,
         recursive: true,
       })) {
-        if (!dirent.name.endsWith(".ts") || !dirent.isFile()) {
+        if (!dirent.isFile()) {
           continue;
         }
-        for (const fileNameGlob of ["*.js", "*.d.ts"]) {
+
+        if (dirent.name.endsWith(".json")) {
           files.add(
             path.join(
               "dist",
               path.relative(srcDirectoryPath, dirent.parentPath),
-              fileNameGlob,
+              dirent.name,
             ),
           );
+        }
+
+        if (dirent.name.endsWith(".ts")) {
+          for (const fileNameGlob of ["*.js", "*.d.ts"]) {
+            files.add(
+              path.join(
+                "dist",
+                path.relative(srcDirectoryPath, dirent.parentPath),
+                fileNameGlob,
+              ),
+            );
+          }
         }
       }
     }
@@ -182,17 +195,18 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             exactOptionalPropertyTypes: false,
             forceConsistentCasingInFileNames: true,
             lib: ["ES2022"],
-            module: "node16",
-            moduleResolution: "node16",
+            module: "nodenext",
+            moduleResolution: "nodenext",
             noUncheckedIndexedAccess: false,
             outDir: "dist",
+            resolveJsonModule: true,
             rootDir: "src",
             // sourceMap:
             //   workspacesDirectoryName === "packages" ? true : undefined,
             target: "es2022",
           },
           extends: ["@tsconfig/strictest/tsconfig.json"],
-          include: ["src/**/*.ts"],
+          include: ["src/**/*.ts", "src/**/*.json"],
         },
         undefined,
         2,

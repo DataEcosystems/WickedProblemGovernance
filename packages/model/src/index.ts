@@ -1,4 +1,5 @@
 export * from "./Architecture.js";
+export { default as contextJson } from "./context.json" with { type: "json" };
 export * from "./Domain.js";
 export * from "./GovernanceArtifact.js";
 export * from "./GovernanceArtifactType.js";

@@ -5,7 +5,8 @@
   "devDependencies": {},
   "files": [
     "dist/*.d.ts",
-    "dist/*.js"
+    "dist/*.js",
+    "dist/context.json"
   ],
   "main": "./dist/index.js",
   "name": "@wpg/model",
