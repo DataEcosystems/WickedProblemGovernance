@@ -1,1 +1,92 @@
-{}
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "wpg": "https://purl.dataecosystems.org/wpg/ontology#",
+
+    "Architecture": "wpg:Architecture",
+    "Domain": "wpg:Domain",
+    "Ecosystem": "wpg:Ecosystem",
+    "GovernanceArtifact": "wpg:GovernanceArtifact",
+    "GovernanceArtifactType": "wpg:GovernanceArtifactType",
+    "GovernanceEpisode": "wpg:GovernanceEpisode",
+    "GovernanceEpisodeType": "wpg:GovernanceEpisodeType",
+    "GovernanceEvent": "wpg:GovernanceEvent",
+    "GovernanceEventType": "wpg:GovernanceEventType",
+    "InstitutionalLayer": "wpg:InstitutionalLayer",
+    "Partner": "wpg:Partner",
+    "Project": "wpg:Project",
+
+    "architecture": {
+      "@id": "wpg:architecture",
+      "@type": "@id"
+    },
+    "artifact": {
+      "@id": "wpg:artifact",
+      "@type": "@id"
+    },
+    "couplingProxy": "wpg:couplingProxy",
+    "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
+    "deliveryEpisode": {
+      "@id": "wpg:deliveryEpisode",
+      "@type": "@id"
+    },
+    "domainHeterogeneity": "wpg:domainHeterogeneity",
+    "domains": {
+      "@id": "wpg:domain",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "ecosystem": {
+      "@id": "wpg:ecosystem",
+      "@type": "@id"
+    },
+    "episode": {
+      "@id": "wpg:episode",
+      "@type": "@id"
+    },
+    "episodeCount": "wpg:episodeCount",
+    "governanceArtifactType": {
+      "@id": "wpg:governanceArtifactType",
+      "@type": "@id"
+    },
+    "governanceEpisodeType": {
+      "@id": "wpg:governanceEpisodeType",
+      "@type": "@id"
+    },
+    "governanceEventType": {
+      "@id": "wpg:governanceEventType",
+      "@type": "@id"
+    },
+    "layerHeterogeneity": "wpg:layerHeterogeneity",
+    "layers": {
+      "@id": "wpg:institutionalLayer",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "meanNormalizedBurden": "wpg:meanNormalizedBurden",
+    "meanTimeToValue": "wpg:meanTimeToValue",
+    "name": "schema:name",
+    "normalizedBurden": "wpg:normalizedBurden",
+    "partnerCount": "wpg:partnerCount",
+    "partners": {
+      "@id": "wpg:partner",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "project": {
+      "@id": "wpg:project",
+      "@type": "@id"
+    },
+    "stall": "wpg:stall",
+    "stallFraction": "wpg:stallFraction",
+    "stdTimeToValue": "wpg:stdTimeToValue",
+    "stewardPresence": "wpg:stewardPresence",
+    "t0": "schema:startDate",
+    "t1": "wpg:firstDurableAuthorization",
+    "t2": "wpg:firstDeliveredValue",
+    "tau1": "wpg:authorizationLatency",
+    "tau2": "wpg:timeToDeliveredValue",
+    "timestamp": "schema:startDate"
+  }
+}
