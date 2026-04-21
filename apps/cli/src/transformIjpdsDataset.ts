@@ -96,7 +96,7 @@ export type IjpdsDataset = z.infer<typeof IjpdsDataset>;
 // IRI MINTING
 // =============================================================================
 
-const NS = "https://asemio.com/ns/ijpds/";
+const NS = "https://purl.dataecosystems.org/wpg/data/ijpds/";
 
 function iri(type: string, id: string): string {
   return `${NS}${type}/${encodeURIComponent(id)}`;
