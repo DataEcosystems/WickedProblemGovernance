@@ -7,6 +7,7 @@ import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
 // import { pino } from "pino";
 import { generateJsonSchema } from "./generateJsonSchema.js";
 import { generateJsonSchemas } from "./generateJsonSchemas.js";
+import { generateSchemaMarkdown } from "./generateSchemaMarkdown.js";
 import {
   IjpdsDataset,
   transformIjpdsDataset,
@@ -57,6 +58,14 @@ run(
               }
             },
             name: "json-schema",
+          }),
+          "schema-markdown": command({
+            args: {},
+            description: "generate schema Markdown",
+            handler: () => {
+              process.stdout.write(generateSchemaMarkdown());
+            },
+            name: "schema-markdown",
           }),
         },
         name: "generate",

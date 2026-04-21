@@ -7,9 +7,14 @@ import url from "node:url";
 const VERSION = "0.0.0";
 
 const externalDependencies = {
+  "@types/mdast": "~4.0.4",
   "cmd-ts": "~0.15.0",
   pino: "~10.3.1",
   "pino-pretty": "~13.1.3",
+  "remark-frontmatter": "~5.0.0",
+  "remark-gfm": "~4.0.0",
+  "remark-stringify": "~11.0.0",
+  unified: "~11.0.5",
   zod: "~4.1.12",
 } as const;
 
@@ -42,7 +47,16 @@ const workspaces = {
         wpg: "dist/cli.js",
       },
       dependencies: {
-        external: ["cmd-ts", "pino", "pino-pretty", "zod"],
+        external: [
+          "@types/mdast",
+          "cmd-ts",
+          "pino",
+          "pino-pretty",
+          "remark-frontmatter",
+          "remark-gfm",
+          "remark-stringify",
+          "zod",
+        ],
         internal: ["model"],
       },
     },
@@ -148,6 +162,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             clean: "rimraf dist tsconfig.tsbuildinfo",
             depcheck: "depcheck .",
           },
+          type: "module",
           version: VERSION,
         },
         undefined,
