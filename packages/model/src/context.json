@@ -14,7 +14,9 @@
     "GovernanceEvent": "wpg:GovernanceEvent",
     "GovernanceEventType": "wpg:GovernanceEventType",
     "InstitutionalLayer": "wpg:InstitutionalLayer",
+    "Organization": "schema:Organization",
     "Partner": "wpg:Partner",
+    "PartnerRole": "wpg:PartnerRole",
     "Project": "wpg:Project",
 
     "architecture": {
@@ -68,7 +70,15 @@
     "meanTimeToValue": "wpg:meanTimeToValue",
     "name": "schema:name",
     "normalizedBurden": "wpg:normalizedBurden",
+    "organization": {
+      "@id": "wpg:organization",
+      "@type": "@id"
+    },
     "partnerCount": "wpg:partnerCount",
+    "partnerRole": {
+      "@id": "wpg:partnerRole",
+      "@type": "@id"
+    },
     "partners": {
       "@id": "wpg:partner",
       "@type": "@id",
