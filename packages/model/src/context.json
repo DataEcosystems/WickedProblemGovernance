@@ -15,8 +15,8 @@
     "GovernanceEventType": "wpg:GovernanceEventType",
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
-    "Partner": "wpg:Partner",
-    "PartnerRole": "wpg:PartnerRole",
+    "ProjectPartnerRole": "wpg:ProjectPartnerRole",
+    "ProjectPartner": "wpg:ProjectPartner",
     "Project": "wpg:Project",
 
     "architecture": {
@@ -75,12 +75,12 @@
       "@type": "@id"
     },
     "partnerCount": "wpg:partnerCount",
-    "partnerRole": {
-      "@id": "wpg:partnerRole",
+    "role": {
+      "@id": "wpg:role",
       "@type": "@id"
     },
-    "partners": {
-      "@id": "wpg:partner",
+    "projectPartners": {
+      "@id": "wpg:projectPartner",
       "@type": "@id",
       "@container": "@set"
     },

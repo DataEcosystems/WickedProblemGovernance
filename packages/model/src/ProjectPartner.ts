@@ -13,15 +13,15 @@ export const ProjectPartner = JsonLdBase.extend({
     ...range(Organization),
     title: "Organization",
   }),
-  projectPartnerRole: Iri.meta({
-    description: "The role this partner plays in the project.",
-    ...range(ProjectPartnerRole),
-    title: "Project Partner Role",
-  }),
   project: Iri.meta({
     description: "The project in which this partner participates.",
     ...range(Project),
     title: "Project",
+  }),
+  role: Iri.meta({
+    description: "The role this partner plays in the project.",
+    ...range(ProjectPartnerRole),
+    title: "Role",
   }),
 })
   .readonly()

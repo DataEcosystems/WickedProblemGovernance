@@ -1,10 +1,10 @@
-import z from "zod";
+import { z } from "zod";
 import { GovernanceArtifact } from "./GovernanceArtifact.js";
 import { GovernanceEpisode } from "./GovernanceEpisode.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { Iri } from "./Iri.js";
 import { JsonLdBase } from "./JsonLdBase.js";
-import { Partner } from "./Partner.js";
+import { ProjectPartner } from "./ProjectPartner.js";
 import { range } from "./range.js";
 import { Timestamp } from "./Timestamp.js";
 
@@ -29,8 +29,8 @@ export const GovernanceEvent = JsonLdBase.extend({
     .array(Iri)
     .readonly()
     .meta({
-      description: "The institutional actors involved in this event.",
-      ...range(Partner),
+      description: "The project partners involved in this event.",
+      ...range(ProjectPartner),
       title: "Partners",
     }),
   timestamp: Timestamp.optional().meta({
