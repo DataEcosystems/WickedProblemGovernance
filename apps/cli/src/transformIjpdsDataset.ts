@@ -266,13 +266,15 @@ function daysBetween(a: string | null, b: string | null): number | undefined {
   return Math.round((new Date(b).getTime() - new Date(a).getTime()) / msPerDay);
 }
 
-function mintPartnerIris(episode: IjpdsEpisodeLog): string[] {
+function mintProjectPartnerIris(episode: IjpdsEpisodeLog): string[] {
   const partners: string[] = [];
   for (const { field, domain } of DOMAIN_SLOTS) {
     const count = episode[field] as number | null;
     if (count != null && count > 0) {
       for (let i = 1; i <= count; i++) {
-        partners.push(iri("Partner", `${episode.episode_id}-${domain}-${i}`));
+        partners.push(
+          iri("ProjectPartner", `${episode.episode_id}-${domain}-${i}`),
+        );
       }
     }
   }
@@ -335,7 +337,6 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
       typeof a["BP_New_t2/c2"] === "number" ? a["BP_New_t2/c2"] : undefined;
     const cep = a["C*ep"] ?? undefined;
 
-    // Find earliest episode start date for t0
     const episodeStarts = data.episode_log
       .filter((e) => e.project_id === a.Project && e.start_date != null)
       .map((e) => e.start_date!);
@@ -394,13 +395,11 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
   // Events and Artifacts
   // ---------------------------------------------------------------------------
   for (const ev of data.event_log) {
-    // Emit artifact
     if (ev.artifact_ref != null) {
       const artifactId = iri("GovernanceArtifact", ev.event_id);
       if (!emittedIds.has(artifactId)) {
         emittedIds.add(artifactId);
 
-        // Look up the episode to find primary_artifacts for type mapping
         const sourceEpisode = data.episode_log.find(
           (e) => e.episode_id === ev.episode_id,
         );
@@ -419,11 +418,12 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
       }
     }
 
-    // Emit event
     const sourceEpisode = data.episode_log.find(
       (e) => e.episode_id === ev.episode_id,
     );
-    const partnerIris = sourceEpisode ? mintPartnerIris(sourceEpisode) : [];
+    const partnerIris = sourceEpisode
+      ? mintProjectPartnerIris(sourceEpisode)
+      : [];
 
     const eventId = iri("GovernanceEvent", ev.event_id);
     emittedIds.add(eventId);
@@ -441,9 +441,14 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
   }
 
   // ---------------------------------------------------------------------------
-  // Synthetic Partners
+  // Synthetic Organizations and Project Partners
+  //
+  // The source data doesn't identify individual organizations — only
+  // domain/layer counts per episode. We mint synthetic organizations
+  // and project partners to preserve the structural information.
   // ---------------------------------------------------------------------------
-  const emittedPartners = new Set<string>();
+  const emittedOrgs = new Set<string>();
+  const emittedProjectPartners = new Set<string>();
 
   for (const ep of data.episode_log) {
     const layerAssignment = buildLayerAssignment(ep);
@@ -453,19 +458,35 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
       const count = ep[field] as number | null;
       if (count != null && count > 0) {
         for (let i = 1; i <= count; i++) {
-          const partnerId = iri("Partner", `${ep.episode_id}-${domain}-${i}`);
-          if (!emittedPartners.has(partnerId)) {
-            emittedPartners.add(partnerId);
+          const orgId = iri("Organization", `${ep.episode_id}-${domain}-${i}`);
+          if (!emittedOrgs.has(orgId)) {
+            emittedOrgs.add(orgId);
             const layer =
               layerAssignment[partnerIndex] ?? "wpg:LocalInstitutionalLayer";
             yield {
-              "@id": partnerId,
-              "@type": "Partner" as const,
+              "@id": orgId,
+              "@type": "Organization" as const,
               domains: [domainIri],
               layers: [layer],
-              name: `${domain}-partner-${i} (${ep.episode_id})`,
+              name: `${domain}-org-${i} (${ep.episode_id})`,
             };
           }
+
+          const projectPartnerId = iri(
+            "ProjectPartner",
+            `${ep.episode_id}-${domain}-${i}`,
+          );
+          if (!emittedProjectPartners.has(projectPartnerId)) {
+            emittedProjectPartners.add(projectPartnerId);
+            yield {
+              "@id": projectPartnerId,
+              "@type": "ProjectPartner" as const,
+              organization: orgId,
+              project: iri("Project", ep.project_id),
+              role: "wpg:DataContributorProjectPartnerRole",
+            };
+          }
+
           partnerIndex++;
         }
       }
