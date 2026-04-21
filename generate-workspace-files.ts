@@ -186,6 +186,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             moduleResolution: "node16",
             noUncheckedIndexedAccess: false,
             outDir: "dist",
+            resolveJsonModule: true,
             rootDir: "src",
             // sourceMap:
             //   workspacesDirectoryName === "packages" ? true : undefined,
