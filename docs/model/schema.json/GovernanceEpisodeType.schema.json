@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A classification of governance episodes by the nature of the authorization attempt.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:AgreementGovernanceEpisodeType",
+      "name": "Agreement"
+    },
+    {
+      "@id": "wpg:AllocationGovernanceEpisodeType",
+      "name": "Allocation"
+    },
+    {
+      "@id": "wpg:PolicyAdoptionGovernanceEpisodeType",
+      "name": "Policy Adoption"
+    },
+    {
+      "@id": "wpg:ProductGovernanceEpisodeType",
+      "name": "Product"
+    }
+  ],
+  "title": "Governance Episode Type",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceEpisodeType"
+    },
+    "name": {
+      "description": "Human-readable name of the episode type.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceEpisodeType"
+}
