@@ -133,7 +133,7 @@ A timestamped occurrence in a governance process corresponding to a durable arti
 | `artifact`            | Artifact              | string           |    No    | [GovernanceArtifact](#governance-artifact)    | The durable source document associated with this event. |
 | `episode`             | Episode               | string           |    Yes   | [GovernanceEpisode](#governance-episode)      | The governance episode this event belongs to.           |
 | `governanceEventType` | Governance Event Type | string           |    Yes   | [GovernanceEventType](#governance-event-type) | The governance function this event performs.            |
-| `partners`            | Partners              | array of string  |    Yes   | [Partner](#partner)                           | The institutional actors involved in this event.        |
+| `partners`            | Partners              | array of string  |    Yes   | [ProjectPartner](#project-partner)            | The project partners involved in this event.            |
 | `timestamp`           | Timestamp             | date \| datetime |    No    | —                                             | The date or datetime on which this event occurred.      |
 
 ## Governance Event Type
@@ -177,17 +177,17 @@ The jurisdictional level at which a partner organization operates.
 | :------- | :---- | :----- | :------: | :---- | :---------------------------------------------- |
 | `name`   | Name  | string |    Yes   | —     | Human-readable name of the institutional layer. |
 
-## Partner
+## Organization
 
-An institutional actor whose participation in an episode requires governance authorization.
+An institutional actor such as an agency, department, university, or nonprofit.
 
 ### Properties
 
-| Property  | Title                | Type            | Required | Range                                      | Description                                               |
-| :-------- | :------------------- | :-------------- | :------: | :----------------------------------------- | :-------------------------------------------------------- |
-| `domains` | Domains              | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this partner. |
-| `layers`  | Institutional Layers | array of string |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional levels at which this partner operates. |
-| `name`    | Name                 | string          |    Yes   | —                                          | Human-readable name of the partner organization.          |
+| Property  | Title                | Type            | Required | Range                                      | Description                                                    |
+| :-------- | :------------------- | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
+| `domains` | Domains              | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
+| `layers`  | Institutional Layers | array of string |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional levels at which this organization operates. |
+| `name`    | Name                 | string          |    Yes   | —                                          | Human-readable name of the organization.                       |
 
 ## Project
 
@@ -208,3 +208,37 @@ A group of episodes sharing a common governance boundary design and data archite
 | `stewardPresence`       | Steward Presence        | boolean          |    Yes   | —                                        | Whether the project includes an authorized domain representative who mediates governance requests. |
 | `t0`                    | Project Start           | date \| datetime |    No    | —                                        | The earliest episode initiation timestamp across all episodes in the project.                      |
 | `tau2`                  | Time to Delivered Value | number           |    No    | —                                        | Calendar days from the earliest episode initiation to delivery of the first analytic output.       |
+
+## Project Partner
+
+An n-ary relation linking an organization to a project in a specific role.
+
+### Properties
+
+| Property       | Title        | Type   | Required | Range                                       | Description                                     |
+| :------------- | :----------- | :----- | :------: | :------------------------------------------ | :---------------------------------------------- |
+| `organization` | Organization | string |    Yes   | [Organization](#organization)               | The organization fulfilling this partner role.  |
+| `project`      | Project      | string |    Yes   | [Project](#project)                         | The project in which this partner participates. |
+| `role`         | Role         | string |    Yes   | [ProjectPartnerRole](#project-partner-role) | The role this partner plays in the project.     |
+
+## Project Partner Role
+
+A classification of the role a partner organization plays in a project.
+
+### Named Individuals
+
+| IRI                                            | Name                    |
+| :--------------------------------------------- | :---------------------- |
+| `wpg:CentralizedItProjectPartnerRole`          | Centralized IT          |
+| `wpg:DataContributorProjectPartnerRole`        | Data Contributor        |
+| `wpg:IdsSponsorProjectPartnerRole`             | IDS Sponsor             |
+| `wpg:InfrastructureProviderProjectPartnerRole` | Infrastructure Provider |
+| `wpg:ProgramLeadershipProjectPartnerRole`      | Program Leadership      |
+| `wpg:ProgramSmeProjectPartnerRole`             | Program SME             |
+| `wpg:ResearcherProjectPartnerRole`             | Researcher              |
+
+### Properties
+
+| Property | Title | Type   | Required | Range | Description                                      |
+| :------- | :---- | :----- | :------: | :---- | :----------------------------------------------- |
+| `name`   | Name  | string |    Yes   | —     | Human-readable name of the project partner role. |

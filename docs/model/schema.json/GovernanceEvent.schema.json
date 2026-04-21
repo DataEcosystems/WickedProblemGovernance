@@ -32,8 +32,8 @@
       "type": "string"
     },
     "partners": {
-      "description": "The institutional actors involved in this event.",
-      "range": "Partner",
+      "description": "The project partners involved in this event.",
+      "range": "ProjectPartner",
       "title": "Partners",
       "readOnly": true,
       "type": "array",
