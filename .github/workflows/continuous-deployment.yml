@@ -28,7 +28,7 @@ jobs:
       - name: Generate documentation
         run: |
           apps/cli/dist/cli.js generate json-schemas -o docs/model/schema.json
-          apps/cli/dist/cli.js generate schema-markdown -o docs/model/schemas.md
+          apps/cli/dist/cli.js generate schema-markdown >docs/model/schemas.md
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "generated docs"
