@@ -96,8 +96,8 @@ run(
         name: "transform",
       }),
     },
-    description: "shaclmate command line interface",
-    name: "shaclmate",
+    description: "wpg command line interface",
+    name: "wpg",
   }),
   process.argv.slice(2),
 );

@@ -1,37 +1,33 @@
-# WickedProblemGovernance
+# Wicked Problem Governance
 
-## One-time setup
+An open domain model and tooling for measuring governance friction in Integrated Data Systems (IDSs). Built by [Asemio](https://asemio.com/) for the [Institute for Data Ecosystem Advancement (IDEA)](https://dataecosystems.org/).
 
-### Development environment
-
-* [Node.js](https://nodejs.org/) 24 LTS
-
-### Dependencies
-
-    npm install
-
-## Building
-
-    npm run build
+This repository supports episode-level measurement framework described in Aaron Bean's paper *On the Redistribution of Governance Friction in Integrated Data Ecosystems* (under review). The framework makes governance friction observable from routine operational artifacts, so that stalls and bottlenecks can be diagnosed before they become project failures.
 
 ## Structure of this repository
 
-* `packages/`
-    * `model`: domain models such as `Event` and `Episode`, defined in TypeScript using [Zod 4](https://zod.dev) (which can be translated automatically and 1:1 to [JSON Schema](https://json-schema.org))
-    * `tsconfig`: reusable `tsconfig.json` files 
-    
-## Plan
+- [`apps/cli`](./apps/cli) — `wpg` command line interface for generating documentation and transforming data
+- [`docs/`](./docs) — generated documentation
+- [`packages/model`](./packages/model) — domain models (Zod / TypeScript), JSON-LD context, and schema registry
 
-### Modeling
+## Development
 
-* Translate the domain models from the [IJPDS paper](./docs/2026-03-15%20IJPDS%20submission.pdf) into TypeScript and Zod
-  * Phase 1: layers (e.g., Event) and their variables (e.g., timestamp)
-  * Phase 2: formulas (e.g., how episode indicators are calculated from events)
-  * Phase 3: coding instructions for the codebook
-* Develop a tool to translate data from the IJPDS paper into JSON that conforms to the model
-* Develop a script to generate JSON Schema from the model
+### Prerequisites
 
-### Codebook
+* [Node.js 24 LTS](https://nodejs.org/)
 
-* Generate a human-readable [codebook](https://en.wikipedia.org/wiki/Codebook#Social_sciences) as a PDF
-  * Use the domain models in `model` as input to the generator rather than redefining the model in human-readable text
+### Install dependencies
+
+    npm install
+
+### Build
+
+    npm run build
+
+### Running the Command Line Interface (CLI)
+
+    npm exec wpg --help
+
+## License
+
+Licensed under the [Apache License 2.0](./LICENSE).
