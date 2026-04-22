@@ -14,7 +14,7 @@ This repository supports episode-level measurement framework described in Aaron 
 
 ### Prerequisites
 
-* [Node.js 24 LTS](https://nodejs.org/).
+* [Node.js 24 LTS](https://nodejs.org/)
 
 ### Install dependencies
 
@@ -26,12 +26,7 @@ This repository supports episode-level measurement framework described in Aaron 
 
 ### Running the Command Line Interface (CLI)
 
-From `apps/cli` after building:
-
-    npm exec wpg generate json-schema               # emit combined JSON Schema to stdout
-    npm exec wpg generate json-schemas -o <dir>     # emit per-type JSON Schemas to a directory
-    npm exec wpg generate schema-markdown           # emit a human-readable codebook
-    npm exec wpg transform ijpds-dataset <file>     # convert an IJPDS dataset into conforming JSON
+    npm exec wpg --help
 
 ## License
 
