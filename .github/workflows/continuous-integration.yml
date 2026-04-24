@@ -25,5 +25,5 @@ jobs:
         run: npm run build
       - name: Generate documentation (but don't commit it)
         run: |
-          apps/cli/dist/cli.js generate json-schemas -o docs/model/schema.json
-          apps/cli/dist/cli.js generate schema-markdown >docs/model/schemas.md
+          apps/cli/dist/cli.js model json-schemas -o docs/model/json-schemas
+          apps/cli/dist/cli.js model markdown >docs/model/schemas.md
