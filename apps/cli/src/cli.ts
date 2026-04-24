@@ -5,13 +5,13 @@ import path from "node:path";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
 // import { pino } from "pino";
-import { generateJsonSchema } from "./generateJsonSchema.js";
-import { generateJsonSchemas } from "./generateJsonSchemas.js";
-import { generateSchemaMarkdown } from "./generateSchemaMarkdown.js";
+import { generateJsonSchema } from "./commands/modelJsonSchema.js";
+import { generateJsonSchemas } from "./commands/modelJsonSchemas.js";
+import { generateSchemaMarkdown } from "./commands/modelMarkdown.js";
 import {
   IjpdsDataset,
   transformIjpdsDataset,
-} from "./transformIjpdsDataset.js";
+} from "./commands/transformIjpdsDataset.js";
 
 // const _logger = pino(
 //   {
@@ -28,11 +28,11 @@ import {
 run(
   subcommands({
     cmds: {
-      generate: subcommands({
+      model: subcommands({
         cmds: {
           "json-schema": command({
             args: {},
-            description: "generate a single JSON schemas",
+            description: "generate a single JSON schema from the model",
             handler: () => {
               process.stdout.write(
                 JSON.stringify(generateJsonSchema(), null, 2),
@@ -47,7 +47,8 @@ run(
                 short: "o",
               }),
             },
-            description: "generate JSON schemas to an output directory",
+            description:
+              "generate JSON schemas from the model to an output directory",
             handler: async ({ outputDirectoryPath }) => {
               await fs.mkdir(outputDirectoryPath, { recursive: true });
               for (const [name, jsonSchema] of generateJsonSchemas()) {
@@ -59,16 +60,16 @@ run(
             },
             name: "json-schema",
           }),
-          "schema-markdown": command({
+          markdown: command({
             args: {},
-            description: "generate schema Markdown",
+            description: "generate Markdown from the model",
             handler: () => {
               process.stdout.write(generateSchemaMarkdown());
             },
-            name: "schema-markdown",
+            name: "markdown",
           }),
         },
-        name: "generate",
+        name: "model",
       }),
       transform: subcommands({
         cmds: {
