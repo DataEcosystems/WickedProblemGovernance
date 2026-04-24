@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A bounded governance authorization attempt aggregating a sequence of events.",
+  "title": "Governance Episode",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceEpisode"
+    },
+    "couplingProxy": {
+      "description": "Composite measure of scale and structural heterogeneity of governance coordination demands.",
+      "title": "Coupling Proxy",
+      "type": "number"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "domainHeterogeneity": {
+      "description": "Simpson-style diversity index measuring how evenly partners are distributed across domains.",
+      "title": "Domain Heterogeneity",
+      "type": "number"
+    },
+    "governanceEpisodeType": {
+      "description": "The type of governance authorization attempt.",
+      "title": "Governance Episode Type",
+      "range": "GovernanceEpisodeType",
+      "type": "string"
+    },
+    "layerHeterogeneity": {
+      "description": "Simpson-style diversity index measuring how evenly partners are distributed across institutional layers.",
+      "title": "Layer Heterogeneity",
+      "type": "number"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    },
+    "normalizedBurden": {
+      "description": "Time to delivered value per unit of coupling load.",
+      "title": "Normalized Burden",
+      "type": "number"
+    },
+    "partnerCount": {
+      "description": "Number of governance-relevant institutional actors in this episode.",
+      "title": "Partner Count",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "project": {
+      "description": "The project this episode belongs to.",
+      "title": "Project",
+      "range": "Project",
+      "type": "string"
+    },
+    "stall": {
+      "description": "Whether the episode shows sustained governance engagement but no qualifying durable authorization.",
+      "title": "Stall",
+      "type": "boolean"
+    },
+    "t0": {
+      "description": "Timestamp of earliest event indicating entry into an approval workflow.",
+      "title": "Episode Start",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+        }
+      ]
+    },
+    "t1": {
+      "description": "Timestamp of earliest qualifying authorization event for core scope.",
+      "title": "First Durable Authorization",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+        }
+      ]
+    },
+    "t2": {
+      "description": "Timestamp of earliest analytic output answering a stakeholder question.",
+      "title": "First Delivered Value",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+        }
+      ]
+    },
+    "tau1": {
+      "description": "Calendar days from episode initiation to first durable authorization.",
+      "title": "Authorization Latency",
+      "type": "number"
+    },
+    "tau2": {
+      "description": "Calendar days from episode initiation to first delivered analytic output.",
+      "title": "Time to Delivered Value",
+      "type": "number"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "couplingProxy",
+    "domainHeterogeneity",
+    "governanceEpisodeType",
+    "layerHeterogeneity",
+    "partnerCount",
+    "project",
+    "stall"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceEpisode"
+}

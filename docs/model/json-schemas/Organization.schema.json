@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "An institutional actor such as an agency, department, university, or nonprofit.",
+  "title": "Organization",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "Organization"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "domains": {
+      "description": "The regulatory and institutional domains of this organization.",
+      "range": "Domain",
+      "title": "Domains",
+      "readOnly": true,
+      "type": "array",
+      "items": {
+        "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+        "title": "IRI",
+        "type": "string"
+      }
+    },
+    "layers": {
+      "description": "The jurisdictional levels at which this organization operates.",
+      "range": "InstitutionalLayer",
+      "title": "Institutional Layers",
+      "readOnly": true,
+      "type": "array",
+      "items": {
+        "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+        "title": "IRI",
+        "type": "string"
+      }
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "domains",
+    "layers",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "Organization"
+}

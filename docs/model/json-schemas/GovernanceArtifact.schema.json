@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A durable source document from which a governance event was reconstructed.",
+  "title": "Governance Artifact",
+  "readOnly": true,
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceArtifact"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "governanceArtifactType": {
+      "description": "The type of durable source document from which an event was reconstructed.",
+      "title": "Governance Artifact Type",
+      "range": "GovernanceArtifactType",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "governanceArtifactType"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceArtifact"
+}
