@@ -5,6 +5,7 @@ export class PropertyMeta {
   readonly description: string;
   readonly range?: string;
   readonly title: string;
+  [key: string]: unknown; // To satisfy Zod
 
   constructor({
     description,

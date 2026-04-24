@@ -7,6 +7,7 @@ export class ObjectMeta {
     readonly name: string;
   }[];
   readonly title: string;
+  [key: string]: unknown; // To satisfy Zod
 
   constructor({
     description,
