@@ -29,6 +29,7 @@
     },
     "couplingProxy": "wpg:couplingProxy",
     "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
+    "description": "schema:description",
     "deliveryEpisode": {
       "@id": "wpg:deliveryEpisode",
       "@type": "@id"

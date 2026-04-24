@@ -23,7 +23,7 @@ import { z } from "zod";
 //   return result;
 // }
 
-export function* generateJsonSchemas() {
+export function* modelJsonSchemas() {
   const registry = z.registry<{ id: string }>();
   for (const [name, schema] of Object.entries(schemas)) {
     registry.add(schema, { id: name });

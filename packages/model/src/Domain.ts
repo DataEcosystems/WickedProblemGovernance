@@ -1,25 +1,44 @@
-import { z } from "zod";
+import z from "zod";
+import { Description } from "./Description.js";
 import { JsonLdBase } from "./JsonLdBase.js";
+import { Name } from "./Name.js";
+import { ObjectMeta } from "./ObjectMeta.js";
 
 export const Domain = JsonLdBase.extend({
   "@type": z.literal("Domain"),
-  name: z.string().meta({
-    description: "Human-readable name of the domain.",
-    title: "Name",
-  }),
+  description: Description,
+  name: Name,
 })
   .readonly()
-  .meta({
-    description:
-      "The regulatory and institutional domain of a partner organization.",
-    id: "Domain",
-    namedIndividuals: [
-      { "@id": "wpg:EducationDomain", name: "Education" },
-      { "@id": "wpg:HealthDomain", name: "Health" },
-      { "@id": "wpg:HumanServicesDomain", name: "Human Services" },
-      { "@id": "wpg:JusticeDomain", name: "Justice" },
-    ],
-    title: "Domain",
-  });
+  .meta(
+    new ObjectMeta({
+      description:
+        "The regulatory and institutional domain of a partner organization.",
+      id: "Domain",
+      namedIndividuals: [
+        {
+          description:
+            "Governed primarily under FERPA. Includes K-12, higher education, and early childhood education.",
+          id: "Education",
+        },
+        {
+          description:
+            "Governed primarily under HIPAA. Includes hospitals, clinics, health information exchanges, and public health agencies.",
+          id: "Health",
+        },
+        {
+          description:
+            "Governed under various state and federal statutes. Includes child welfare, social services, and community-based organizations.",
+          id: "HumanServices",
+          name: "Human Services",
+        },
+        {
+          description:
+            "Governed under state statute and court orders. Includes courts, corrections, and law enforcement agencies.",
+          id: "Justice",
+        },
+      ],
+    }),
+  );
 
 export type Domain = z.infer<typeof Domain>;

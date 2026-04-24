@@ -181,20 +181,29 @@ function schemaAnchor(schemaName: string): string {
 }
 
 function buildNamedIndividualsTable(
-  individuals: readonly Record<string, unknown>[],
+  individuals: readonly {
+    readonly "@id": string;
+    readonly description: string;
+    readonly name: string;
+  }[],
 ): RootContent[] {
-  const headerRow = row([cell([text("IRI")]), cell([text("Name")])]);
+  const headerRow = row([
+    cell([text("IRI")]),
+    cell([text("Name")]),
+    cell([text("Description")]),
+  ]);
 
   const dataRows = individuals.map((individual) =>
     row([
-      cell([inlineCode(individual["@id"] as string)]),
-      cell([text(individual["name"] as string)]),
+      cell([inlineCode(individual["@id"])]),
+      cell([text(individual.name)]),
+      cell([text(individual.description)]),
     ]),
   );
 
   return [
     heading(3, [text("Named Individuals")]),
-    table(["left", "left"], [headerRow, ...dataRows]),
+    table(["left", "left", "left"], [headerRow, ...dataRows]),
   ];
 }
 
@@ -258,7 +267,7 @@ function buildSchemaSection(name: string, schema: z.ZodType): RootContent[] {
 // ENTRY POINT
 // =============================================================================
 
-export function generateSchemaMarkdown(): string {
+export function modelMarkdown(): string {
   const children: RootContent[] = [];
 
   children.push(

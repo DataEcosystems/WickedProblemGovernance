@@ -127,6 +127,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Minutes, agendas, or decision logs from governance committee meetings.",
       name: "Committee Minutes",
     },
   ],
@@ -134,6 +136,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
   ],
@@ -141,6 +145,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
   ],
@@ -148,11 +154,14 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
     {
       "@id": "wpg:SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
   ],
@@ -160,11 +169,14 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
     {
       "@id": "wpg:SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
   ],
@@ -172,11 +184,14 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
     {
       "@id": "wpg:EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
   ],
@@ -184,6 +199,7 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
   ],
@@ -191,6 +207,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Minutes, agendas, or decision logs from governance committee meetings.",
       name: "Committee Minutes",
     },
   ],
@@ -198,11 +216,14 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
     {
       "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description:
+        "Minutes, agendas, or decision logs from governance committee meetings.",
       name: "Committee Minutes",
     },
     {
       "@id": "wpg:SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
+      description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
   ],
@@ -354,6 +375,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
       ...(cep != null ? { deliveryCouplingProxy: cep } : {}),
       ecosystem: iri("Ecosystem", ecoId!),
       episodeCount: a.Episode_Count,
+      name: a.Project,
       ...(bp != null ? { normalizedBurden: bp } : {}),
       partnerCount: Math.round(a.Ave_partner_n ?? 0),
       stallFraction: pLog?.Stall_Fraction ?? a.Stalled_Count / a.Episode_Count,
@@ -378,6 +400,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
       domainHeterogeneity: ep.Het_Dom ?? 0,
       governanceEpisodeType: mapEpisodeType(ep.episode_type),
       layerHeterogeneity: ep.Het_Layer ?? 0,
+      ...(ep.episode_title != null ? { name: ep.episode_title } : {}),
       ...(ep.Ce != null && ep.T2b_Project != null
         ? { normalizedBurden: ep.T2b_Project / ep.Ce }
         : {}),
@@ -414,6 +437,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
           "@id": artifactId,
           "@type": "GovernanceArtifact" as const,
           governanceArtifactType: artifactTypeIri,
+          name: ev.artifact_ref,
         };
       }
     }
@@ -435,6 +459,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
         : {}),
       episode: iri("GovernanceEpisode", ev.episode_id),
       governanceEventType: mapEventType(ev.event_type),
+      ...(ev.notes != null ? { description: ev.notes } : {}),
       partners: partnerIris,
       ...(ev.event_date != null ? { timestamp: ev.event_date } : {}),
     };
@@ -442,10 +467,6 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
 
   // ---------------------------------------------------------------------------
   // Synthetic Organizations and Project Partners
-  //
-  // The source data doesn't identify individual organizations — only
-  // domain/layer counts per episode. We mint synthetic organizations
-  // and project partners to preserve the structural information.
   // ---------------------------------------------------------------------------
   const emittedOrgs = new Set<string>();
   const emittedProjectPartners = new Set<string>();
@@ -481,6 +502,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
             yield {
               "@id": projectPartnerId,
               "@type": "ProjectPartner" as const,
+              name: `${domain}-partner-${i} (${ep.episode_id})`,
               organization: orgId,
               project: iri("Project", ep.project_id),
               role: "wpg:DataContributorProjectPartnerRole",
