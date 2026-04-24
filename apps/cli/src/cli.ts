@@ -5,9 +5,9 @@ import path from "node:path";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
 // import { pino } from "pino";
-import { generateJsonSchema } from "./commands/modelJsonSchema.js";
-import { generateJsonSchemas } from "./commands/modelJsonSchemas.js";
-import { generateSchemaMarkdown } from "./commands/modelMarkdown.js";
+import { modelJsonSchema } from "./commands/modelJsonSchema.js";
+import { modelJsonSchemas } from "./commands/modelJsonSchemas.js";
+import { modelMarkdown } from "./commands/modelMarkdown.js";
 import {
   IjpdsDataset,
   transformIjpdsDataset,
@@ -34,9 +34,7 @@ run(
             args: {},
             description: "generate a single JSON schema from the model",
             handler: () => {
-              process.stdout.write(
-                JSON.stringify(generateJsonSchema(), null, 2),
-              );
+              process.stdout.write(JSON.stringify(modelJsonSchema(), null, 2));
             },
             name: "json-schema",
           }),
@@ -51,7 +49,7 @@ run(
               "generate JSON schemas from the model to an output directory",
             handler: async ({ outputDirectoryPath }) => {
               await fs.mkdir(outputDirectoryPath, { recursive: true });
-              for (const [name, jsonSchema] of generateJsonSchemas()) {
+              for (const [name, jsonSchema] of modelJsonSchemas()) {
                 await fs.writeFile(
                   path.resolve(outputDirectoryPath, `${name}.schema.json`),
                   JSON.stringify(jsonSchema, null, 2),
@@ -64,7 +62,7 @@ run(
             args: {},
             description: "generate Markdown from the model",
             handler: () => {
-              process.stdout.write(generateSchemaMarkdown());
+              process.stdout.write(modelMarkdown());
             },
             name: "markdown",
           }),

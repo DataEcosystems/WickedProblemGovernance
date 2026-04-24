@@ -1,7 +1,7 @@
 import { schemas } from "@wpg/model";
 import { z } from "zod";
 
-export function generateJsonSchema() {
+export function modelJsonSchema() {
   const registry = z.registry<{ id: string }>();
   for (const [name, schema] of Object.entries(schemas)) {
     registry.add(schema, { id: name });
