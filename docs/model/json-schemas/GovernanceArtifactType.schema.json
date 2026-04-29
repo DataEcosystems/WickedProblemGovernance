@@ -19,7 +19,6 @@
     }
   ],
   "title": "Governance Artifact Type",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

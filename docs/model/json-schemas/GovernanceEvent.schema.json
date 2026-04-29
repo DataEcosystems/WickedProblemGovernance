@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "A timestamped occurrence in a governance process corresponding to a durable artifact.",
   "title": "Governance Event",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {
@@ -46,7 +45,6 @@
       "description": "The project partners involved in this event.",
       "range": "ProjectPartner",
       "title": "Partners",
-      "readOnly": true,
       "type": "array",
       "items": {
         "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",

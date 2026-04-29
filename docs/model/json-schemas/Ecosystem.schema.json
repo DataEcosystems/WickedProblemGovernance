@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "All projects within a shared geographic and institutional context.",
   "title": "Ecosystem",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

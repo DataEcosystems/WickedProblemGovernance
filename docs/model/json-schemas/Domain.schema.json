@@ -24,7 +24,6 @@
     }
   ],
   "title": "Domain",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

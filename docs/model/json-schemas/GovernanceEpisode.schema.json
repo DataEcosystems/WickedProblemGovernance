@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "A bounded governance authorization attempt aggregating a sequence of events.",
   "title": "Governance Episode",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

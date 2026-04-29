@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "An n-ary relation linking an organization to a project in a specific role.",
   "title": "Project Partner",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

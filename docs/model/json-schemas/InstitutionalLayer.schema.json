@@ -19,7 +19,6 @@
     }
   ],
   "title": "Institutional Layer",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

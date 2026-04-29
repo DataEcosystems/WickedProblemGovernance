@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "A group of episodes sharing a common governance boundary design and data architecture.",
   "title": "Project",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

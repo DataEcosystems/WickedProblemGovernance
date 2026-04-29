@@ -44,7 +44,6 @@
     }
   ],
   "title": "Governance Event Type",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

@@ -24,7 +24,6 @@
     }
   ],
   "title": "Governance Episode Type",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

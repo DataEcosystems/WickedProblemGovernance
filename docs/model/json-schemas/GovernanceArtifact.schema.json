@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "A durable source document from which a governance event was reconstructed.",
   "title": "Governance Artifact",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {

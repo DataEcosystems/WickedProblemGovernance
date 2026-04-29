@@ -39,7 +39,6 @@
     }
   ],
   "title": "Project Partner Role",
-  "readOnly": true,
   "type": "object",
   "properties": {
     "@id": {
