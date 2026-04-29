@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A classification of the role a partner organization plays in a project.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:CentralizedItProjectPartnerRole",
+      "description": "An organization providing centralized IT services for the project.",
+      "name": "Centralized IT"
+    },
+    {
+      "@id": "wpg:DataContributorProjectPartnerRole",
+      "description": "An organization contributing data records to the IDS.",
+      "name": "Data Contributor"
+    },
+    {
+      "@id": "wpg:IdsSponsorProjectPartnerRole",
+      "description": "An organization providing funding or institutional sponsorship for the IDS.",
+      "name": "IDS Sponsor"
+    },
+    {
+      "@id": "wpg:InfrastructureProviderProjectPartnerRole",
+      "description": "An organization providing technical infrastructure for data linkage and analysis.",
+      "name": "Infrastructure Provider"
+    },
+    {
+      "@id": "wpg:ProgramLeadershipProjectPartnerRole",
+      "description": "An organization providing executive or program leadership for the project.",
+      "name": "Program Leadership"
+    },
+    {
+      "@id": "wpg:ProgramSmeProjectPartnerRole",
+      "description": "An organization providing subject matter expertise on the program or domain.",
+      "name": "Program SME"
+    },
+    {
+      "@id": "wpg:ResearcherProjectPartnerRole",
+      "description": "An organization conducting research or analysis using the linked data.",
+      "name": "Researcher"
+    }
+  ],
+  "title": "Project Partner Role",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "ProjectPartnerRole"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "ProjectPartnerRole"
+}

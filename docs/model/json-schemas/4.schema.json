@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A classification of governance artifacts by their documentary form.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
+      "description": "Minutes, agendas, or decision logs from governance committee meetings.",
+      "name": "Committee Minutes"
+    },
+    {
+      "@id": "wpg:EmailGovernanceArtifactType",
+      "description": "Email correspondence documenting governance requests, approvals, or decisions.",
+      "name": "Email"
+    },
+    {
+      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "description": "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
+      "name": "Signed Agreement"
+    }
+  ],
+  "title": "Governance Artifact Type",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceArtifactType"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceArtifactType"
+}

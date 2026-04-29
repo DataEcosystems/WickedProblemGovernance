@@ -42,6 +42,78 @@ The regulatory and institutional domain of a partner organization.
 | `description` | Description | string |    Yes   | —     | Human-readable description. |
 | `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
 
+## Organization
+
+An institutional actor such as an agency, department, university, or nonprofit.
+
+### Properties
+
+| Property      | Title                | Type            | Required | Range                                      | Description                                                    |
+| :------------ | :------------------- | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
+| `description` | description          | string          |    No    | —                                          |                                                                |
+| `domains`     | Domains              | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
+| `layers`      | Institutional Layers | array of string |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional levels at which this organization operates. |
+| `name`        | Name                 | string          |    Yes   | —                                          | Human-readable name.                                           |
+
+## Project
+
+A group of episodes sharing a common governance boundary design and data architecture.
+
+### Properties
+
+| Property                | Title                   | Type             | Required | Range                                    | Description                                                                                        |
+| :---------------------- | :---------------------- | :--------------- | :------: | :--------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| `architecture`          | Architecture            | string           |    Yes   | [Architecture](#architecture)            | The data architecture governing how records are held and linked.                                   |
+| `deliveryCouplingProxy` | Delivery Coupling Proxy | number           |    No    | —                                        | The coupling proxy of the delivery episode.                                                        |
+| `deliveryEpisode`       | Delivery Episode        | string           |    No    | [GovernanceEpisode](#governance-episode) | The episode whose delivered value corresponds to the first data product.                           |
+| `description`           | description             | string           |    No    | —                                        |                                                                                                    |
+| `ecosystem`             | Ecosystem               | string           |    Yes   | [Ecosystem](#ecosystem)                  | The ecosystem this project belongs to.                                                             |
+| `episodeCount`          | Episode Count           | integer          |    Yes   | —                                        | Number of governance episodes in this project.                                                     |
+| `name`                  | Name                    | string           |    Yes   | —                                        | Human-readable name.                                                                               |
+| `normalizedBurden`      | Normalized Burden       | number           |    No    | —                                        | Project time to delivered value per unit of delivery-episode coupling load.                        |
+| `partnerCount`          | Partner Count           | integer          |    Yes   | —                                        | Number of institutional actors contributing data in the delivery episode.                          |
+| `stallFraction`         | Stall Fraction          | number           |    Yes   | —                                        | Proportion of episodes in the project that stalled.                                                |
+| `stewardPresence`       | Steward Presence        | boolean          |    Yes   | —                                        | Whether the project includes an authorized domain representative who mediates governance requests. |
+| `t0`                    | Project Start           | date \| datetime |    No    | —                                        | The earliest episode initiation timestamp across all episodes in the project.                      |
+| `tau2`                  | Time to Delivered Value | number           |    No    | —                                        | Calendar days from the earliest episode initiation to delivery of the first analytic output.       |
+
+## Project Partner
+
+An n-ary relation linking an organization to a project in a specific role.
+
+### Properties
+
+| Property       | Title        | Type   | Required | Range                                       | Description                                     |
+| :------------- | :----------- | :----- | :------: | :------------------------------------------ | :---------------------------------------------- |
+| `description`  | description  | string |    No    | —                                           |                                                 |
+| `name`         | Name         | string |    Yes   | —                                           | Human-readable name.                            |
+| `organization` | Organization | string |    Yes   | [Organization](#organization)               | The organization fulfilling this partner role.  |
+| `project`      | Project      | string |    Yes   | [Project](#project)                         | The project in which this partner participates. |
+| `role`         | Role         | string |    Yes   | [ProjectPartnerRole](#project-partner-role) | The role this partner plays in the project.     |
+
+## Project Partner Role
+
+A classification of the role a partner organization plays in a project.
+
+### Named Individuals
+
+| IRI                                            | Name                    | Description                                                                       |
+| :--------------------------------------------- | :---------------------- | :-------------------------------------------------------------------------------- |
+| `wpg:CentralizedItProjectPartnerRole`          | Centralized IT          | An organization providing centralized IT services for the project.                |
+| `wpg:DataContributorProjectPartnerRole`        | Data Contributor        | An organization contributing data records to the IDS.                             |
+| `wpg:IdsSponsorProjectPartnerRole`             | IDS Sponsor             | An organization providing funding or institutional sponsorship for the IDS.       |
+| `wpg:InfrastructureProviderProjectPartnerRole` | Infrastructure Provider | An organization providing technical infrastructure for data linkage and analysis. |
+| `wpg:ProgramLeadershipProjectPartnerRole`      | Program Leadership      | An organization providing executive or program leadership for the project.        |
+| `wpg:ProgramSmeProjectPartnerRole`             | Program SME             | An organization providing subject matter expertise on the program or domain.      |
+| `wpg:ResearcherProjectPartnerRole`             | Researcher              | An organization conducting research or analysis using the linked data.            |
+
+### Properties
+
+| Property      | Title       | Type   | Required | Range | Description                 |
+| :------------ | :---------- | :----- | :------: | :---- | :-------------------------- |
+| `description` | Description | string |    Yes   | —     | Human-readable description. |
+| `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
+
 ## Ecosystem
 
 All projects within a shared geographic and institutional context.
@@ -182,78 +254,6 @@ The jurisdictional level at which a partner organization operates.
 | `wpg:LocalInstitutionalLayer`    | Local    | City, county, or municipal-level organizations.                           |
 | `wpg:RegionalInstitutionalLayer` | Regional | Multi-county, regional service area, or intermediate-level organizations. |
 | `wpg:StateInstitutionalLayer`    | State    | State-level agencies, departments, or organizations.                      |
-
-### Properties
-
-| Property      | Title       | Type   | Required | Range | Description                 |
-| :------------ | :---------- | :----- | :------: | :---- | :-------------------------- |
-| `description` | Description | string |    Yes   | —     | Human-readable description. |
-| `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
-
-## Organization
-
-An institutional actor such as an agency, department, university, or nonprofit.
-
-### Properties
-
-| Property      | Title                | Type            | Required | Range                                      | Description                                                    |
-| :------------ | :------------------- | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
-| `description` | description          | string          |    No    | —                                          |                                                                |
-| `domains`     | Domains              | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
-| `layers`      | Institutional Layers | array of string |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional levels at which this organization operates. |
-| `name`        | Name                 | string          |    Yes   | —                                          | Human-readable name.                                           |
-
-## Project
-
-A group of episodes sharing a common governance boundary design and data architecture.
-
-### Properties
-
-| Property                | Title                   | Type             | Required | Range                                    | Description                                                                                        |
-| :---------------------- | :---------------------- | :--------------- | :------: | :--------------------------------------- | :------------------------------------------------------------------------------------------------- |
-| `architecture`          | Architecture            | string           |    Yes   | [Architecture](#architecture)            | The data architecture governing how records are held and linked.                                   |
-| `deliveryCouplingProxy` | Delivery Coupling Proxy | number           |    No    | —                                        | The coupling proxy of the delivery episode.                                                        |
-| `deliveryEpisode`       | Delivery Episode        | string           |    No    | [GovernanceEpisode](#governance-episode) | The episode whose delivered value corresponds to the first data product.                           |
-| `description`           | description             | string           |    No    | —                                        |                                                                                                    |
-| `ecosystem`             | Ecosystem               | string           |    Yes   | [Ecosystem](#ecosystem)                  | The ecosystem this project belongs to.                                                             |
-| `episodeCount`          | Episode Count           | integer          |    Yes   | —                                        | Number of governance episodes in this project.                                                     |
-| `name`                  | Name                    | string           |    Yes   | —                                        | Human-readable name.                                                                               |
-| `normalizedBurden`      | Normalized Burden       | number           |    No    | —                                        | Project time to delivered value per unit of delivery-episode coupling load.                        |
-| `partnerCount`          | Partner Count           | integer          |    Yes   | —                                        | Number of institutional actors contributing data in the delivery episode.                          |
-| `stallFraction`         | Stall Fraction          | number           |    Yes   | —                                        | Proportion of episodes in the project that stalled.                                                |
-| `stewardPresence`       | Steward Presence        | boolean          |    Yes   | —                                        | Whether the project includes an authorized domain representative who mediates governance requests. |
-| `t0`                    | Project Start           | date \| datetime |    No    | —                                        | The earliest episode initiation timestamp across all episodes in the project.                      |
-| `tau2`                  | Time to Delivered Value | number           |    No    | —                                        | Calendar days from the earliest episode initiation to delivery of the first analytic output.       |
-
-## Project Partner
-
-An n-ary relation linking an organization to a project in a specific role.
-
-### Properties
-
-| Property       | Title        | Type   | Required | Range                                       | Description                                     |
-| :------------- | :----------- | :----- | :------: | :------------------------------------------ | :---------------------------------------------- |
-| `description`  | description  | string |    No    | —                                           |                                                 |
-| `name`         | Name         | string |    Yes   | —                                           | Human-readable name.                            |
-| `organization` | Organization | string |    Yes   | [Organization](#organization)               | The organization fulfilling this partner role.  |
-| `project`      | Project      | string |    Yes   | [Project](#project)                         | The project in which this partner participates. |
-| `role`         | Role         | string |    Yes   | [ProjectPartnerRole](#project-partner-role) | The role this partner plays in the project.     |
-
-## Project Partner Role
-
-A classification of the role a partner organization plays in a project.
-
-### Named Individuals
-
-| IRI                                            | Name                    | Description                                                                       |
-| :--------------------------------------------- | :---------------------- | :-------------------------------------------------------------------------------- |
-| `wpg:CentralizedItProjectPartnerRole`          | Centralized IT          | An organization providing centralized IT services for the project.                |
-| `wpg:DataContributorProjectPartnerRole`        | Data Contributor        | An organization contributing data records to the IDS.                             |
-| `wpg:IdsSponsorProjectPartnerRole`             | IDS Sponsor             | An organization providing funding or institutional sponsorship for the IDS.       |
-| `wpg:InfrastructureProviderProjectPartnerRole` | Infrastructure Provider | An organization providing technical infrastructure for data linkage and analysis. |
-| `wpg:ProgramLeadershipProjectPartnerRole`      | Program Leadership      | An organization providing executive or program leadership for the project.        |
-| `wpg:ProgramSmeProjectPartnerRole`             | Program SME             | An organization providing subject matter expertise on the program or domain.      |
-| `wpg:ResearcherProjectPartnerRole`             | Researcher              | An organization conducting research or analysis using the linked data.            |
 
 ### Properties
 

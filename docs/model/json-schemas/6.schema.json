@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A classification of governance episodes by the nature of the authorization attempt.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:AgreementGovernanceEpisodeType",
+      "description": "An episode seeking execution of a data-sharing or data-use agreement.",
+      "name": "Agreement"
+    },
+    {
+      "@id": "wpg:AllocationGovernanceEpisodeType",
+      "description": "An episode seeking allocation of funding or resources.",
+      "name": "Allocation"
+    },
+    {
+      "@id": "wpg:PolicyAdoptionGovernanceEpisodeType",
+      "description": "An episode seeking adoption of a charter, policy, or governance structure.",
+      "name": "Policy Adoption"
+    },
+    {
+      "@id": "wpg:ProductGovernanceEpisodeType",
+      "description": "An episode seeking delivery of an analytic product or output.",
+      "name": "Product"
+    }
+  ],
+  "title": "Governance Episode Type",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceEpisodeType"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceEpisodeType"
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A classification of governance events by their function in the authorization process.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:AgreementExecutedGovernanceEventType",
+      "description": "A data-sharing or data-use agreement becomes legally effective through execution by all required parties.",
+      "name": "Agreement Executed"
+    },
+    {
+      "@id": "wpg:ApprovalIssuedGovernanceEventType",
+      "description": "A governance boundary issues a positive authorization decision.",
+      "name": "Approval Issued"
+    },
+    {
+      "@id": "wpg:EscalationGovernanceEventType",
+      "description": "A governance issue is escalated to a higher authority or broader audience.",
+      "name": "Escalation"
+    },
+    {
+      "@id": "wpg:OutputDeliveredGovernanceEventType",
+      "description": "An analytic product answering a stakeholder question is delivered.",
+      "name": "Output Delivered"
+    },
+    {
+      "@id": "wpg:ProvisioningCompletedGovernanceEventType",
+      "description": "Data access has been technically provisioned (accounts created, data transferred, query access granted).",
+      "name": "Provisioning Completed"
+    },
+    {
+      "@id": "wpg:RequestSubmittedGovernanceEventType",
+      "description": "An institutional actor formally initiates a governance authorization process.",
+      "name": "Request Submitted"
+    },
+    {
+      "@id": "wpg:ReviewGovernanceEventType",
+      "description": "A governance boundary reviews a request or artifact without issuing a final decision.",
+      "name": "Review"
+    },
+    {
+      "@id": "wpg:WithdrawalGovernanceEventType",
+      "description": "A partner formally or informally withdraws from a governance process.",
+      "name": "Withdrawal"
+    }
+  ],
+  "title": "Governance Event Type",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "GovernanceEventType"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "GovernanceEventType"
+}

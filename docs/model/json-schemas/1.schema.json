@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "The regulatory and institutional domain of a partner organization.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:EducationDomain",
+      "description": "Governed primarily under FERPA. Includes K-12, higher education, and early childhood education.",
+      "name": "Education"
+    },
+    {
+      "@id": "wpg:HealthDomain",
+      "description": "Governed primarily under HIPAA. Includes hospitals, clinics, health information exchanges, and public health agencies.",
+      "name": "Health"
+    },
+    {
+      "@id": "wpg:HumanServicesDomain",
+      "description": "Governed under various state and federal statutes. Includes child welfare, social services, and community-based organizations.",
+      "name": "Human Services"
+    },
+    {
+      "@id": "wpg:JusticeDomain",
+      "description": "Governed under state statute and court orders. Includes courts, corrections, and law enforcement agencies.",
+      "name": "Justice"
+    }
+  ],
+  "title": "Domain",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "Domain"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "Domain"
+}

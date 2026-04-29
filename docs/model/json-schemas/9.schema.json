@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "The jurisdictional level at which a partner organization operates.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:LocalInstitutionalLayer",
+      "description": "City, county, or municipal-level organizations.",
+      "name": "Local"
+    },
+    {
+      "@id": "wpg:RegionalInstitutionalLayer",
+      "description": "Multi-county, regional service area, or intermediate-level organizations.",
+      "name": "Regional"
+    },
+    {
+      "@id": "wpg:StateInstitutionalLayer",
+      "description": "State-level agencies, departments, or organizations.",
+      "name": "State"
+    }
+  ],
+  "title": "Institutional Layer",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "InstitutionalLayer"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "InstitutionalLayer"
+}

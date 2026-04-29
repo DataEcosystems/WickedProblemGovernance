@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "The data architecture governing how records are held and linked in an IDS project.",
+  "namedIndividuals": [
+    {
+      "@id": "wpg:CustodialArchitecture",
+      "description": "Raw data from multiple partners is centralized at a single site for linkage and analysis.",
+      "name": "Custodial"
+    },
+    {
+      "@id": "wpg:FederatedArchitecture",
+      "description": "Data remains with custodians and is linked via PET-enabled protocols without centralization.",
+      "name": "Federated"
+    }
+  ],
+  "title": "Architecture",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "Architecture"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "description",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "Architecture"
+}

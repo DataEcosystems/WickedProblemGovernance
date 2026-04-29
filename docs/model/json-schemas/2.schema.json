@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "All projects within a shared geographic and institutional context.",
+  "title": "Ecosystem",
+  "type": "object",
+  "properties": {
+    "@id": {
+      "description": "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
+      "title": "IRI",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string",
+      "const": "Ecosystem"
+    },
+    "description": {
+      "description": "Human-readable description.",
+      "title": "Description",
+      "type": "string"
+    },
+    "meanNormalizedBurden": {
+      "description": "Average project normalized burden across projects in this ecosystem.",
+      "title": "Mean Normalized Burden",
+      "type": "number"
+    },
+    "meanTimeToValue": {
+      "description": "Average project time to delivered value across projects in this ecosystem.",
+      "title": "Mean Time to Value",
+      "type": "number"
+    },
+    "name": {
+      "description": "Human-readable name.",
+      "title": "Name",
+      "type": "string"
+    },
+    "stdTimeToValue": {
+      "description": "Standard deviation of project time to delivered value across projects in this ecosystem.",
+      "title": "Std. Dev. Time to Value",
+      "type": "number"
+    }
+  },
+  "required": [
+    "@id",
+    "@type",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "Ecosystem"
+}
