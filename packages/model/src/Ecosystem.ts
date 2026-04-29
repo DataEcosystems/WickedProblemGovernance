@@ -39,14 +39,12 @@ export const Ecosystem = JsonLdBase.extend({
         title: "Std. Dev. Time to Value",
       }),
     ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "All projects within a shared geographic and institutional context.",
-      id: "Ecosystem",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "All projects within a shared geographic and institutional context.",
+    id: "Ecosystem",
+  }),
+);
 
 export type Ecosystem = z.infer<typeof Ecosystem>;

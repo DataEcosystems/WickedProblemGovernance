@@ -35,31 +35,26 @@ export const GovernanceEvent = JsonLdBase.extend({
     }),
   ),
   name: Name.optional(),
-  partners: z
-    .array(Iri)
-    .readonly()
-    .meta(
-      new PropertyMeta({
-        description: "The project partners involved in this event.",
-        range: ProjectPartner,
-        title: "Partners",
-      }),
-    ),
+  partners: z.array(Iri).meta(
+    new PropertyMeta({
+      description: "The project partners involved in this event.",
+      range: ProjectPartner,
+      title: "Partners",
+    }),
+  ),
   timestamp: Timestamp.optional().meta(
     new PropertyMeta({
       description: "The date or datetime on which this event occurred.",
       title: "Timestamp",
     }),
   ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A timestamped occurrence in a governance process corresponding to a durable artifact.",
-      id: "GovernanceEvent",
-      title: "Governance Event",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A timestamped occurrence in a governance process corresponding to a durable artifact.",
+    id: "GovernanceEvent",
+    title: "Governance Event",
+  }),
+);
 
 export type GovernanceEvent = z.infer<typeof GovernanceEvent>;

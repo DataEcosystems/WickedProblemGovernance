@@ -104,12 +104,12 @@ export const Project = JsonLdBase.extend({
         title: "Time to Delivered Value",
       }),
     ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A group of episodes sharing a common governance boundary design and data architecture.",
-      id: "Project",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A group of episodes sharing a common governance boundary design and data architecture.",
+    id: "Project",
+  }),
+);
+
+export type Project = z.infer<typeof Project>;

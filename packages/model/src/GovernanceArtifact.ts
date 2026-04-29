@@ -19,15 +19,13 @@ export const GovernanceArtifact = JsonLdBase.extend({
     }),
   ),
   name: Name.optional(),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A durable source document from which a governance event was reconstructed.",
-      id: "GovernanceArtifact",
-      title: "Governance Artifact",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A durable source document from which a governance event was reconstructed.",
+    id: "GovernanceArtifact",
+    title: "Governance Artifact",
+  }),
+);
 
 export type GovernanceArtifact = z.infer<typeof GovernanceArtifact>;

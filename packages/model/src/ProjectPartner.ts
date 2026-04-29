@@ -34,15 +34,13 @@ export const ProjectPartner = JsonLdBase.extend({
       title: "Role",
     }),
   ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "An n-ary relation linking an organization to a project in a specific role.",
-      id: "ProjectPartner",
-      title: "Project Partner",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "An n-ary relation linking an organization to a project in a specific role.",
+    id: "ProjectPartner",
+    title: "Project Partner",
+  }),
+);
 
 export type ProjectPartner = z.infer<typeof ProjectPartner>;

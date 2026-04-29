@@ -115,15 +115,13 @@ export const GovernanceEpisode = JsonLdBase.extend({
         title: "Time to Delivered Value",
       }),
     ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A bounded governance authorization attempt aggregating a sequence of events.",
-      id: "GovernanceEpisode",
-      title: "Governance Episode",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A bounded governance authorization attempt aggregating a sequence of events.",
+    id: "GovernanceEpisode",
+    title: "Governance Episode",
+  }),
+);
 
 export type GovernanceEpisode = z.infer<typeof GovernanceEpisode>;
