@@ -9,6 +9,7 @@ const VERSION = "0.0.0";
 const externalDependencies = {
   "@types/mdast": "~4.0.4",
   "cmd-ts": "~0.15.0",
+  jsonld: "~9.0.0",
   pino: "~10.3.1",
   "pino-pretty": "~13.1.3",
   "remark-frontmatter": "~5.0.0",
@@ -50,6 +51,7 @@ const workspaces = {
         external: [
           "@types/mdast",
           "cmd-ts",
+          "jsonld",
           "pino",
           "pino-pretty",
           "remark-frontmatter",

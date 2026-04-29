@@ -2,8 +2,11 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { createInterface } from "node:readline";
+import { Schema } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
+import { loadRdf } from "./commands/loadRdf.js";
 // import { pino } from "pino";
 import { modelJsonSchema } from "./commands/modelJsonSchema.js";
 import { modelJsonSchemas } from "./commands/modelJsonSchemas.js";
@@ -25,9 +28,38 @@ import {
 //   (pino as any).destination(2),
 // );
 
+async function* parseModelJsonl(
+  lines: AsyncIterable<string>,
+): AsyncIterable<Schema> {
+  for await (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.length > 0) {
+      yield JSON.parse(trimmed) as Schema;
+    }
+  }
+}
+
 run(
   subcommands({
     cmds: {
+      load: subcommands({
+        cmds: {
+          rdf: command({
+            args: {},
+            description:
+              "read interchange JSON lines from stdin and write an RDF N-Quads version to stdout",
+            handler: async () => {
+              for await (const nquad of loadRdf(
+                parseModelJsonl(createInterface({ input: process.stdin })),
+              )) {
+                process.stdout.write(nquad);
+              }
+            },
+            name: "rdf",
+          }),
+        },
+        name: "load",
+      }),
       model: subcommands({
         cmds: {
           "json-schema": command({
