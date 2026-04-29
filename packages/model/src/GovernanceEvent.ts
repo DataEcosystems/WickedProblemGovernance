@@ -4,9 +4,10 @@ import { GovernanceArtifact } from "./GovernanceArtifact.js";
 import { GovernanceEpisode } from "./GovernanceEpisode.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { Iri } from "./Iri.js";
-import { ObjectMeta, PropertyMeta } from "./index.js";
 import { Name } from "./Name.js";
+import { ObjectMeta } from "./ObjectMeta.js";
 import { ProjectPartner } from "./ProjectPartner.js";
+import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
 

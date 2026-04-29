@@ -28,6 +28,7 @@ fs.writeFileSync(
   `\
 export { default as contextJson } from "./context.json" with { type: "json" };
 export * from "./ObjectMeta.js";
+export * from "./PropertyMeta.js";
 export * from "./Resource.js";
 export * from "./schemas.js";
 export * from "./schemasByName.js";

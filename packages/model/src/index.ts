@@ -14,6 +14,7 @@ export * from "./Organization.js";
 export * from "./Project.js";
 export * from "./ProjectPartner.js";
 export * from "./ProjectPartnerRole.js";
+export * from "./PropertyMeta.js";
 export * from "./Resource.js";
 export * from "./schemas.js";
 export * from "./schemasByName.js";
