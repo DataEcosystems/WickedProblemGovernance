@@ -5,12 +5,12 @@ import { GovernanceEpisode } from "./GovernanceEpisode.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { Iri } from "./Iri.js";
 import { ObjectMeta, PropertyMeta } from "./index.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ProjectPartner } from "./ProjectPartner.js";
+import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
 
-export const GovernanceEvent = JsonLdBase.extend({
+export const GovernanceEvent = ResourceBase.extend({
   "@type": z.literal("GovernanceEvent"),
   artifact: Iri.optional().meta(
     new PropertyMeta({

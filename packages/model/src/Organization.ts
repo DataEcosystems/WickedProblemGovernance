@@ -3,12 +3,12 @@ import { Description } from "./Description.js";
 import { Domain } from "./Domain.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
 import { Iri } from "./Iri.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { PropertyMeta } from "./PropertyMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 
-export const Organization = JsonLdBase.extend({
+export const Organization = ResourceBase.extend({
   "@type": z.literal("Organization"),
   description: Description.optional(),
   domains: z.array(Iri).meta(

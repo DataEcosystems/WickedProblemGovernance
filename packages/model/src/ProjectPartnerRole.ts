@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { Description } from "./Description.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 
-export const ProjectPartnerRole = JsonLdBase.extend({
+export const ProjectPartnerRole = ResourceBase.extend({
   "@type": z.literal("ProjectPartnerRole"),
   description: Description,
   name: Name,

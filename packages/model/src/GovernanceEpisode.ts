@@ -2,14 +2,14 @@ import { z } from "zod";
 import { Description } from "./Description.js";
 import { GovernanceEpisodeType } from "./GovernanceEpisodeType.js";
 import { Iri } from "./Iri.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { Project } from "./Project.js";
 import { PropertyMeta } from "./PropertyMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
 
-export const GovernanceEpisode = JsonLdBase.extend({
+export const GovernanceEpisode = ResourceBase.extend({
   "@type": z.literal("GovernanceEpisode"),
   couplingProxy: z.number().meta(
     new PropertyMeta({

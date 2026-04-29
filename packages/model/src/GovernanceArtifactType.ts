@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { Description } from "./Description.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 
-export const GovernanceArtifactType = JsonLdBase.extend({
+export const GovernanceArtifactType = ResourceBase.extend({
   "@type": z.literal("GovernanceArtifactType"),
   description: Description,
   name: Name,
