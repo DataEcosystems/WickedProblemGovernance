@@ -1,4 +1,4 @@
-import type { GovernanceArtifactType, Schema } from "@wpg/model";
+import type { GovernanceArtifactType, Resource } from "@wpg/model";
 import { z } from "zod/v4";
 
 // =============================================================================
@@ -319,7 +319,7 @@ function buildLayerAssignment(episode: IjpdsEpisodeLog): string[] {
 // TRANSFORM
 // =============================================================================
 
-export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Schema> {
+export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
   const emittedIds = new Set<string>();
 
   // ---------------------------------------------------------------------------

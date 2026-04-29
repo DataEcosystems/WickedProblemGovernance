@@ -25,7 +25,7 @@ export const schemas = {
   GovernanceEventType,
   InstitutionalLayer,
   Organization,
+  Project,
   ProjectPartner,
   ProjectPartnerRole,
-  Project,
 };

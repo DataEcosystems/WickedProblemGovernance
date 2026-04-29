@@ -2,12 +2,12 @@ import { z } from "zod";
 import { Description } from "./Description.js";
 import { GovernanceArtifactType } from "./GovernanceArtifactType.js";
 import { Iri } from "./Iri.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { PropertyMeta } from "./PropertyMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 
-export const GovernanceArtifact = JsonLdBase.extend({
+export const GovernanceArtifact = ResourceBase.extend({
   "@type": z.literal("GovernanceArtifact"),
   description: Description.optional(),
   governanceArtifactType: Iri.meta(
@@ -19,15 +19,13 @@ export const GovernanceArtifact = JsonLdBase.extend({
     }),
   ),
   name: Name.optional(),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A durable source document from which a governance event was reconstructed.",
-      id: "GovernanceArtifact",
-      title: "Governance Artifact",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A durable source document from which a governance event was reconstructed.",
+    id: "GovernanceArtifact",
+    title: "Governance Artifact",
+  }),
+);
 
 export type GovernanceArtifact = z.infer<typeof GovernanceArtifact>;

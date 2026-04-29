@@ -3,13 +3,13 @@ import { Architecture } from "./Architecture.js";
 import { Description } from "./Description.js";
 import { Ecosystem } from "./Ecosystem.js";
 import { Iri } from "./Iri.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { PropertyMeta } from "./PropertyMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
 
-export const Project = JsonLdBase.extend({
+export const Project = ResourceBase.extend({
   "@type": z.literal("Project"),
   architecture: Iri.meta(
     new PropertyMeta({
@@ -104,12 +104,12 @@ export const Project = JsonLdBase.extend({
         title: "Time to Delivered Value",
       }),
     ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "A group of episodes sharing a common governance boundary design and data architecture.",
-      id: "Project",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "A group of episodes sharing a common governance boundary design and data architecture.",
+    id: "Project",
+  }),
+);
+
+export type Project = z.infer<typeof Project>;

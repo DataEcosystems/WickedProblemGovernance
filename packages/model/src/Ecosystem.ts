@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { Description } from "./Description.js";
-import { JsonLdBase } from "./JsonLdBase.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { PropertyMeta } from "./PropertyMeta.js";
+import { ResourceBase } from "./ResourceBase.js";
 
-export const Ecosystem = JsonLdBase.extend({
+export const Ecosystem = ResourceBase.extend({
   "@type": z.literal("Ecosystem"),
   description: Description.optional(),
   meanNormalizedBurden: z
@@ -39,14 +39,12 @@ export const Ecosystem = JsonLdBase.extend({
         title: "Std. Dev. Time to Value",
       }),
     ),
-})
-  .readonly()
-  .meta(
-    new ObjectMeta({
-      description:
-        "All projects within a shared geographic and institutional context.",
-      id: "Ecosystem",
-    }),
-  );
+}).meta(
+  new ObjectMeta({
+    description:
+      "All projects within a shared geographic and institutional context.",
+    id: "Ecosystem",
+  }),
+);
 
 export type Ecosystem = z.infer<typeof Ecosystem>;
