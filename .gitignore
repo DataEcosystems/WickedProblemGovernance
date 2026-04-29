@@ -1,6 +1,7 @@
 .env
 .env.*
 data/ijpds/*.json*
+data/ijpds/*.ttl
 dist/
 node_modules/
 tsconfig.tsbuildinfo
