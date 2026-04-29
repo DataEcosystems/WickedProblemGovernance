@@ -13,7 +13,7 @@ import { Project } from "./Project.js";
 import { ProjectPartner } from "./ProjectPartner.js";
 import { ProjectPartnerRole } from "./ProjectPartnerRole.js";
 
-export const schemas = [
+export const schemasByName = {
   Architecture,
   Domain,
   Ecosystem,
@@ -28,4 +28,4 @@ export const schemas = [
   Project,
   ProjectPartner,
   ProjectPartnerRole,
-] as const;
+};

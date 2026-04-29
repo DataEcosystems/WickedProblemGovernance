@@ -1,5 +1,5 @@
 import type { ObjectMeta, PropertyMeta } from "@wpg/model";
-import { schemas } from "@wpg/model";
+import { schemas, schemasByName } from "@wpg/model";
 import type {
   Heading,
   InlineCode,
@@ -174,7 +174,7 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
 // =============================================================================
 
 function schemaAnchor(schemaName: string): string {
-  const schema = (schemas as Record<string, z.ZodType>)[schemaName];
+  const schema = (schemasByName as Record<string, z.ZodType>)[schemaName];
   const meta = schema?.meta() as ObjectMeta | undefined;
   const title = meta?.title ?? schemaName;
   return `#${title.toLowerCase().replace(/\s+/g, "-")}`;
