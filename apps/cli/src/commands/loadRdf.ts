@@ -1,6 +1,6 @@
 import type { Schema } from "@wpg/model";
 import { contextJson } from "@wpg/model";
-import { toRDF } from "jsonld";
+import jsonld from "jsonld";
 
 /**
  * Converts an iterable of interchange objects to an N-Quads string,
@@ -15,7 +15,7 @@ export async function* loadRdf(
       ...object,
     };
 
-    const nquads = await toRDF(doc, { format: "application/n-quads" });
+    const nquads = await jsonld.toRDF(doc, { format: "application/n-quads" });
     if (nquads.length > 0) {
       yield nquads;
     }
