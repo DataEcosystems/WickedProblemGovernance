@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { schemas } from "./schemas.js";
 
-type SchemaTypes = {
-  [K in keyof typeof schemas]: z.infer<(typeof schemas)[K]>;
-};
+export const Schema = z.discriminatedUnion(
+  "@type",
+  Object.values(schemas) as [z.ZodObject<any>, ...z.ZodObject<any>[]],
+);
 
-export type Schema = SchemaTypes[keyof SchemaTypes];
+export type Schema = z.infer<typeof Schema>;

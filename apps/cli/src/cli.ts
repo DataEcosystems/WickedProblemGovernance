@@ -34,7 +34,7 @@ async function* parseModelJsonl(
   for await (const line of lines) {
     const trimmed = line.trim();
     if (trimmed.length > 0) {
-      yield JSON.parse(trimmed) as Schema;
+      yield Schema.parse(JSON.parse(trimmed));
     }
   }
 }
