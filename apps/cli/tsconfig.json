@@ -13,7 +13,10 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "rootDir": "src",
-    "target": "es2022"
+    "target": "es2022",
+    "types": [
+      "node"
+    ]
   },
   "extends": [
     "@tsconfig/strictest/tsconfig.json"

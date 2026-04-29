@@ -17,7 +17,9 @@
   "author": "Asemio",
   "files": [
     "dist/*.d.ts",
-    "dist/*.js"
+    "dist/*.js",
+    "dist/commands/*.d.ts",
+    "dist/commands/*.js"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",

@@ -206,6 +206,10 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             // sourceMap:
             //   workspacesDirectoryName === "packages" ? true : undefined,
             target: "es2022",
+            types:
+              workspacesDirectoryName === "apps" && workspaceName === "cli"
+                ? ["node"]
+                : undefined,
           },
           extends: ["@tsconfig/strictest/tsconfig.json"],
           include: ["src/**/*.ts", "src/**/*.json"],
