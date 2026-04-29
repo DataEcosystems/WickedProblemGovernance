@@ -1,4 +1,4 @@
-import type { Schema } from "@wpg/model";
+import type { Resource } from "@wpg/model";
 import { contextJson } from "@wpg/model";
 import jsonld from "jsonld";
 
@@ -7,7 +7,7 @@ import jsonld from "jsonld";
  * using the JSON-LD context to resolve IRIs.
  */
 export async function* loadRdf(
-  objects: AsyncIterable<Schema>,
+  objects: AsyncIterable<Resource>,
 ): AsyncIterable<string> {
   for await (const object of objects) {
     const doc = {

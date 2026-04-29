@@ -3,7 +3,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createInterface } from "node:readline";
-import { Schema } from "@wpg/model";
+import { Resource } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
 import { loadRdf } from "./commands/loadRdf.js";
@@ -30,11 +30,11 @@ import {
 
 async function* parseModelJsonl(
   lines: AsyncIterable<string>,
-): AsyncIterable<Schema> {
+): AsyncIterable<Resource> {
   for await (const line of lines) {
     const trimmed = line.trim();
     if (trimmed.length > 0) {
-      yield Schema.parse(JSON.parse(trimmed));
+      yield Resource.parse(JSON.parse(trimmed));
     }
   }
 }
