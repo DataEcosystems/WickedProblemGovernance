@@ -1,9 +1,11 @@
 export * from "./Architecture.js";
 export { default as contextJson } from "./context.json" with { type: "json" };
 export * from "./Domain.js";
+export * from "./Ecosystem.js";
 export * from "./GovernanceArtifact.js";
 export * from "./GovernanceArtifactType.js";
 export * from "./GovernanceEpisode.js";
+export * from "./GovernanceEpisodeType.js";
 export * from "./GovernanceEvent.js";
 export * from "./GovernanceEventType.js";
 export * from "./InstitutionalLayer.js";
