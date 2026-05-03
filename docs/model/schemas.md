@@ -8,7 +8,7 @@ title: IDS Governance Measurement Framework — Schema Reference
 
 The data architecture governing how records are held and linked in an IDS project.
 
-### Named Individuals
+### Possible values
 
 | IRI                         | Name      | Description                                                                                  |
 | :-------------------------- | :-------- | :------------------------------------------------------------------------------------------- |
@@ -26,14 +26,16 @@ The data architecture governing how records are held and linked in an IDS projec
 
 The regulatory and institutional domain of a partner organization.
 
-### Named Individuals
+### Possible values
 
-| IRI                       | Name           | Description                                                                                                                    |
-| :------------------------ | :------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `wpg:EducationDomain`     | Education      | Governed primarily under FERPA. Includes K-12, higher education, and early childhood education.                                |
-| `wpg:HealthDomain`        | Health         | Governed primarily under HIPAA. Includes hospitals, clinics, health information exchanges, and public health agencies.         |
-| `wpg:HumanServicesDomain` | Human Services | Governed under various state and federal statutes. Includes child welfare, social services, and community-based organizations. |
-| `wpg:JusticeDomain`       | Justice        | Governed under state statute and court orders. Includes courts, corrections, and law enforcement agencies.                     |
+| IRI                                            | Name                                 | Description                                                                                                                    |
+| :--------------------------------------------- | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `wpg:EducationDomain`                          | Education                            | Governed primarily under FERPA. Includes K-12, higher education, and early childhood education.                                |
+| `wpg:HealthDomain`                             | Health                               | Governed primarily under HIPAA. Includes hospitals, clinics, health information exchanges, and public health agencies.         |
+| `wpg:HumanServicesDomain`                      | Human Services                       | Governed under various state and federal statutes. Includes child welfare, social services, and community-based organizations. |
+| `wpg:JobCreationAndWorkforceDevelopmentDomain` | Job Creation & Workforce Development | Includes workforce development programs, job training, and employment services.                                                |
+| `wpg:JusticeDomain`                            | Justice                              | Governed under state statute and court orders. Includes courts, corrections, and law enforcement agencies.                     |
+| `wpg:OtherDomain`                              | Other                                | A domain not covered by the other categories.                                                                                  |
 
 ### Properties
 
@@ -48,12 +50,152 @@ An institutional actor such as an agency, department, university, or nonprofit.
 
 ### Properties
 
-| Property      | Title                | Type            | Required | Range                                      | Description                                                    |
-| :------------ | :------------------- | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
-| `description` | description          | string          |    No    | —                                          |                                                                |
-| `domains`     | Domains              | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
-| `layers`      | Institutional Layers | array of string |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional levels at which this organization operates. |
-| `name`        | Name                 | string          |    Yes   | —                                          | Human-readable name.                                           |
+| Property             | Title               | Type            | Required | Range                                      | Description                                                    |
+| :------------------- | :------------------ | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
+| `description`        | description         | string          |    No    | —                                          |                                                                |
+| `domains`            | Domains             | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
+| `institutionalLayer` | Institutional Layer | string          |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional level at which this organization operates.  |
+| `memberOf`           | Member Of           | array of string |    Yes   | [OrganizationRole](#organization-role)     | The organization roles this organization fills.                |
+| `name`               | Name                | string          |    Yes   | —                                          | Human-readable name.                                           |
+
+## Organization Role
+
+A role an organization plays as a member of a project. The organization points to this role via schema:memberOf. See https\://blog.schema.org/2014/06/16/introducing-role/
+
+### Properties
+
+| Property                        | Title                            | Type             | Required | Range                                           | Description                                                                                                     |
+| :------------------------------ | :------------------------------- | :--------------- | :------: | :---------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| `contributesDataTo`             | Contributes Data To              | array of string  |    No    | [OrganizationRole](#organization-role)          | Organization roles this role contributes data to.                                                               |
+| `coordinates`                   | Coordinates                      | array of string  |    No    | [OrganizationRole](#organization-role)          | Organization roles this role coordinates.                                                                       |
+| `description`                   | description                      | string           |    No    | —                                               |                                                                                                                 |
+| `domain`                        | Domain                           | string           |    Yes   | [Domain](#domain)                               | The domain the organization is bringing to the project in this role. Must be one of the organization's domains. |
+| `endDate`                       | End Date                         | date \| datetime |    No    | —                                               | The date the role ended.                                                                                        |
+| `memberOf`                      | Member Of                        | string           |    Yes   | [Project](#project)                             | The project this organization role is a membership of.                                                          |
+| `name`                          | name                             | string           |    No    | —                                               |                                                                                                                 |
+| `providesTechnicalAssistanceTo` | Provides Technical Assistance To | array of string  |    No    | [OrganizationRole](#organization-role)          | Organization roles this role provides technical assistance to.                                                  |
+| `roleName`                      | Role Name                        | string           |    Yes   | [OrganizationRoleName](#organization-role-name) | The role this organization plays.                                                                               |
+| `startDate`                     | Start Date                       | date \| datetime |    No    | —                                               | The date the role began.                                                                                        |
+
+## Organization Role Category
+
+A broad classification of the kind of role an organization plays in a project.
+
+### Possible values
+
+| IRI                                               | Name                 | Description                                                                 |
+| :------------------------------------------------ | :------------------- | :-------------------------------------------------------------------------- |
+| `wpg:CoordinationOrganizationRoleCategory`        | Coordination         | An organization providing coordination, governance, or convening functions. |
+| `wpg:DataContributorOrganizationRoleCategory`     | Data Contributor     | An organization contributing data records to the IDS.                       |
+| `wpg:TechnicalAssistanceOrganizationRoleCategory` | Technical Assistance | An organization providing technical assistance or infrastructure support.   |
+
+### Properties
+
+| Property      | Title       | Type   | Required | Range | Description                 |
+| :------------ | :---------- | :----- | :------: | :---- | :-------------------------- |
+| `description` | Description | string |    Yes   | —     | Human-readable description. |
+| `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
+
+## Organization Role Name
+
+A classification of the role an organization plays as a member of a project.
+
+### Possible values
+
+| IRI                                             | Name                   | Description                                                                                                                                          |
+| :---------------------------------------------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `wpg:DataContributorOrganizationRoleName`       | Data Contributor       | An organization contributing data records to the IDS, typically domain-specific.                                                                     |
+| `wpg:DomainStewardOrganizationRoleName`         | Domain Steward         | An organization serving as the steward for a specific domain, mediating governance requests and translating domain-specific compliance requirements. |
+| `wpg:FunderOrganizationRoleName`                | Funder                 | An organization providing funding or institutional sponsorship for the IDS.                                                                          |
+| `wpg:GovernancePartnerOrganizationRoleName`     | Governance Partner     | An organization providing governance expertise, facilitation, or process design.                                                                     |
+| `wpg:IdsLocusOrganizationRoleName`              | IDS Locus              | The organization serving as the central coordinating body for the IDS.                                                                               |
+| `wpg:InfrastructurePartnerOrganizationRoleName` | Infrastructure Partner | An organization providing technical infrastructure for data linkage and analysis.                                                                    |
+| `wpg:ResearchPartnerOrganizationRoleName`       | Research Partner       | An organization conducting research or analysis using the linked data.                                                                               |
+| `wpg:SocialLicenseOrganizationRoleName`         | Social License         | An organization providing social license, community trust, or public legitimacy for the IDS.                                                         |
+
+### Properties
+
+| Property         | Title           | Type   | Required | Range                                                   | Description                                    |
+| :--------------- | :-------------- | :----- | :------: | :------------------------------------------------------ | :--------------------------------------------- |
+| `additionalType` | Additional Type | string |    Yes   | [OrganizationRoleCategory](#organization-role-category) | The broad category this role name falls under. |
+| `description`    | Description     | string |    Yes   | —                                                       | Human-readable description.                    |
+| `name`           | Name            | string |    Yes   | —                                                       | Human-readable name.                           |
+
+## Person
+
+An individual person.
+
+### Properties
+
+| Property      | Title       | Type            | Required | Range                      | Description                         |
+| :------------ | :---------- | :-------------- | :------: | :------------------------- | :---------------------------------- |
+| `description` | description | string          |    No    | —                          |                                     |
+| `memberOf`    | Member Of   | array of string |    Yes   | [PersonRole](#person-role) | The person roles this person fills. |
+| `name`        | Name        | string          |    Yes   | —                          | Human-readable name.                |
+
+## Person Role
+
+A role a person plays as a member of a project or organization. The person points to this role via schema:memberOf. See https\://blog.schema.org/2014/06/16/introducing-role/
+
+### Properties
+
+| Property      | Title       | Type             | Required | Range                                               | Description                                                      |
+| :------------ | :---------- | :--------------- | :------: | :-------------------------------------------------- | :--------------------------------------------------------------- |
+| `description` | description | string           |    No    | —                                                   |                                                                  |
+| `endDate`     | End Date    | date \| datetime |    No    | —                                                   | The date the role ended.                                         |
+| `memberOf`    | Member Of   | string           |    Yes   | [Organization \| Project](#organization-\|-project) | The organization or project this person role is a membership of. |
+| `name`        | name        | string           |    No    | —                                                   |                                                                  |
+| `roleName`    | Role Name   | string           |    No    | [PersonRoleName](#person-role-name)                 | The role this person plays.                                      |
+| `startDate`   | Start Date  | date \| datetime |    No    | —                                                   | The date the role began.                                         |
+
+## Person Role Category
+
+A broad classification of the kind of role a person plays in a project or organization.
+
+### Possible values
+
+| IRI                                         | Name                 | Description                                                          |
+| :------------------------------------------ | :------------------- | :------------------------------------------------------------------- |
+| `wpg:CoordinationPersonRoleCategory`        | Coordination         | A person providing coordination, governance, or convening functions. |
+| `wpg:DataContributorPersonRoleCategory`     | Data Contributor     | A person contributing data records to the IDS.                       |
+| `wpg:TechnicalAssistancePersonRoleCategory` | Technical Assistance | A person providing technical assistance or infrastructure support.   |
+
+### Properties
+
+| Property      | Title       | Type   | Required | Range | Description                 |
+| :------------ | :---------- | :----- | :------: | :---- | :-------------------------- |
+| `description` | Description | string |    Yes   | —     | Human-readable description. |
+| `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
+
+## Person Role Name
+
+A classification of the role a person plays as a member of a project or organization.
+
+### Possible values
+
+| IRI                                               | Name                              | Description                                                                                          |
+| :------------------------------------------------ | :-------------------------------- | :--------------------------------------------------------------------------------------------------- |
+| `wpg:CommunityStakeholderPersonRoleName`          | Community Stakeholder             | A community member providing public input, advocacy, or lived-experience perspective.                |
+| `wpg:FunderPersonRoleName`                        | Funder                            | A person providing funding or sponsorship resources.                                                 |
+| `wpg:GovernanceProviderPersonRoleName`            | Governance Provider               | A person providing governance expertise, facilitation, or process design.                            |
+| `wpg:GovernanceStakeholderPersonRoleName`         | Governance Stakeholder            | A person representing governance interests within a data-contributing organization.                  |
+| `wpg:IdsAdvocatePersonRoleName`                   | IDS Advocate                      | A person championing or advocating for the IDS within their community or institution.                |
+| `wpg:IdsExecutivePersonRoleName`                  | IDS Executive                     | A person providing executive leadership or decision-making authority for the IDS.                    |
+| `wpg:IdsSponsorPersonRoleName`                    | IDS Sponsor                       | A person providing sponsorship, institutional backing, or political support for the IDS.             |
+| `wpg:InfrastructureProviderPersonRoleName`        | Infrastructure Provider           | A person providing technical infrastructure or systems support.                                      |
+| `wpg:InfrastructureStakeholderPersonRoleName`     | Infrastructure Stakeholder        | A person representing infrastructure interests within a data-contributing organization.              |
+| `wpg:ProgramExecutivePersonRoleName`              | Program Executive                 | A person providing executive leadership within a data-contributing organization.                     |
+| `wpg:ResearcherPersonRoleName`                    | Researcher                        | A person conducting research or analysis on behalf of a data-contributing organization.              |
+| `wpg:TechnicalAssistanceResearcherPersonRoleName` | Researcher (Technical Assistance) | A person conducting research or analysis as technical assistance.                                    |
+| `wpg:SubjectMatterExpertPersonRoleName`           | Subject Matter Expert             | A person providing domain-specific subject matter expertise within a data-contributing organization. |
+
+### Properties
+
+| Property         | Title           | Type   | Required | Range                                       | Description                                    |
+| :--------------- | :-------------- | :----- | :------: | :------------------------------------------ | :--------------------------------------------- |
+| `additionalType` | Additional Type | string |    Yes   | [PersonRoleCategory](#person-role-category) | The broad category this role name falls under. |
+| `description`    | Description     | string |    Yes   | —                                           | Human-readable description.                    |
+| `name`           | Name            | string |    Yes   | —                                           | Human-readable name.                           |
 
 ## Project
 
@@ -76,43 +218,6 @@ A group of episodes sharing a common governance boundary design and data archite
 | `stewardPresence`       | Steward Presence        | boolean          |    Yes   | —                                        | Whether the project includes an authorized domain representative who mediates governance requests. |
 | `t0`                    | Project Start           | date \| datetime |    No    | —                                        | The earliest episode initiation timestamp across all episodes in the project.                      |
 | `tau2`                  | Time to Delivered Value | number           |    No    | —                                        | Calendar days from the earliest episode initiation to delivery of the first analytic output.       |
-
-## Project Partner
-
-An n-ary relation linking an organization to a project in a specific role.
-
-### Properties
-
-| Property       | Title        | Type   | Required | Range                                       | Description                                     |
-| :------------- | :----------- | :----- | :------: | :------------------------------------------ | :---------------------------------------------- |
-| `description`  | description  | string |    No    | —                                           |                                                 |
-| `name`         | Name         | string |    Yes   | —                                           | Human-readable name.                            |
-| `organization` | Organization | string |    Yes   | [Organization](#organization)               | The organization fulfilling this partner role.  |
-| `project`      | Project      | string |    Yes   | [Project](#project)                         | The project in which this partner participates. |
-| `role`         | Role         | string |    Yes   | [ProjectPartnerRole](#project-partner-role) | The role this partner plays in the project.     |
-
-## Project Partner Role
-
-A classification of the role a partner organization plays in a project.
-
-### Named Individuals
-
-| IRI                                            | Name                    | Description                                                                       |
-| :--------------------------------------------- | :---------------------- | :-------------------------------------------------------------------------------- |
-| `wpg:CentralizedItProjectPartnerRole`          | Centralized IT          | An organization providing centralized IT services for the project.                |
-| `wpg:DataContributorProjectPartnerRole`        | Data Contributor        | An organization contributing data records to the IDS.                             |
-| `wpg:IdsSponsorProjectPartnerRole`             | IDS Sponsor             | An organization providing funding or institutional sponsorship for the IDS.       |
-| `wpg:InfrastructureProviderProjectPartnerRole` | Infrastructure Provider | An organization providing technical infrastructure for data linkage and analysis. |
-| `wpg:ProgramLeadershipProjectPartnerRole`      | Program Leadership      | An organization providing executive or program leadership for the project.        |
-| `wpg:ProgramSmeProjectPartnerRole`             | Program SME             | An organization providing subject matter expertise on the program or domain.      |
-| `wpg:ResearcherProjectPartnerRole`             | Researcher              | An organization conducting research or analysis using the linked data.            |
-
-### Properties
-
-| Property      | Title       | Type   | Required | Range | Description                 |
-| :------------ | :---------- | :----- | :------: | :---- | :-------------------------- |
-| `description` | Description | string |    Yes   | —     | Human-readable description. |
-| `name`        | Name        | string |    Yes   | —     | Human-readable name.        |
 
 ## Ecosystem
 
@@ -144,7 +249,7 @@ A durable source document from which a governance event was reconstructed.
 
 A classification of governance artifacts by their documentary form.
 
-### Named Individuals
+### Possible values
 
 | IRI                                          | Name              | Description                                                                    |
 | :------------------------------------------- | :---------------- | :----------------------------------------------------------------------------- |
@@ -187,7 +292,7 @@ A bounded governance authorization attempt aggregating a sequence of events.
 
 A classification of governance episodes by the nature of the authorization attempt.
 
-### Named Individuals
+### Possible values
 
 | IRI                                       | Name            | Description                                                                |
 | :---------------------------------------- | :-------------- | :------------------------------------------------------------------------- |
@@ -216,14 +321,13 @@ A timestamped occurrence in a governance process corresponding to a durable arti
 | `episode`             | Episode               | string           |    Yes   | [GovernanceEpisode](#governance-episode)      | The governance episode this event belongs to.           |
 | `governanceEventType` | Governance Event Type | string           |    Yes   | [GovernanceEventType](#governance-event-type) | The governance function this event performs.            |
 | `name`                | name                  | string           |    No    | —                                             |                                                         |
-| `partners`            | Partners              | array of string  |    Yes   | [ProjectPartner](#project-partner)            | The project partners involved in this event.            |
 | `timestamp`           | Timestamp             | date \| datetime |    No    | —                                             | The date or datetime on which this event occurred.      |
 
 ## Governance Event Type
 
 A classification of governance events by their function in the authorization process.
 
-### Named Individuals
+### Possible values
 
 | IRI                                            | Name                   | Description                                                                                               |
 | :--------------------------------------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------- |
@@ -247,11 +351,12 @@ A classification of governance events by their function in the authorization pro
 
 The jurisdictional level at which a partner organization operates.
 
-### Named Individuals
+### Possible values
 
 | IRI                              | Name     | Description                                                               |
 | :------------------------------- | :------- | :------------------------------------------------------------------------ |
 | `wpg:LocalInstitutionalLayer`    | Local    | City, county, or municipal-level organizations.                           |
+| `wpg:OtherInstitutionalLayer`    | Other    | An institutional layer not covered by the other categories.               |
 | `wpg:RegionalInstitutionalLayer` | Regional | Multi-county, regional service area, or intermediate-level organizations. |
 | `wpg:StateInstitutionalLayer`    | State    | State-level agencies, departments, or organizations.                      |
 
