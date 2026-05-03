@@ -32,8 +32,18 @@ export const Domain = ResourceBase.extend({
       },
       {
         description:
+          "Includes workforce development programs, job training, and employment services.",
+        id: "JobCreationAndWorkforceDevelopment",
+        name: "Job Creation & Workforce Development",
+      },
+      {
+        description:
           "Governed under state statute and court orders. Includes courts, corrections, and law enforcement agencies.",
         id: "Justice",
+      },
+      {
+        description: "A domain not covered by the other categories.",
+        id: "Other",
       },
     ],
   }),
