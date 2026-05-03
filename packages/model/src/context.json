@@ -16,12 +16,18 @@
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
     "OrganizationRole": "schema:OrganizationRole",
+    "OrganizationRoleCategory": "wpg:OrganizationRoleCategory",
     "OrganizationRoleName": "wpg:OrganizationRoleName",
     "Person": "schema:Person",
     "PersonRole": "wpg:PersonRole",
+    "PersonRoleCategory": "wpg:PersonRoleCategory",
     "PersonRoleName": "wpg:PersonRoleName",
     "Project": "schema:Project",
 
+    "additionalType": {
+      "@id": "schema:additionalType",
+      "@type": "@id"
+    },
     "architecture": {
       "@id": "wpg:architecture",
       "@type": "@id"

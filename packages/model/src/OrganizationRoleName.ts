@@ -1,11 +1,21 @@
 import { z } from "zod";
 import { Description } from "./Description.js";
+import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { OrganizationRoleCategory } from "./OrganizationRoleCategory.js";
+import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 
 export const OrganizationRoleName = ResourceBase.extend({
   "@type": z.literal("OrganizationRoleName"),
+  additionalType: Iri.meta(
+    new PropertyMeta({
+      description: "The broad category this role name falls under.",
+      range: OrganizationRoleCategory,
+      title: "Additional Type",
+    }),
+  ),
   description: Description,
   name: Name,
 }).meta(

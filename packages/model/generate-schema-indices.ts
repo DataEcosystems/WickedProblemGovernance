@@ -19,9 +19,11 @@ const schemaNames = [
   "InstitutionalLayer",
   "Organization",
   "OrganizationRole",
+  "OrganizationRoleCategory",
   "OrganizationRoleName",
   "Person",
   "PersonRole",
+  "PersonRoleCategory",
   "PersonRoleName",
   "Project",
 ];
