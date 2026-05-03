@@ -156,11 +156,24 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
     const meta = propSchema.meta() as PropertyMeta | undefined;
     const { optional, type } = resolveType(propSchema);
 
+    let range: string | undefined;
+    switch (typeof meta?.range) {
+      case "object":
+        range = meta.range.join(" | ");
+        break;
+      case "string":
+        range = meta.range;
+        break;
+      case "undefined":
+        range = undefined;
+        break;
+    }
+
     properties.push({
       description: meta?.description ?? "",
       name,
       optional,
-      range: meta?.range,
+      range,
       title: meta?.title ?? name,
       type,
     });
