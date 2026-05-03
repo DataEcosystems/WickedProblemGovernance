@@ -9,23 +9,9 @@ import { GovernanceEvent } from "./GovernanceEvent.js";
 import { GovernanceEventType } from "./GovernanceEventType.js";
 import { InstitutionalLayer } from "./InstitutionalLayer.js";
 import { Organization } from "./Organization.js";
+import { Person } from "./Person.js";
 import { Project } from "./Project.js";
 import { ProjectPartner } from "./ProjectPartner.js";
 import { ProjectPartnerRole } from "./ProjectPartnerRole.js";
 
-export const schemas = [
-  Architecture,
-  Domain,
-  Ecosystem,
-  GovernanceArtifact,
-  GovernanceArtifactType,
-  GovernanceEpisode,
-  GovernanceEpisodeType,
-  GovernanceEvent,
-  GovernanceEventType,
-  InstitutionalLayer,
-  Organization,
-  Project,
-  ProjectPartner,
-  ProjectPartnerRole,
-] as const;
+export const schemas = [Architecture, Domain, Ecosystem, GovernanceArtifact, GovernanceArtifactType, GovernanceEpisode, GovernanceEpisodeType, GovernanceEvent, GovernanceEventType, InstitutionalLayer, Organization, Person, Project, ProjectPartner, ProjectPartnerRole] as const;

@@ -18,6 +18,7 @@ const schemaNames = [
   "GovernanceEventType",
   "InstitutionalLayer",
   "Organization",
+  "Person",
   "Project",
   "ProjectPartner",
   "ProjectPartnerRole",

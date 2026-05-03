@@ -16,6 +16,7 @@
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
     "ProjectPartnerRole": "wpg:ProjectPartnerRole",
+    "Person": "schema:Person",
     "ProjectPartner": "wpg:ProjectPartner",
     "Project": "wpg:Project",
 

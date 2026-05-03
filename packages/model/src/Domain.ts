@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { Description } from "./Description.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
