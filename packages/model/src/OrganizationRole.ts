@@ -29,12 +29,12 @@ export const OrganizationRole = RoleBase.extend({
         title: "Coordinates",
       }),
     ),
-  domains: z.array(Iri).meta(
+  domain: Iri.meta(
     new PropertyMeta({
       description:
-        "The domains the organization is bringing to the project in this role.",
+        "The domain the organization is bringing to the project in this role. Must be one of the organization's domains.",
       range: Domain,
-      title: "Domains",
+      title: "Domain",
     }),
   ),
   memberOf: Iri.meta(

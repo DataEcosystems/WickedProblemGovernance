@@ -54,6 +54,10 @@
     },
     "description": "schema:description",
     "domainHeterogeneity": "wpg:domainHeterogeneity",
+    "domain": {
+      "@id": "wpg:domain",
+      "@type": "@id"
+    },
     "domains": {
       "@id": "wpg:domain",
       "@type": "@id",
