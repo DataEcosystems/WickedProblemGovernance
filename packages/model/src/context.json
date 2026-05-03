@@ -16,10 +16,11 @@
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
     "OrganizationRole": "schema:OrganizationRole",
+    "OrganizationRoleName": "wpg:OrganizationRoleName",
     "Person": "schema:Person",
     "PersonRole": "wpg:PersonRole",
+    "PersonRoleName": "wpg:PersonRoleName",
     "Project": "schema:Project",
-    "ProjectPartnerRole": "wpg:ProjectPartnerRole",
 
     "architecture": {
       "@id": "wpg:architecture",
