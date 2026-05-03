@@ -486,7 +486,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
               "@id": orgId,
               "@type": "Organization" as const,
               domains: [domainIri],
-              layer: layer,
+              institutionalLayer: layer,
               memberOf: [orgRoleId],
               name: `${domain}-org-${i} (${ep.episode_id})`,
             };

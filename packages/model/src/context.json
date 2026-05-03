@@ -86,7 +86,7 @@
       "@type": "@id"
     },
     "layerHeterogeneity": "wpg:layerHeterogeneity",
-    "layer": {
+    "institutionalLayer": {
       "@id": "wpg:institutionalLayer",
       "@type": "@id"
     },

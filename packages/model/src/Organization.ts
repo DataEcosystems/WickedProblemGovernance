@@ -20,7 +20,7 @@ export const Organization = ResourceBase.extend({
       title: "Domains",
     }),
   ),
-  layer: Iri.meta(
+  institutionalLayer: Iri.meta(
     new PropertyMeta({
       description:
         "The jurisdictional level at which this organization operates.",
