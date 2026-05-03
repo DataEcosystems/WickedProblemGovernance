@@ -25,44 +25,59 @@ export const OrganizationRoleName = ResourceBase.extend({
     id: "OrganizationRoleName",
     namedIndividuals: [
       {
+        additionalType: "wpg:DataContributorOrganizationRoleCategory",
         description:
-          "An organization providing centralized IT services for the project.",
-        id: "CentralizedIt",
-        name: "Centralized IT",
-      },
-      {
-        description: "An organization contributing data records to the IDS.",
+          "An organization contributing data records to the IDS, typically domain-specific.",
         id: "DataContributor",
         name: "Data Contributor",
       },
       {
+        additionalType: "wpg:CoordinationOrganizationRoleCategory",
+        description:
+          "An organization serving as the steward for a specific domain, mediating governance requests and translating domain-specific compliance requirements.",
+        id: "DomainSteward",
+        name: "Domain Steward",
+      },
+      {
+        additionalType: "wpg:TechnicalAssistanceOrganizationRoleCategory",
         description:
           "An organization providing funding or institutional sponsorship for the IDS.",
-        id: "IdsSponsor",
-        name: "IDS Sponsor",
+        id: "Funder",
       },
       {
+        additionalType: "wpg:TechnicalAssistanceOrganizationRoleCategory",
+        description:
+          "An organization providing governance expertise, facilitation, or process design.",
+        id: "GovernancePartner",
+        name: "Governance Partner",
+      },
+      {
+        additionalType: "wpg:CoordinationOrganizationRoleCategory",
+        description:
+          "The organization serving as the central coordinating body for the IDS.",
+        id: "IdsLocus",
+        name: "IDS Locus",
+      },
+      {
+        additionalType: "wpg:TechnicalAssistanceOrganizationRoleCategory",
         description:
           "An organization providing technical infrastructure for data linkage and analysis.",
-        id: "InfrastructureProvider",
-        name: "Infrastructure Provider",
+        id: "InfrastructurePartner",
+        name: "Infrastructure Partner",
       },
       {
-        description:
-          "An organization providing executive or program leadership for the project.",
-        id: "ProgramLeadership",
-        name: "Program Leadership",
-      },
-      {
-        description:
-          "An organization providing subject matter expertise on the program or domain.",
-        id: "ProgramSme",
-        name: "Program SME",
-      },
-      {
+        additionalType: "wpg:TechnicalAssistanceOrganizationRoleCategory",
         description:
           "An organization conducting research or analysis using the linked data.",
-        id: "Researcher",
+        id: "ResearchPartner",
+        name: "Research Partner",
+      },
+      {
+        additionalType: "wpg:CoordinationOrganizationRoleCategory",
+        description:
+          "An organization providing social license, community trust, or public legitimacy for the IDS.",
+        id: "SocialLicense",
+        name: "Social License",
       },
     ],
     title: "Organization Role Name",
