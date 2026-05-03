@@ -5,6 +5,7 @@ import { InstitutionalLayer } from "./InstitutionalLayer.js";
 import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { OrganizationRole } from "./OrganizationRole.js";
 import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 
@@ -25,6 +26,13 @@ export const Organization = ResourceBase.extend({
         "The jurisdictional levels at which this organization operates.",
       range: InstitutionalLayer,
       title: "Institutional Layers",
+    }),
+  ),
+  memberOf: z.array(Iri).meta(
+    new PropertyMeta({
+      description: "The organization roles this organization fills.",
+      range: OrganizationRole,
+      title: "Member Of",
     }),
   ),
   name: Name,
