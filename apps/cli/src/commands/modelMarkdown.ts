@@ -202,7 +202,7 @@ function buildNamedIndividualsTable(
   );
 
   return [
-    heading(3, [text("Named Individuals")]),
+    heading(3, [text("Possible values")]),
     table(["left", "left", "left"], [headerRow, ...dataRows]),
   ];
 }
