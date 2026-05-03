@@ -15,10 +15,19 @@
     "GovernanceEventType": "wpg:GovernanceEventType",
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
-    "ProjectPartnerRole": "wpg:ProjectPartnerRole",
-    "ProjectPartner": "wpg:ProjectPartner",
-    "Project": "wpg:Project",
+    "OrganizationRole": "schema:OrganizationRole",
+    "OrganizationRoleCategory": "wpg:OrganizationRoleCategory",
+    "OrganizationRoleName": "wpg:OrganizationRoleName",
+    "Person": "schema:Person",
+    "PersonRole": "wpg:PersonRole",
+    "PersonRoleCategory": "wpg:PersonRoleCategory",
+    "PersonRoleName": "wpg:PersonRoleName",
+    "Project": "schema:Project",
 
+    "additionalType": {
+      "@id": "schema:additionalType",
+      "@type": "@id"
+    },
     "architecture": {
       "@id": "wpg:architecture",
       "@type": "@id"
@@ -27,14 +36,28 @@
       "@id": "wpg:artifact",
       "@type": "@id"
     },
+    "contributesDataTo": {
+      "@id": "wpg:contributesDataTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "coordinates": {
+      "@id": "wpg:coordinates",
+      "@type": "@id",
+      "@container": "@set"
+    },
     "couplingProxy": "wpg:couplingProxy",
     "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
-    "description": "schema:description",
     "deliveryEpisode": {
       "@id": "wpg:deliveryEpisode",
       "@type": "@id"
     },
+    "description": "schema:description",
     "domainHeterogeneity": "wpg:domainHeterogeneity",
+    "domain": {
+      "@id": "wpg:domain",
+      "@type": "@id"
+    },
     "domains": {
       "@id": "wpg:domain",
       "@type": "@id",
@@ -44,6 +67,7 @@
       "@id": "wpg:ecosystem",
       "@type": "@id"
     },
+    "endDate": "schema:endDate",
     "episode": {
       "@id": "wpg:episode",
       "@type": "@id"
@@ -62,35 +86,35 @@
       "@type": "@id"
     },
     "layerHeterogeneity": "wpg:layerHeterogeneity",
-    "layers": {
+    "institutionalLayer": {
       "@id": "wpg:institutionalLayer",
-      "@type": "@id",
-      "@container": "@set"
+      "@type": "@id"
     },
     "meanNormalizedBurden": "wpg:meanNormalizedBurden",
     "meanTimeToValue": "wpg:meanTimeToValue",
+    "memberOf": {
+      "@id": "schema:memberOf",
+      "@type": "@id"
+    },
     "name": "schema:name",
     "normalizedBurden": "wpg:normalizedBurden",
-    "organization": {
-      "@id": "wpg:organization",
-      "@type": "@id"
-    },
-    "partnerCount": "wpg:partnerCount",
-    "role": {
-      "@id": "wpg:role",
-      "@type": "@id"
-    },
-    "projectPartners": {
-      "@id": "wpg:projectPartner",
-      "@type": "@id",
-      "@container": "@set"
-    },
+    "partnerCount": "wpg:projectPartnerCount",
     "project": {
       "@id": "wpg:project",
       "@type": "@id"
     },
+    "providesTechnicalAssistanceTo": {
+      "@id": "wpg:providesTechnicalAssistanceTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "roleName": {
+      "@id": "schema:roleName",
+      "@type": "@id"
+    },
     "stall": "wpg:stall",
     "stallFraction": "wpg:stallFraction",
+    "startDate": "schema:startDate",
     "stdTimeToValue": "wpg:stdTimeToValue",
     "stewardPresence": "wpg:stewardPresence",
     "t0": "schema:startDate",

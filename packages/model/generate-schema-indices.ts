@@ -18,9 +18,14 @@ const schemaNames = [
   "GovernanceEventType",
   "InstitutionalLayer",
   "Organization",
+  "OrganizationRole",
+  "OrganizationRoleCategory",
+  "OrganizationRoleName",
+  "Person",
+  "PersonRole",
+  "PersonRoleCategory",
+  "PersonRoleName",
   "Project",
-  "ProjectPartner",
-  "ProjectPartnerRole",
 ];
 
 fs.writeFileSync(

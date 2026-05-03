@@ -20,6 +20,11 @@ export const InstitutionalLayer = ResourceBase.extend({
       },
       {
         description:
+          "An institutional layer not covered by the other categories.",
+        id: "Other",
+      },
+      {
+        description:
           "Multi-county, regional service area, or intermediate-level organizations.",
         id: "Regional",
       },
