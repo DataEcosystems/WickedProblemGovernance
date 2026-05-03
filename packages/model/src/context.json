@@ -73,14 +73,9 @@
     },
     "meanNormalizedBurden": "wpg:meanNormalizedBurden",
     "meanTimeToValue": "wpg:meanTimeToValue",
-    "member": {
-      "@id": "schema:member",
+    "memberOf": {
+      "@id": "schema:memberOf",
       "@type": "@id"
-    },
-    "members": {
-      "@id": "schema:member",
-      "@type": "@id",
-      "@container": "@set"
     },
     "name": "schema:name",
     "normalizedBurden": "wpg:normalizedBurden",
