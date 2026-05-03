@@ -1,11 +1,5 @@
-export { default as contextJson } from "./context.json" with { type: "json" };
-export * from "./ObjectMeta.js";
-export * from "./PropertyMeta.js";
-export * from "./Resource.js";
-export * from "./schemas.js";
-export * from "./schemasByName.js";
-
 export * from "./Architecture.js";
+export { default as contextJson } from "./context.json" with { type: "json" };
 export * from "./Domain.js";
 export * from "./Ecosystem.js";
 export * from "./GovernanceArtifact.js";
@@ -15,6 +9,7 @@ export * from "./GovernanceEpisodeType.js";
 export * from "./GovernanceEvent.js";
 export * from "./GovernanceEventType.js";
 export * from "./InstitutionalLayer.js";
+export * from "./ObjectMeta.js";
 export * from "./Organization.js";
 export * from "./OrganizationRole.js";
 export * from "./OrganizationRoleCategory.js";
@@ -24,3 +19,7 @@ export * from "./PersonRole.js";
 export * from "./PersonRoleCategory.js";
 export * from "./PersonRoleName.js";
 export * from "./Project.js";
+export * from "./PropertyMeta.js";
+export * from "./Resource.js";
+export * from "./schemas.js";
+export * from "./schemasByName.js";
