@@ -242,12 +242,7 @@ const DOMAIN_SLOTS: readonly {
     field: "H_Services_n",
   },
   { domain: "justice", domainIri: "wpg:JusticeDomain", field: "Justice_n" },
-  { domain: "other", domainIri: iri("Domain", "other"), field: "Other_n" },
-  {
-    domain: "workforce",
-    domainIri: iri("Domain", "workforce"),
-    field: "Workforce_n",
-  },
+  { domain: "other", domainIri: "wpg:OtherDomain", field: "Other_n" },
 ];
 
 const LAYER_SLOTS: readonly {
@@ -478,7 +473,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
             yield {
               "@id": orgRoleId,
               "@type": "OrganizationRole" as const,
-              domains: [domainIri],
+              domain: domainIri,
               memberOf: projectIri,
               roleName: "wpg:DataContributorOrganizationRoleName",
             };
