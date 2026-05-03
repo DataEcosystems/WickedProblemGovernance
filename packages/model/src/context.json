@@ -36,6 +36,16 @@
       "@id": "wpg:artifact",
       "@type": "@id"
     },
+    "contributesDataTo": {
+      "@id": "wpg:contributesDataTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "coordinates": {
+      "@id": "wpg:coordinates",
+      "@type": "@id",
+      "@container": "@set"
+    },
     "couplingProxy": "wpg:couplingProxy",
     "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
     "deliveryEpisode": {
@@ -89,6 +99,11 @@
     "project": {
       "@id": "wpg:project",
       "@type": "@id"
+    },
+    "providesTechnicalAssistanceTo": {
+      "@id": "wpg:providesTechnicalAssistanceTo",
+      "@type": "@id",
+      "@container": "@set"
     },
     "roleName": {
       "@id": "schema:roleName",
