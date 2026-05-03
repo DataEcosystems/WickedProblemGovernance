@@ -102,8 +102,8 @@ export const PersonRoleName = ResourceBase.extend({
         additionalType: "wpg:TechnicalAssistancePersonRoleCategory",
         description:
           "A person conducting research or analysis as technical assistance.",
-        id: "TaResearcher",
-        name: "Researcher (TA)",
+        id: "TechnicalAssistanceResearcher",
+        name: "Researcher (Technical Assistance)",
       },
       {
         additionalType: "wpg:DataContributorPersonRoleCategory",
