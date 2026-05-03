@@ -6,7 +6,6 @@ import { GovernanceEventType } from "./GovernanceEventType.js";
 import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
-import { ProjectPartner } from "./ProjectPartner.js";
 import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
@@ -36,13 +35,6 @@ export const GovernanceEvent = ResourceBase.extend({
     }),
   ),
   name: Name.optional(),
-  partners: z.array(Iri).meta(
-    new PropertyMeta({
-      description: "The project partners involved in this event.",
-      range: ProjectPartner,
-      title: "Partners",
-    }),
-  ),
   timestamp: Timestamp.optional().meta(
     new PropertyMeta({
       description: "The date or datetime on which this event occurred.",
