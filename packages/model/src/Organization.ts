@@ -20,12 +20,12 @@ export const Organization = ResourceBase.extend({
       title: "Domains",
     }),
   ),
-  layers: z.array(Iri).meta(
+  layer: Iri.meta(
     new PropertyMeta({
       description:
-        "The jurisdictional levels at which this organization operates.",
+        "The jurisdictional level at which this organization operates.",
       range: InstitutionalLayer,
-      title: "Institutional Layers",
+      title: "Institutional Layer",
     }),
   ),
   memberOf: z.array(Iri).meta(

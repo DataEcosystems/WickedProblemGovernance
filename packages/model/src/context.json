@@ -86,10 +86,9 @@
       "@type": "@id"
     },
     "layerHeterogeneity": "wpg:layerHeterogeneity",
-    "layers": {
+    "layer": {
       "@id": "wpg:institutionalLayer",
-      "@type": "@id",
-      "@container": "@set"
+      "@type": "@id"
     },
     "meanNormalizedBurden": "wpg:meanNormalizedBurden",
     "meanTimeToValue": "wpg:meanTimeToValue",
