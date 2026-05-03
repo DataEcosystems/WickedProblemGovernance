@@ -15,10 +15,11 @@
     "GovernanceEventType": "wpg:GovernanceEventType",
     "InstitutionalLayer": "wpg:InstitutionalLayer",
     "Organization": "schema:Organization",
-    "ProjectPartnerRole": "wpg:ProjectPartnerRole",
+    "OrganizationRole": "schema:OrganizationRole",
     "Person": "schema:Person",
-    "ProjectPartner": "wpg:ProjectPartner",
-    "Project": "wpg:Project",
+    "PersonRole": "wpg:PersonRole",
+    "Project": "schema:Project",
+    "ProjectPartnerRole": "wpg:ProjectPartnerRole",
 
     "architecture": {
       "@id": "wpg:architecture",
@@ -30,11 +31,11 @@
     },
     "couplingProxy": "wpg:couplingProxy",
     "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
-    "description": "schema:description",
     "deliveryEpisode": {
       "@id": "wpg:deliveryEpisode",
       "@type": "@id"
     },
+    "description": "schema:description",
     "domainHeterogeneity": "wpg:domainHeterogeneity",
     "domains": {
       "@id": "wpg:domain",
@@ -45,6 +46,7 @@
       "@id": "wpg:ecosystem",
       "@type": "@id"
     },
+    "endDate": "schema:endDate",
     "episode": {
       "@id": "wpg:episode",
       "@type": "@id"
@@ -70,28 +72,29 @@
     },
     "meanNormalizedBurden": "wpg:meanNormalizedBurden",
     "meanTimeToValue": "wpg:meanTimeToValue",
-    "name": "schema:name",
-    "normalizedBurden": "wpg:normalizedBurden",
-    "organization": {
-      "@id": "wpg:organization",
+    "member": {
+      "@id": "schema:member",
       "@type": "@id"
     },
-    "partnerCount": "wpg:partnerCount",
-    "role": {
-      "@id": "wpg:role",
-      "@type": "@id"
-    },
-    "projectPartners": {
-      "@id": "wpg:projectPartner",
+    "members": {
+      "@id": "schema:member",
       "@type": "@id",
       "@container": "@set"
     },
+    "name": "schema:name",
+    "normalizedBurden": "wpg:normalizedBurden",
+    "partnerCount": "wpg:projectPartnerCount",
     "project": {
       "@id": "wpg:project",
       "@type": "@id"
     },
+    "roleName": {
+      "@id": "schema:roleName",
+      "@type": "@id"
+    },
     "stall": "wpg:stall",
     "stallFraction": "wpg:stallFraction",
+    "startDate": "schema:startDate",
     "stdTimeToValue": "wpg:stdTimeToValue",
     "stewardPresence": "wpg:stewardPresence",
     "t0": "schema:startDate",
