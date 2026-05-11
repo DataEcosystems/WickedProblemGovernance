@@ -117,9 +117,9 @@ export const GovernanceEpisode = ResourceBase.extend({
     ),
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceEpisode",
     description:
       "A bounded governance authorization attempt aggregating a sequence of events.",
-    id: "GovernanceEpisode",
     title: "Governance Episode",
   }),
 );

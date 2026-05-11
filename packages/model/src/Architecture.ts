@@ -10,9 +10,9 @@ export const Architecture = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "Architecture",
     description:
       "The data architecture governing how records are held and linked in an IDS project.",
-    id: "Architecture",
     namedIndividuals: [
       {
         description:

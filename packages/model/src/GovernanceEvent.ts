@@ -43,9 +43,9 @@ export const GovernanceEvent = ResourceBase.extend({
   ),
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceEvent",
     description:
       "A timestamped occurrence in a governance process corresponding to a durable artifact.",
-    id: "GovernanceEvent",
     title: "Governance Event",
   }),
 );

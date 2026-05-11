@@ -41,9 +41,9 @@ export const Ecosystem = ResourceBase.extend({
     ),
 }).meta(
   new ObjectMeta({
+    "@type": "Ecosystem",
     description:
       "All projects within a shared geographic and institutional context.",
-    id: "Ecosystem",
   }),
 );
 

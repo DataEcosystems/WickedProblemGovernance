@@ -10,9 +10,9 @@ export const InstitutionalLayer = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "InstitutionalLayer",
     description:
       "The jurisdictional level at which a partner organization operates.",
-    id: "InstitutionalLayer",
     namedIndividuals: [
       {
         description: "City, county, or municipal-level organizations.",

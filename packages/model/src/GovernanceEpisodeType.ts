@@ -10,9 +10,9 @@ export const GovernanceEpisodeType = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceEpisodeType",
     description:
       "A classification of governance episodes by the nature of the authorization attempt.",
-    id: "GovernanceEpisodeType",
     namedIndividuals: [
       {
         description:

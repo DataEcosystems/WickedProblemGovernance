@@ -106,9 +106,9 @@ export const Project = ResourceBase.extend({
     ),
 }).meta(
   new ObjectMeta({
+    "@type": "Project",
     description:
       "A group of episodes sharing a common governance boundary design and data architecture.",
-    id: "Project",
   }),
 );
 
