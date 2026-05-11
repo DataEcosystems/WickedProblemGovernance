@@ -20,9 +20,9 @@ export const OrganizationRoleName = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "OrganizationRoleName",
     description:
       "A classification of the role an organization plays as a member of a project.",
-    id: "OrganizationRoleName",
     namedIndividuals: [
       {
         additionalType: "wpg:DataContributorOrganizationRoleCategory",

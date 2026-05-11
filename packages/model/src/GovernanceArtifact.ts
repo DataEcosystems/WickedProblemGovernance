@@ -21,9 +21,9 @@ export const GovernanceArtifact = ResourceBase.extend({
   name: Name.optional(),
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceArtifact",
     description:
       "A durable source document from which a governance event was reconstructed.",
-    id: "GovernanceArtifact",
     title: "Governance Artifact",
   }),
 );

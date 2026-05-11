@@ -10,9 +10,9 @@ export const GovernanceArtifactType = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceArtifactType",
     description:
       "A classification of governance artifacts by their documentary form.",
-    id: "GovernanceArtifactType",
     namedIndividuals: [
       {
         description:

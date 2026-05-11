@@ -10,9 +10,9 @@ export const GovernanceEventType = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "GovernanceEventType",
     description:
       "A classification of governance events by their function in the authorization process.",
-    id: "GovernanceEventType",
     namedIndividuals: [
       {
         description:

@@ -20,8 +20,8 @@ export const Person = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "Person",
     description: "An individual person.",
-    id: "Person",
   }),
 );
 

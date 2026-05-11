@@ -10,9 +10,9 @@ export const Domain = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "Domain",
     description:
       "The regulatory and institutional domain of a partner organization.",
-    id: "Domain",
     namedIndividuals: [
       {
         description:

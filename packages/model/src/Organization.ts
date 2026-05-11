@@ -38,9 +38,9 @@ export const Organization = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "Organization",
     description:
       "An institutional actor such as an agency, department, university, or nonprofit.",
-    id: "Organization",
   }),
 );
 

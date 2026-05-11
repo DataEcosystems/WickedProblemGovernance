@@ -10,9 +10,9 @@ export const OrganizationRoleCategory = ResourceBase.extend({
   name: Name,
 }).meta(
   new ObjectMeta({
+    "@type": "OrganizationRoleCategory",
     description:
       "A broad classification of the kind of role an organization plays in a project.",
-    id: "OrganizationRoleCategory",
     namedIndividuals: [
       {
         description:

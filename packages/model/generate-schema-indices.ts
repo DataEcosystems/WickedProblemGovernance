@@ -32,6 +32,7 @@ fs.writeFileSync(
   path.join(thisDirectoryPath, "src", "index.ts"),
   `\
 export { default as contextJson } from "./context.json" with { type: "json" };
+export * from "./NamedIndividual.js";
 export * from "./ObjectMeta.js";
 export * from "./PropertyMeta.js";
 export * from "./Resource.js";

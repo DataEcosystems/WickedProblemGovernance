@@ -9,6 +9,7 @@ export * from "./GovernanceEpisodeType.js";
 export * from "./GovernanceEvent.js";
 export * from "./GovernanceEventType.js";
 export * from "./InstitutionalLayer.js";
+export * from "./NamedIndividual.js";
 export * from "./ObjectMeta.js";
 export * from "./Organization.js";
 export * from "./OrganizationRole.js";
