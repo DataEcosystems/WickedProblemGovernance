@@ -333,6 +333,9 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
   for (const a of data.analysis) {
     const pLog = projectLogMap.get(a.Project);
     const ecoId = projectEcosystemMap.get(a.Project);
+    // if (!ecoId) {
+    //   throw new Error(`No ecosystem found for project: ${a.Project}`);
+    // }
     const t2p = typeof a.T2p === "number" ? a.T2p : undefined;
     const bp =
       typeof a["BP_New_t2/c2"] === "number" ? a["BP_New_t2/c2"] : undefined;
@@ -353,7 +356,7 @@ export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
           ? "wpg:FederatedArchitecture"
           : "wpg:CustodialArchitecture",
       ...(cep != null ? { deliveryCouplingProxy: cep } : {}),
-      ecosystem: iri("Ecosystem", ecoId!),
+      ...(ecoId ? { ecosystem: iri("Ecosystem", ecoId) } : {}),
       episodeCount: a.Episode_Count,
       name: a.Project,
       ...(bp != null ? { normalizedBurden: bp } : {}),

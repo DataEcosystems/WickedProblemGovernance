@@ -37,7 +37,7 @@ export const Project = ResourceBase.extend({
     }),
   ),
   description: Description.optional(),
-  ecosystem: Iri.meta(
+  ecosystem: Iri.optional().meta(
     new PropertyMeta({
       description: "The ecosystem this project belongs to.",
       range: Ecosystem,
