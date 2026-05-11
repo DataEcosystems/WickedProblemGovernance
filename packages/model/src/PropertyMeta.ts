@@ -6,11 +6,11 @@ function resolveRange(range: z.ZodType | string): string {
     return range;
   }
   const meta = range.meta() as ObjectMeta | undefined;
-  const id = meta?.id;
-  if (id == null) {
-    throw new Error("PropertyMeta range target must have an id in its meta");
+  const type = meta?.["@type"];
+  if (type == null) {
+    throw new Error("PropertyMeta range target must have a @type in its meta");
   }
-  return id;
+  return type;
 }
 
 export class PropertyMeta {
