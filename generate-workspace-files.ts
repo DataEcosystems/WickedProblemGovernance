@@ -10,6 +10,7 @@ const externalDependencies = {
   "@protobi/exceljs": "4.4.0-protobi.10",
   "@types/mdast": "~4.0.4",
   "cmd-ts": "~0.15.0",
+  glob: "~13.0.6", // To fix warning on glob@10.5.0 from exceljs
   jsonld: "~9.0.0",
   pino: "~10.3.1",
   "pino-pretty": "~13.1.3",
@@ -17,6 +18,7 @@ const externalDependencies = {
   "remark-gfm": "~4.0.0",
   "remark-stringify": "~11.0.0",
   unified: "~11.0.5",
+  uuid: "~11.1.1", // To fix warning on uuid@9.0.1 from exceljs
   zod: "~4.1.12",
 } as const;
 
@@ -53,6 +55,7 @@ const workspaces = {
           "@protobi/exceljs",
           "@types/mdast",
           "cmd-ts",
+          "glob",
           "jsonld",
           "pino",
           "pino-pretty",
