@@ -3,8 +3,9 @@
 import fs from "node:fs/promises";
 import { createInterface } from "node:readline";
 import { Resource } from "@wpg/model";
-import { command, positional, run, subcommands } from "cmd-ts";
+import { command, option, positional, run, subcommands } from "cmd-ts";
 import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
+import { loadExcel } from "./commands/loadExcel.js";
 import { loadRdf } from "./commands/loadRdf.js";
 // import { pino } from "pino";
 import { modelMarkdown } from "./commands/modelMarkdown.js";
@@ -41,6 +42,24 @@ run(
     cmds: {
       load: subcommands({
         cmds: {
+          excel: command({
+            args: {
+              outputFilePath: option({
+                long: "output-file-path",
+                short: "o",
+              }),
+            },
+            description:
+              "read interchange JSON lines from stdin and write an Excel workbook to the given file path",
+            handler: async ({ outputFilePath }) => {
+              const workbook = await loadExcel(
+                parseModelJsonl(createInterface({ input: process.stdin })),
+              );
+              await workbook.xlsx.writeFile(outputFilePath);
+            },
+            name: "excel",
+          }),
+
           rdf: command({
             args: {},
             description:
