@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@wpg/model": "0.0.0",
+    "@protobi/exceljs": "4.4.0-protobi.10",
     "@types/mdast": "~4.0.4",
     "cmd-ts": "~0.15.0",
     "jsonld": "~9.0.0",

@@ -7,6 +7,7 @@ import url from "node:url";
 const VERSION = "0.0.0";
 
 const externalDependencies = {
+  "@protobi/exceljs": "4.4.0-protobi.10",
   "@types/mdast": "~4.0.4",
   "cmd-ts": "~0.15.0",
   jsonld: "~9.0.0",
@@ -49,6 +50,7 @@ const workspaces = {
       },
       dependencies: {
         external: [
+          "@protobi/exceljs",
           "@types/mdast",
           "cmd-ts",
           "jsonld",
