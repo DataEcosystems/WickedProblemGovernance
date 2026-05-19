@@ -4,7 +4,7 @@ Command-line tools for the Wicked Problem Governance (WPG) data interchange.
 
 ## Building/Installation
 
-See the [root README](/).
+See the [root README](https://github.com/DataEcosystems/WickedProblemGovernance).
 
 ## Commands
 
