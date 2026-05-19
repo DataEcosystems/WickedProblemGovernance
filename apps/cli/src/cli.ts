@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
+import { createReadStream } from "node:fs";
 import fs from "node:fs/promises";
 import { createInterface } from "node:readline";
 import ExcelJS from "@protobi/exceljs";
 import { Resource } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
+import { diff } from "./commands/diff.js";
 import { loadExcel } from "./commands/loadExcel.js";
 import { loadRdf } from "./commands/loadRdf.js";
 // import { pino } from "pino";
@@ -55,6 +57,7 @@ async function readExcelWorkbook(input: string): Promise<ExcelJS.Workbook> {
 
   return workbook;
 }
+
 async function* parseModelJsonl(
   lines: AsyncIterable<string>,
 ): AsyncIterable<Resource> {
@@ -69,6 +72,48 @@ async function* parseModelJsonl(
 run(
   subcommands({
     cmds: {
+      diff: command({
+        name: "diff",
+        args: {
+          left: positional({ description: "path to left .jsonl file" }),
+          right: positional({ description: "path to right .jsonl file" }),
+        },
+        async handler({ left, right }) {
+          async function collectResources(
+            jsonlFilePath: string,
+          ): Promise<readonly Resource[]> {
+            const stream =
+              jsonlFilePath === "-"
+                ? process.stdin
+                : createReadStream(jsonlFilePath);
+            const lines = createInterface({ input: stream });
+            const resources: Resource[] = [];
+            for await (const resource of parseModelJsonl(lines)) {
+              resources.push(resource);
+            }
+            return resources;
+          }
+
+          const [leftResources, rightResources] = await Promise.all([
+            collectResources(left),
+            collectResources(right),
+          ]);
+
+          const result = diff(leftResources, rightResources);
+
+          if (
+            result.missing.length === 0 &&
+            result.extra.length === 0 &&
+            result.changed.length === 0
+          ) {
+            process.exit(0);
+          }
+
+          console.log(JSON.stringify(result, null, 2));
+          process.exit(1);
+        },
+      }),
+
       load: subcommands({
         cmds: {
           excel: command({
