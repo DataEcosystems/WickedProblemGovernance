@@ -5,4 +5,4 @@ set -e
 cd "$(dirname "$0")"
 cd ..
 
-dist/cli.js transform ijpds-dataset ../../data/ijpds/Measurement_System.json
+cat ../../data/ijpds/Measurement_System.json | dist/cli.js transform ijpds-dataset

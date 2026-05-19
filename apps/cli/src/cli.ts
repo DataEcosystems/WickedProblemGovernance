@@ -3,8 +3,7 @@
 import fs from "node:fs/promises";
 import { createInterface } from "node:readline";
 import { Resource } from "@wpg/model";
-import { command, option, positional, run, subcommands } from "cmd-ts";
-import { ExistingPath } from "cmd-ts/dist/cjs/batteries/fs.js";
+import { command, option, run, subcommands } from "cmd-ts";
 import { loadExcel } from "./commands/loadExcel.js";
 import { loadRdf } from "./commands/loadRdf.js";
 // import { pino } from "pino";
@@ -92,17 +91,13 @@ run(
       transform: subcommands({
         cmds: {
           "ijpds-dataset": command({
-            args: {
-              inputFilePath: positional({
-                displayName: "inputFilePath",
-                description: "path to IJPDS dataset .json file",
-                type: ExistingPath,
-              }),
-            },
-            handler: async ({ inputFilePath }) => {
+            args: {},
+            handler: async () => {
               for (const model of transformIjpdsDataset(
                 IjpdsDataset.parse(
-                  JSON.parse((await fs.readFile(inputFilePath)).toString()),
+                  JSON.parse(
+                    (await fs.readFile("/dev/stdin", "utf-8")).toString(),
+                  ),
                 ),
               )) {
                 process.stdout.write(JSON.stringify(model));
