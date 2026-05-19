@@ -7,12 +7,12 @@ import jsonld from "jsonld";
  * using the JSON-LD context to resolve IRIs.
  */
 export async function* loadRdf(
-  objects: AsyncIterable<Resource>,
+  resources: AsyncIterable<Resource>,
 ): AsyncIterable<string> {
-  for await (const object of objects) {
+  for await (const resource of resources) {
     const doc = {
       "@context": contextJson["@context"],
-      ...object,
+      ...resource,
     };
 
     const nquads = await jsonld.toRDF(doc, { format: "application/n-quads" });
