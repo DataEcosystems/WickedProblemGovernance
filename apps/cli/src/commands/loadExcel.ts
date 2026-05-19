@@ -2,12 +2,6 @@ import type { Worksheet } from "@protobi/exceljs";
 import ExcelJS from "@protobi/exceljs";
 import { type Resource, schemasByName } from "@wpg/model";
 
-function columnHeaders(
-  typeName: keyof typeof schemasByName,
-): readonly string[] {
-  return Object.keys(schemasByName[typeName].shape).sort();
-}
-
 function serializeValue(value: unknown): string | number | boolean | null {
   if (value == null) {
     return null;
@@ -25,11 +19,6 @@ function serializeValue(value: unknown): string | number | boolean | null {
   return String(value);
 }
 
-function worksheetTitle(typeName: keyof typeof schemasByName): string {
-  const meta = schemasByName[typeName].meta() as { title?: string } | undefined;
-  return meta?.title ?? typeName;
-}
-
 export async function loadExcel(
   resources: AsyncIterable<Resource>,
 ): Promise<ExcelJS.Workbook> {
@@ -43,9 +32,8 @@ export async function loadExcel(
     const typeName = resource["@type"];
 
     if (!worksheets.has(typeName)) {
-      const headers = columnHeaders(typeName);
-      const title = worksheetTitle(typeName);
-      const worksheet = workbook.addWorksheet(title);
+      const headers = Object.keys(schemasByName[typeName].shape).sort();
+      const worksheet = workbook.addWorksheet(typeName);
       worksheet.columns = headers.map((key) => ({
         header: key,
         key,
