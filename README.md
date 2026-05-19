@@ -24,10 +24,6 @@ This repository supports episode-level measurement framework described in Aaron 
 
     npm run build
 
-### Running the Command Line Interface (CLI)
-
-    npm exec wpg --help
-
 ## License
 
 Licensed under the [Apache License 2.0](./LICENSE).
