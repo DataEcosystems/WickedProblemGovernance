@@ -1,9 +1,5 @@
 import type { GovernanceArtifactType, Resource } from "@wpg/model";
-import { z } from "zod/v4";
-
-// =============================================================================
-// IJPDS SOURCE SCHEMAS
-// =============================================================================
+import { z } from "zod";
 
 const IjpdsEventLog = z
   .object({
@@ -92,19 +88,11 @@ export const IjpdsDataset = z
 
 export type IjpdsDataset = z.infer<typeof IjpdsDataset>;
 
-// =============================================================================
-// IRI MINTING
-// =============================================================================
-
 const NS = "https://purl.dataecosystems.org/wpg/data/ijpds/";
 
 function iri(type: string, id: string): string {
   return `${NS}${type}/${encodeURIComponent(id)}`;
 }
-
-// =============================================================================
-// MAPPINGS
-// =============================================================================
 
 const EVENT_TYPE_MAP: Record<string, string> = {
   APPROVAL: "wpg:AgreementExecutedGovernanceEventType",
@@ -254,10 +242,6 @@ const LAYER_SLOTS: readonly {
   { field: "State_n", layerIri: "wpg:StateInstitutionalLayer" },
 ];
 
-// =============================================================================
-// HELPERS
-// =============================================================================
-
 function mapEventType(sourceType: string): string {
   const mapped = EVENT_TYPE_MAP[sourceType];
   if (mapped == null) {
@@ -282,7 +266,7 @@ function daysBetween(a: string | null, b: string | null): number | undefined {
   return Math.round((new Date(b).getTime() - new Date(a).getTime()) / msPerDay);
 }
 
-function buildLayerAssignment(episode: IjpdsEpisodeLog): string[] {
+function buildLayerAssignment(episode: IjpdsEpisodeLog): readonly string[] {
   const layers: string[] = [];
   for (const { field, layerIri } of LAYER_SLOTS) {
     const count = episode[field] as number | null;
@@ -295,16 +279,22 @@ function buildLayerAssignment(episode: IjpdsEpisodeLog): string[] {
   return layers;
 }
 
-// =============================================================================
-// TRANSFORM
-// =============================================================================
-
 export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
   const emittedIds = new Set<string>();
 
-  // ---------------------------------------------------------------------------
-  // Ecosystems
-  // ---------------------------------------------------------------------------
+  // Places (deduplicated from analysis Geo field)
+  const geoNames = new Set(data.analysis.map((a) => a.Geo));
+  for (const geoName of geoNames) {
+    const id = iri("Place", geoName);
+    emittedIds.add(id);
+    yield {
+      "@id": id,
+      "@type": "Place" as const,
+      name: geoName,
+    };
+  }
+
+  // Ecosystems (deduplicated from episode_log)
   const ecosystemIds = new Set(data.episode_log.map((e) => e.ecosystem_id));
   for (const ecoId of ecosystemIds) {
     const id = iri("Ecosystem", ecoId);
@@ -319,9 +309,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
     };
   }
 
-  // ---------------------------------------------------------------------------
   // Projects
-  // ---------------------------------------------------------------------------
   const projectLogMap = new Map(data.project_log.map((p) => [p.project_id, p]));
   const projectEcosystemMap = new Map<string, string>();
   for (const ep of data.episode_log) {
@@ -333,9 +321,6 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
   for (const a of data.analysis) {
     const pLog = projectLogMap.get(a.Project);
     const ecoId = projectEcosystemMap.get(a.Project);
-    // if (!ecoId) {
-    //   throw new Error(`No ecosystem found for project: ${a.Project}`);
-    // }
     const t2p = typeof a.T2p === "number" ? a.T2p : undefined;
     const bp =
       typeof a["BP_New_t2/c2"] === "number" ? a["BP_New_t2/c2"] : undefined;
@@ -355,8 +340,9 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
         a.Federated_Arch === 1
           ? "wpg:FederatedArchitecture"
           : "wpg:CustodialArchitecture",
+      areaServed: iri("Place", a.Geo),
       ...(cep != null ? { deliveryCouplingProxy: cep } : {}),
-      ...(ecoId ? { ecosystem: iri("Ecosystem", ecoId) } : {}),
+      ...(ecoId != null ? { ecosystem: iri("Ecosystem", ecoId) } : {}),
       episodeCount: a.Episode_Count,
       name: a.Project,
       ...(bp != null ? { normalizedBurden: bp } : {}),
@@ -368,9 +354,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
     };
   }
 
-  // ---------------------------------------------------------------------------
   // Episodes
-  // ---------------------------------------------------------------------------
   for (const ep of data.episode_log) {
     const tau1 = daysBetween(ep.start_date, ep.commit_date);
 
@@ -397,9 +381,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
     };
   }
 
-  // ---------------------------------------------------------------------------
   // Events and Artifacts
-  // ---------------------------------------------------------------------------
   for (const ev of data.event_log) {
     if (ev.artifact_ref != null) {
       const artifactId = iri("GovernanceArtifact", ev.event_id);
@@ -440,16 +422,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
     };
   }
 
-  // ---------------------------------------------------------------------------
-  // Synthetic Organizations, Organization Roles
-  //
-  // The source data doesn't identify individual organizations — only
-  // domain/layer counts per episode. We mint synthetic organizations
-  // and organization roles to preserve the structural information.
-  //
-  // Pattern:
-  //   Organization --memberOf--> OrganizationRole --memberOf--> Project
-  // ---------------------------------------------------------------------------
+  // Synthetic Organizations and Organization Roles
   const emittedOrgs = new Set<string>();
   const emittedOrgRoles = new Set<string>();
 
@@ -470,7 +443,6 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
           const layer =
             layerAssignment[partnerIndex] ?? "wpg:LocalInstitutionalLayer";
 
-          // Emit OrganizationRole (per project, deduplicated)
           if (!emittedOrgRoles.has(orgRoleId)) {
             emittedOrgRoles.add(orgRoleId);
             yield {
@@ -482,7 +454,6 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
             };
           }
 
-          // Emit Organization (per episode, deduplicated)
           if (!emittedOrgs.has(orgId)) {
             emittedOrgs.add(orgId);
             yield {
