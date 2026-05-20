@@ -50,13 +50,14 @@ An institutional actor such as an agency, department, university, or nonprofit.
 
 ### Properties
 
-| Property             | Title               | Type            | Required | Range                                      | Description                                                    |
-| :------------------- | :------------------ | :-------------- | :------: | :----------------------------------------- | :------------------------------------------------------------- |
-| `description`        | description         | string          |    No    | —                                          |                                                                |
-| `domains`            | Domains             | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization. |
-| `institutionalLayer` | Institutional Layer | string          |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional level at which this organization operates.  |
-| `memberOf`           | Member Of           | array of string |    Yes   | [OrganizationRole](#organization-role)     | The organization roles this organization fills.                |
-| `name`               | Name                | string          |    Yes   | —                                          | Human-readable name.                                           |
+| Property             | Title               | Type            | Required | Range                                      | Description                                                           |
+| :------------------- | :------------------ | :-------------- | :------: | :----------------------------------------- | :-------------------------------------------------------------------- |
+| `description`        | description         | string          |    No    | —                                          |                                                                       |
+| `domains`            | Domains             | array of string |    Yes   | [Domain](#domain)                          | The regulatory and institutional domains of this organization.        |
+| `foundingLocation`   | Founding Location   | string          |    No    | [Place](#place)                            | The location where this organization was founded or is headquartered. |
+| `institutionalLayer` | Institutional Layer | string          |    Yes   | [InstitutionalLayer](#institutional-layer) | The jurisdictional level at which this organization operates.         |
+| `memberOf`           | Member Of           | array of string |    Yes   | [OrganizationRole](#organization-role)     | The organization roles this organization fills.                       |
+| `name`               | Name                | string          |    Yes   | —                                          | Human-readable name.                                                  |
 
 ## Organization Role
 
@@ -197,6 +198,17 @@ A classification of the role a person plays as a member of a project or organiza
 | `description`    | Description     | string |    Yes   | —                                           | Human-readable description.                    |
 | `name`           | Name            | string |    Yes   | —                                           | Human-readable name.                           |
 
+## Place
+
+A geographic or administrative location.
+
+### Properties
+
+| Property           | Title              | Type            | Required | Range           | Description                     |
+| :----------------- | :----------------- | :-------------- | :------: | :-------------- | :------------------------------ |
+| `containedInPlace` | Contained In Place | array of string |    No    | [Place](#place) | Places that contain this place. |
+| `name`             | Name               | string          |    Yes   | —               | Human-readable name.            |
+
 ## Project
 
 A group of episodes sharing a common governance boundary design and data architecture.
@@ -206,6 +218,7 @@ A group of episodes sharing a common governance boundary design and data archite
 | Property                | Title                   | Type             | Required | Range                                    | Description                                                                                        |
 | :---------------------- | :---------------------- | :--------------- | :------: | :--------------------------------------- | :------------------------------------------------------------------------------------------------- |
 | `architecture`          | Architecture            | string           |    Yes   | [Architecture](#architecture)            | The data architecture governing how records are held and linked.                                   |
+| `areaServed`            | Area Served             | string           |    No    | [Place](#place)                          | The geographic area served by this project.                                                        |
 | `deliveryCouplingProxy` | Delivery Coupling Proxy | number           |    No    | —                                        | The coupling proxy of the delivery episode.                                                        |
 | `deliveryEpisode`       | Delivery Episode        | string           |    No    | [GovernanceEpisode](#governance-episode) | The episode whose delivered value corresponds to the first data product.                           |
 | `description`           | description             | string           |    No    | —                                        |                                                                                                    |
@@ -225,13 +238,14 @@ All projects within a shared geographic and institutional context.
 
 ### Properties
 
-| Property               | Title                   | Type   | Required | Range | Description                                                                              |
-| :--------------------- | :---------------------- | :----- | :------: | :---- | :--------------------------------------------------------------------------------------- |
-| `description`          | description             | string |    No    | —     |                                                                                          |
-| `meanNormalizedBurden` | Mean Normalized Burden  | number |    No    | —     | Average project normalized burden across projects in this ecosystem.                     |
-| `meanTimeToValue`      | Mean Time to Value      | number |    No    | —     | Average project time to delivered value across projects in this ecosystem.               |
-| `name`                 | Name                    | string |    Yes   | —     | Human-readable name.                                                                     |
-| `stdTimeToValue`       | Std. Dev. Time to Value | number |    No    | —     | Standard deviation of project time to delivered value across projects in this ecosystem. |
+| Property               | Title                   | Type   | Required | Range           | Description                                                                              |
+| :--------------------- | :---------------------- | :----- | :------: | :-------------- | :--------------------------------------------------------------------------------------- |
+| `description`          | description             | string |    No    | —               |                                                                                          |
+| `location`             | Location                | string |    No    | [Place](#place) | The geographic location associated with this ecosystem.                                  |
+| `meanNormalizedBurden` | Mean Normalized Burden  | number |    No    | —               | Average project normalized burden across projects in this ecosystem.                     |
+| `meanTimeToValue`      | Mean Time to Value      | number |    No    | —               | Average project time to delivered value across projects in this ecosystem.               |
+| `name`                 | Name                    | string |    Yes   | —               | Human-readable name.                                                                     |
+| `stdTimeToValue`       | Std. Dev. Time to Value | number |    No    | —               | Standard deviation of project time to delivered value across projects in this ecosystem. |
 
 ## Governance Artifact
 
