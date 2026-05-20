@@ -16,6 +16,7 @@ import { Person } from "./Person.js";
 import { PersonRole } from "./PersonRole.js";
 import { PersonRoleCategory } from "./PersonRoleCategory.js";
 import { PersonRoleName } from "./PersonRoleName.js";
+import { Place } from "./Place.js";
 import { Project } from "./Project.js";
 
 export const schemas = [
@@ -37,5 +38,6 @@ export const schemas = [
   PersonRole,
   PersonRoleCategory,
   PersonRoleName,
+  Place,
   Project,
 ] as const;

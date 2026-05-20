@@ -8,7 +8,7 @@ import { Resource } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { diff } from "./commands/diff.js";
 import { fromExcel } from "./commands/fromExcel.js";
-import { fromIjpdsDataset, IjpdsDataset } from "./commands/fromjpdsDataset.js";
+import { fromIjpdsDataset, IjpdsDataset } from "./commands/fromIjpdsDataset.js";
 // import { pino } from "pino";
 import { modelMarkdown } from "./commands/modelMarkdown.js";
 import { toExcel } from "./commands/toExcel.js";

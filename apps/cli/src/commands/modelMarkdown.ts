@@ -18,7 +18,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 // =============================================================================
 // MDAST HELPERS

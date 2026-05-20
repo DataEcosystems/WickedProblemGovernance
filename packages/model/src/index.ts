@@ -19,6 +19,7 @@ export * from "./Person.js";
 export * from "./PersonRole.js";
 export * from "./PersonRoleCategory.js";
 export * from "./PersonRoleName.js";
+export * from "./Place.js";
 export * from "./Project.js";
 export * from "./PropertyMeta.js";
 export * from "./Resource.js";

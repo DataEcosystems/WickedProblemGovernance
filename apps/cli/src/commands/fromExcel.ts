@@ -1,6 +1,6 @@
 import ExcelJS from "@protobi/exceljs";
 import { type Resource, schemasByName } from "@wpg/model";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 type ScalarType = "boolean" | "number" | "string" | "timestamp";
 

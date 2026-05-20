@@ -22,10 +22,15 @@
     "PersonRole": "wpg:PersonRole",
     "PersonRoleCategory": "wpg:PersonRoleCategory",
     "PersonRoleName": "wpg:PersonRoleName",
+    "Place": "schema:Place",
     "Project": "schema:Project",
 
     "additionalType": {
       "@id": "schema:additionalType",
+      "@type": "@id"
+    },
+    "areaServed": {
+      "@id": "schema:areaServed",
       "@type": "@id"
     },
     "architecture": {
@@ -35,6 +40,11 @@
     "artifact": {
       "@id": "wpg:artifact",
       "@type": "@id"
+    },
+    "containedInPlace": {
+      "@id": "schema:containedInPlace",
+      "@type": "@id",
+      "@container": "@set"
     },
     "contributesDataTo": {
       "@id": "wpg:contributesDataTo",
@@ -73,6 +83,10 @@
       "@type": "@id"
     },
     "episodeCount": "wpg:episodeCount",
+    "foundingLocation": {
+      "@id": "schema:foundingLocation",
+      "@type": "@id"
+    },
     "governanceArtifactType": {
       "@id": "wpg:governanceArtifactType",
       "@type": "@id"
@@ -88,6 +102,10 @@
     "layerHeterogeneity": "wpg:layerHeterogeneity",
     "institutionalLayer": {
       "@id": "wpg:institutionalLayer",
+      "@type": "@id"
+    },
+    "location": {
+      "@id": "schema:location",
       "@type": "@id"
     },
     "meanNormalizedBurden": "wpg:meanNormalizedBurden",
