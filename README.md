@@ -7,8 +7,7 @@ This repository supports episode-level measurement framework described in Aaron 
 ## Structure of this repository
 
 - [`apps/cli`](./apps/cli) — `wpg` command line interface for generating documentation and transforming data
-- [`docs/`](./docs) — generated documentation
-- [`packages/model`](./packages/model) — domain models (Zod / TypeScript), JSON-LD context, and schema registry
+- [`packages/model`](./packages/model) — domain model, including documentation
 
 ## Development
 
