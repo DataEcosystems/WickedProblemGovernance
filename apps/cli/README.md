@@ -18,80 +18,80 @@ npm exec wpg -- diff <left .jsonl file path> <right .jsonl file path>
 
 Example:
 ```
-cat ../../data/ijpds/Measurement_System.json | npm exec wpg -- transform ijpds-dataset >../../data/ijpds/ijpds.jsonl
+cat ../../data/ijpds/Measurement_System.json | npm exec wpg -- from ijpds-dataset >../../data/ijpds/ijpds.jsonl
 
-cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- load excel -o ../../data/ijpds/ijpds.xlsx
+cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- to excel -o ../../data/ijpds/ijpds.xlsx
 
-npm exec wpg -- transform excel ../../data/ijpds/ijpds.xlsx >../../data/ijpds/ijpds-from-xlsx.jsonl
+npm exec wpg -- from excel ../../data/ijpds/ijpds.xlsx >../../data/ijpds/ijpds-from-xlsx.jsonl
 
 npm exec wpg -- diff ../../data/ijpds/ijpds.jsonl ../../data/ijpds/ijpds-from-xlsx.jsonl
 ```
 
-### `load`
+### `from`
 
-Sub-commands to load the interchange JSONL to other data formats.
+Sub-commands to produce interchange JSONL `from` other data formats.
 
-#### `excel`
+#### `ijpds`
 
-Loads WPG interchange resources in JSONL into an Excel workbook.
+Produce interchange JSONL from the IJPDS dataset.
 
 ```
-npm exec wpg -- load excel <path to .xlsx file>
+npm exec -- wpg from ijpds
 ```
 
 Example:
 ```
-cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- load excel -o ../../data/ijpds/ijpds.xlsx
+cat ../../data/ijpds/Measurement_System.json | npm exec wpg -- from ijpds-dataset
+```
+
+### `excel`
+
+Produce interchange JSONL froh an Excel workbook (.xlsx) or Google Sheets URL. The workbook is expected to be in the same format produced by `to excel`.
+
+```
+npm exec -- wpg from excel <path to .xlsx file or Google Sheets URL>
+```
+
+Example:
+```
+npm exec wpg -- from excel ijpds.xlsx
+```
+
+### `to`
+
+Sub-commands to convert interchange JSONL `to` other data formats.
+
+#### `excel`
+
+Convert interchange JSONL to an Excel workbook.
+
+```
+npm exec wpg -- to excel -o <path to .xlsx file>
+```
+
+Example:
+```
+cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- to excel -o ../../data/ijpds/ijpds.xlsx
 ```
 
 #### `rdf`
 
-Loads WPG interchange resources in JSONL into RDF N-Quads.
+Convert interchange JSONL to [RDF](https://www.w3.org/TR/rdf11-concepts/) [N-Quads](https://www.w3.org/TR/n-quads/).
 
 ```
-npm exec wpg -- load rdf
+npm exec wpg -- to rdf
 ```
 
 Example:
 ```
-cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- load rdf
+cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- to rdf
 ```
 
 To convert to Turtle using [Raptor](https://librdf.org/raptor/):
 
 ```
-cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- load rdf | \
+cat ../../data/ijpds/ijpds.jsonl | npm exec wpg -- to rdf | \
     rapper -i nquads -o turtle - https://purl.dataecosystems.org/wpg/data/ \
         -f 'xmlns:schema="https://schema.org/"' \
         -f 'xmlns:wpg="https://purl.dataecosystems.org/wpg/ontology#"'
-```
-
-### `transform`
-
-Sub-commands to transform other data formats to the interchange in JSONL.
-
-#### `ijpds`
-
-Transforms the IJPDS dataset into interchange JSONL.
-
-```
-npm exec -- wpg transform ijpds
-```
-
-Example:
-```
-cat ../../data/ijpds/Measurement_System.json | npm exec wpg -- transform ijpds-dataset
-```
-
-### `excel`
-
-Transform an Excel workbook (.xlsx) or Google Sheets URL. The format is expected to be the same format loaded by `load excel`.
-
-```
-npm exec -- wpg transform excel <path to .xlsx file or Google Sheets URL>
-```
-
-Example:
-```
-npm exec wpg -- transform excel ijpds.xlsx
 ```

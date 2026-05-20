@@ -7,15 +7,12 @@ import ExcelJS from "@protobi/exceljs";
 import { Resource } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { diff } from "./commands/diff.js";
-import { loadExcel } from "./commands/loadExcel.js";
-import { loadRdf } from "./commands/loadRdf.js";
+import { fromExcel } from "./commands/fromExcel.js";
+import { fromIjpdsDataset, IjpdsDataset } from "./commands/fromjpdsDataset.js";
 // import { pino } from "pino";
 import { modelMarkdown } from "./commands/modelMarkdown.js";
-import { transformExcel } from "./commands/transformExcel.js";
-import {
-  IjpdsDataset,
-  transformIjpdsDataset,
-} from "./commands/transformIjpdsDataset.js";
+import { toExcel } from "./commands/toExcel.js";
+import { toRdf } from "./commands/toRdf.js";
 
 // const _logger = pino(
 //   {
@@ -113,42 +110,42 @@ run(
           process.exit(1);
         },
       }),
-
-      load: subcommands({
+      from: subcommands({
         cmds: {
           excel: command({
             args: {
-              outputFilePath: option({
-                long: "output-file-path",
-                short: "o",
+              input: positional({
+                description: "path to an .xlsx file or a Google Sheets URL",
               }),
             },
-            description:
-              "read interchange JSON lines from stdin and write an Excel workbook to the given file path",
-            handler: async ({ outputFilePath }) => {
-              const workbook = await loadExcel(
-                parseModelJsonl(createInterface({ input: process.stdin })),
-              );
-              await workbook.xlsx.writeFile(outputFilePath);
+            handler: async ({ input }) => {
+              for (const resource of fromExcel(
+                await readExcelWorkbook(input),
+              )) {
+                process.stdout.write(JSON.stringify(resource));
+                process.stdout.write("\n");
+              }
             },
             name: "excel",
           }),
-
-          rdf: command({
+          "ijpds-dataset": command({
             args: {},
-            description:
-              "read interchange JSON lines from stdin and write an RDF N-Quads version to stdout",
             handler: async () => {
-              for await (const nquad of loadRdf(
-                parseModelJsonl(createInterface({ input: process.stdin })),
+              for (const resource of fromIjpdsDataset(
+                IjpdsDataset.parse(
+                  JSON.parse(
+                    (await fs.readFile("/dev/stdin", "utf-8")).toString(),
+                  ),
+                ),
               )) {
-                process.stdout.write(nquad);
+                process.stdout.write(JSON.stringify(resource));
+                process.stdout.write("\n");
               }
             },
-            name: "rdf",
+            name: "ijpds-dataset",
           }),
         },
-        name: "load",
+        name: "from",
       }),
       model: subcommands({
         cmds: {
@@ -163,43 +160,40 @@ run(
         },
         name: "model",
       }),
-      transform: subcommands({
+      to: subcommands({
         cmds: {
           excel: command({
             args: {
-              input: positional({
-                description: "path to an .xlsx file or a Google Sheets URL",
+              outputFilePath: option({
+                long: "output-file-path",
+                short: "o",
               }),
             },
-            handler: async ({ input }) => {
-              for (const resource of transformExcel(
-                await readExcelWorkbook(input),
-              )) {
-                process.stdout.write(JSON.stringify(resource));
-                process.stdout.write("\n");
-              }
+            description:
+              "read interchange JSON lines from stdin and write an Excel workbook to the given file path",
+            handler: async ({ outputFilePath }) => {
+              const workbook = await toExcel(
+                parseModelJsonl(createInterface({ input: process.stdin })),
+              );
+              await workbook.xlsx.writeFile(outputFilePath);
             },
             name: "excel",
           }),
-
-          "ijpds-dataset": command({
+          rdf: command({
             args: {},
+            description:
+              "read interchange JSON lines from stdin and write an RDF N-Quads version to stdout",
             handler: async () => {
-              for (const resource of transformIjpdsDataset(
-                IjpdsDataset.parse(
-                  JSON.parse(
-                    (await fs.readFile("/dev/stdin", "utf-8")).toString(),
-                  ),
-                ),
+              for await (const nquad of toRdf(
+                parseModelJsonl(createInterface({ input: process.stdin })),
               )) {
-                process.stdout.write(JSON.stringify(resource));
-                process.stdout.write("\n");
+                process.stdout.write(nquad);
               }
             },
-            name: "ijpds-dataset",
+            name: "rdf",
           }),
         },
-        name: "transform",
+        name: "to",
       }),
     },
     description: "wpg command line interface",

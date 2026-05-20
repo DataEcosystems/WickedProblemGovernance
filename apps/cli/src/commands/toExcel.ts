@@ -19,7 +19,7 @@ function serializeValue(value: unknown): string | number | boolean | null {
   return String(value);
 }
 
-export async function loadExcel(
+export async function toExcel(
   resources: AsyncIterable<Resource>,
 ): Promise<ExcelJS.Workbook> {
   const workbook = new ExcelJS.Workbook();
