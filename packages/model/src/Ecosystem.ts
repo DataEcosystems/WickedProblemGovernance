@@ -1,13 +1,22 @@
 import { z } from "zod";
 import { Description } from "./Description.js";
+import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { Place } from "./Place.js";
 import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 
 export const Ecosystem = ResourceBase.extend({
   "@type": z.literal("Ecosystem"),
   description: Description.optional(),
+  location: Iri.optional().meta(
+    new PropertyMeta({
+      description: "The geographic location associated with this ecosystem.",
+      range: Place,
+      title: "Location",
+    }),
+  ),
   meanNormalizedBurden: z
     .number()
     .optional()

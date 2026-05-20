@@ -5,6 +5,7 @@ import { Ecosystem } from "./Ecosystem.js";
 import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { Place } from "./Place.js";
 import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 import { Timestamp } from "./Timestamp.js";
@@ -17,6 +18,13 @@ export const Project = ResourceBase.extend({
         "The data architecture governing how records are held and linked.",
       range: Architecture,
       title: "Architecture",
+    }),
+  ),
+  areaServed: Iri.optional().meta(
+    new PropertyMeta({
+      description: "The geographic area served by this project.",
+      range: Place,
+      title: "Area Served",
     }),
   ),
   deliveryCouplingProxy: z
@@ -37,7 +45,7 @@ export const Project = ResourceBase.extend({
     }),
   ),
   description: Description.optional(),
-  ecosystem: Iri.optional().meta(
+  ecosystem: Iri.meta(
     new PropertyMeta({
       description: "The ecosystem this project belongs to.",
       range: Ecosystem,

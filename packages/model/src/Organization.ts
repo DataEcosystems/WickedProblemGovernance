@@ -6,6 +6,7 @@ import { Iri } from "./Iri.js";
 import { Name } from "./Name.js";
 import { ObjectMeta } from "./ObjectMeta.js";
 import { OrganizationRole } from "./OrganizationRole.js";
+import { Place } from "./Place.js";
 import { PropertyMeta } from "./PropertyMeta.js";
 import { ResourceBase } from "./ResourceBase.js";
 
@@ -18,6 +19,14 @@ export const Organization = ResourceBase.extend({
         "The regulatory and institutional domains of this organization.",
       range: Domain,
       title: "Domains",
+    }),
+  ),
+  foundingLocation: Iri.optional().meta(
+    new PropertyMeta({
+      description:
+        "The location where this organization was founded or is headquartered.",
+      range: Place,
+      title: "Founding Location",
     }),
   ),
   institutionalLayer: Iri.meta(
