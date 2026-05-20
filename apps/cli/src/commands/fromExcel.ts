@@ -123,9 +123,7 @@ function deserializeValue(
   }
 }
 
-export function* transformExcel(
-  workbook: ExcelJS.Workbook,
-): Iterable<Resource> {
+export function* fromExcel(workbook: ExcelJS.Workbook): Iterable<Resource> {
   for (const worksheet of workbook.worksheets) {
     const typeName = worksheet.name as keyof typeof schemasByName;
     if (!(typeName in schemasByName)) {

@@ -6,7 +6,7 @@ import jsonld from "jsonld";
  * Converts an iterable of interchange objects to an N-Quads string,
  * using the JSON-LD context to resolve IRIs.
  */
-export async function* loadRdf(
+export async function* toRdf(
   resources: AsyncIterable<Resource>,
 ): AsyncIterable<string> {
   for await (const resource of resources) {

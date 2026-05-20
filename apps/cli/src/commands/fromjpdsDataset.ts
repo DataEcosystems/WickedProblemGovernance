@@ -299,7 +299,7 @@ function buildLayerAssignment(episode: IjpdsEpisodeLog): string[] {
 // TRANSFORM
 // =============================================================================
 
-export function* transformIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
+export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
   const emittedIds = new Set<string>();
 
   // ---------------------------------------------------------------------------
