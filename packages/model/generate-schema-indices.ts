@@ -25,6 +25,7 @@ const schemaNames = [
   "PersonRole",
   "PersonRoleCategory",
   "PersonRoleName",
+  "Place",
   "Project",
 ];
 
