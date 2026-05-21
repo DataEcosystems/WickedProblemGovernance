@@ -45,6 +45,13 @@ ${schemaNames.map((schemaName) => `export * from "./${schemaName}.js";`).join("\
 );
 
 fs.writeFileSync(
+  path.join(thisDirectoryPath, "src", "ResourceType.ts"),
+  `\
+export type ResourceType = ${schemaNames.map((schemaName) => `"${schemaName}"`).join(" | ")};
+`,
+);
+
+fs.writeFileSync(
   path.join(thisDirectoryPath, "src", "schemas.ts"),
   `\
 ${schemaNames.map((schemaName) => `import { ${schemaName} } from "./${schemaName}.js";`).join("\n")}

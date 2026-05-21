@@ -1,7 +1,8 @@
 import { NamedIndividual } from "./NamedIndividual.js";
+import { ResourceType } from "./ResourceType.js";
 
 export class ObjectMeta {
-  readonly "@type": string;
+  readonly "@type": ResourceType;
   readonly description: string;
   readonly namedIndividuals?: readonly NamedIndividual[];
   readonly title: string;
@@ -13,7 +14,7 @@ export class ObjectMeta {
     namedIndividuals,
     title,
   }: {
-    readonly "@type": string;
+    readonly "@type": ResourceType;
     readonly description: string;
     readonly namedIndividuals?: readonly {
       readonly [key: string]: string | undefined;
