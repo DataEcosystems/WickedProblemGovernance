@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { ObjectMeta } from "./ObjectMeta.js";
+import { ResourceType } from "./ResourceType.js";
 
-function resolveRange(range: z.ZodType | string): string {
+function resolveRange(range: z.ZodType | ResourceType): ResourceType {
   if (typeof range === "string") {
     return range;
   }
@@ -15,7 +16,7 @@ function resolveRange(range: z.ZodType | string): string {
 
 export class PropertyMeta {
   readonly description: string;
-  readonly range?: string | readonly string[];
+  readonly range?: ResourceType | readonly ResourceType[];
   readonly title: string;
   [key: string]: unknown;
 
@@ -25,7 +26,10 @@ export class PropertyMeta {
     title,
   }: {
     readonly description: string;
-    readonly range?: z.ZodType | string | readonly (z.ZodType | string)[];
+    readonly range?:
+      | z.ZodType
+      | ResourceType
+      | readonly (z.ZodType | ResourceType)[];
     readonly title: string;
   }) {
     this.description = description;
@@ -33,11 +37,11 @@ export class PropertyMeta {
 
     if (range != null) {
       if (Array.isArray(range)) {
-        this.range = (range as readonly (z.ZodType | string)[]).map(
+        this.range = (range as readonly (z.ZodType | ResourceType)[]).map(
           resolveRange,
         );
       } else {
-        this.range = resolveRange(range as string);
+        this.range = resolveRange(range as z.ZodType | ResourceType);
       }
     }
   }
