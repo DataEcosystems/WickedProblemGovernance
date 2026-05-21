@@ -1,1 +1,21 @@
-export type ResourceType = "Architecture" | "Domain" | "Ecosystem" | "GovernanceArtifact" | "GovernanceArtifactType" | "GovernanceEpisode" | "GovernanceEpisodeType" | "GovernanceEvent" | "GovernanceEventType" | "InstitutionalLayer" | "Organization" | "OrganizationRole" | "OrganizationRoleCategory" | "OrganizationRoleName" | "Person" | "PersonRole" | "PersonRoleCategory" | "PersonRoleName" | "Place" | "Project";
+export type ResourceType =
+  | "Architecture"
+  | "Domain"
+  | "Ecosystem"
+  | "GovernanceArtifact"
+  | "GovernanceArtifactType"
+  | "GovernanceEpisode"
+  | "GovernanceEpisodeType"
+  | "GovernanceEvent"
+  | "GovernanceEventType"
+  | "InstitutionalLayer"
+  | "Organization"
+  | "OrganizationRole"
+  | "OrganizationRoleCategory"
+  | "OrganizationRoleName"
+  | "Person"
+  | "PersonRole"
+  | "PersonRoleCategory"
+  | "PersonRoleName"
+  | "Place"
+  | "Project";
