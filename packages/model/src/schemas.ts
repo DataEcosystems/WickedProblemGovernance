@@ -19,25 +19,4 @@ import { PersonRoleName } from "./PersonRoleName.js";
 import { Place } from "./Place.js";
 import { Project } from "./Project.js";
 
-export const schemas = [
-  Architecture,
-  Domain,
-  Ecosystem,
-  GovernanceArtifact,
-  GovernanceArtifactType,
-  GovernanceEpisode,
-  GovernanceEpisodeType,
-  GovernanceEvent,
-  GovernanceEventType,
-  InstitutionalLayer,
-  Organization,
-  OrganizationRole,
-  OrganizationRoleCategory,
-  OrganizationRoleName,
-  Person,
-  PersonRole,
-  PersonRoleCategory,
-  PersonRoleName,
-  Place,
-  Project,
-] as const;
+export const schemas = [Architecture, Domain, Ecosystem, GovernanceArtifact, GovernanceArtifactType, GovernanceEpisode, GovernanceEpisodeType, GovernanceEvent, GovernanceEventType, InstitutionalLayer, Organization, OrganizationRole, OrganizationRoleCategory, OrganizationRoleName, Person, PersonRole, PersonRoleCategory, PersonRoleName, Place, Project] as const;
