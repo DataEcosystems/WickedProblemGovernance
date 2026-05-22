@@ -1,10 +1,12 @@
 {
   "dependencies": {
+    "mathjs": "~15.2.0",
     "zod": "~4.1.12"
   },
   "devDependencies": {},
   "author": "Asemio",
   "files": [
+    "README.md",
     "dist/*.d.ts",
     "dist/*.js",
     "dist/context.json"

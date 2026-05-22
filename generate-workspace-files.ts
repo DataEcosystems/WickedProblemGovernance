@@ -12,6 +12,7 @@ const externalDependencies = {
   "cmd-ts": "~0.15.0",
   glob: "~13.0.6", // To fix warning on glob@10.5.0 from exceljs
   jsonld: "~9.0.0",
+  mathjs: "~15.2.0",
   pino: "~10.3.1",
   "pino-pretty": "~13.1.3",
   "remark-frontmatter": "~5.0.0",
@@ -39,7 +40,7 @@ interface Workspace {
 const packages: Readonly<Record<PackageName, Workspace>> = {
   model: {
     dependencies: {
-      external: ["zod"],
+      external: ["mathjs", "zod"],
     },
   },
 } as const;

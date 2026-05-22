@@ -19,6 +19,7 @@
   "devDependencies": {},
   "author": "Asemio",
   "files": [
+    "README.md",
     "dist/*.d.ts",
     "dist/*.js",
     "dist/commands/*.d.ts",
