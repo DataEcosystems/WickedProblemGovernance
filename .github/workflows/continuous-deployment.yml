@@ -25,6 +25,8 @@ jobs:
         run: npm run check
       - name: Build
         run: npm run build
+      - name: Test
+        run: npm run test
       - name: Generate documentation
         run: |
           apps/cli/dist/cli.js model markdown >packages/model/doc/schemas.md
