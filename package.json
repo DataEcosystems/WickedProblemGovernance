@@ -26,6 +26,7 @@
     "check:write:unsafe": "biome check --write --unsafe .",
     "build": "npm run build --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
+    "test": "vitest run",
     "typecheck": "tsc --build --noEmit",
     "typecheck:watch": "tsc --build --noEmit --preserveWatchOutput -w"
   },

@@ -1,1 +1,1 @@
-export * from "./GovernanceEpisodeMath.js";
+export * from "./GovernanceEpisode.js";
