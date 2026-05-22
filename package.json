@@ -6,7 +6,8 @@
     "depcheck": "~1.4.7",
     "rimraf": "~6.1.3",
     "tsx": "~4.21.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "~4.1.7"
   },
   "author": "Asemio",
   "engines": {
