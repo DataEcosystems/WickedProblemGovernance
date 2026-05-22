@@ -5,6 +5,9 @@
       "path": "apps/cli"
     },
     {
+      "path": "packages/analysis"
+    },
+    {
       "path": "packages/model"
     }
   ]

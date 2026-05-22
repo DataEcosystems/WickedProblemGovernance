@@ -23,7 +23,7 @@ const externalDependencies = {
   zod: "~4.1.12",
 } as const;
 
-type PackageName = "model";
+type PackageName = "analysis" | "model";
 
 interface Workspace {
   bin?: Record<string, string>;
@@ -38,9 +38,15 @@ interface Workspace {
 }
 
 const packages: Readonly<Record<PackageName, Workspace>> = {
-  model: {
+  analysis: {
     dependencies: {
       external: ["mathjs", "zod"],
+      internal: ["model"],
+    },
+  },
+  model: {
+    dependencies: {
+      external: ["zod"],
     },
   },
 } as const;

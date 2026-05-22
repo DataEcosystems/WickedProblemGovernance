@@ -1,5 +1,5 @@
 import * as math from "mathjs";
-import { PropertyMeta } from "./PropertyMeta.js";
+import { PropertyMeta } from "../../model/src/PropertyMeta.js";
 
 export function evaluateFormula(
   schema: z.ZodObject<any>,

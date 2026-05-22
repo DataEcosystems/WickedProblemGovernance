@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "ES2022"
+    ],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noUncheckedIndexedAccess": false,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "target": "es2022"
+  },
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.json"
+  ]
+}
