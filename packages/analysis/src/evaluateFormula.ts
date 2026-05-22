@@ -1,5 +1,6 @@
+import { PropertyMeta } from "@wpg/model";
 import * as math from "mathjs";
-import { PropertyMeta } from "../../model/src/PropertyMeta.js";
+import { z } from "zod";
 
 export function evaluateFormula(
   schema: z.ZodObject<any>,
