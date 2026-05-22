@@ -45,7 +45,9 @@ export class PropertyMeta {
           resolveRange,
         ) as readonly ResourceType[];
       } else {
-        this.range = resolveRange(range) as ResourceType;
+        this.range = resolveRange(
+          range as z.ZodType | ResourceType,
+        ) as ResourceType;
       }
     }
   }
