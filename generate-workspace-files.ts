@@ -225,7 +225,7 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             types:
               workspacesDirectoryName === "apps" && workspaceName === "cli"
                 ? ["node"]
-                : undefined,
+                : [],
           } satisfies CompilerOptions,
           extends: ["@tsconfig/strictest/tsconfig.json"],
           include: ["src/**/*.ts", "src/**/*.json"],
