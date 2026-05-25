@@ -27,7 +27,7 @@ export const GovernanceEpisode = z
         title: "Domain Heterogeneity",
       }),
     ),
-    governanceEpisodeType: Iri.meta(
+    governanceEpisodeType: GovernanceEpisodeType.shape["@id"].meta(
       new PropertyMeta({
         description: "The type of governance authorization attempt.",
         range: GovernanceEpisodeType,

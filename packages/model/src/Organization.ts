@@ -14,7 +14,7 @@ export const Organization = z
     "@id": Iri,
     "@type": z.literal("Organization"),
     description: Description.optional(),
-    domains: z.array(Iri).meta(
+    domains: z.array(Domain.shape["@id"]).meta(
       new PropertyMeta({
         description:
           "The regulatory and institutional domains of this organization.",
@@ -22,7 +22,7 @@ export const Organization = z
         title: "Domains",
       }),
     ),
-    foundingLocation: Iri.optional().meta(
+    foundingLocation: Place.shape["@id"].optional().meta(
       new PropertyMeta({
         description:
           "The location where this organization was founded or is headquartered.",
@@ -30,7 +30,7 @@ export const Organization = z
         title: "Founding Location",
       }),
     ),
-    institutionalLayer: Iri.meta(
+    institutionalLayer: InstitutionalLayer.shape["@id"].meta(
       new PropertyMeta({
         description:
           "The jurisdictional level at which this organization operates.",
@@ -38,7 +38,7 @@ export const Organization = z
         title: "Institutional Layer",
       }),
     ),
-    memberOf: z.array(Iri).meta(
+    memberOf: z.array(OrganizationRole.shape["@id"]).meta(
       new PropertyMeta({
         description: "The organization roles this organization fills.",
         range: OrganizationRole,

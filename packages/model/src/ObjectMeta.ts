@@ -6,19 +6,18 @@ import { ResourceType } from "./ResourceType.js";
 export class ObjectMeta {
   readonly "@type": ResourceType;
   readonly description: string;
-  readonly name: string;
   readonly namedIndividuals?: readonly NamedIndividual[];
+  readonly title: string;
   [key: string]: unknown;
 
   constructor({
     "@type": type,
     description,
-    name,
     namedIndividuals,
+    title,
   }: {
     readonly "@type": ResourceType;
     readonly description: string;
-    readonly name?: string;
     readonly namedIndividuals?: Record<
       string,
       {
@@ -26,10 +25,11 @@ export class ObjectMeta {
         readonly name?: string;
       }
     >;
+    readonly title?: string;
   }) {
     this["@type"] = type;
     this.description = description;
-    this.name = name ?? capitalCase(type);
+    this.title = title ?? capitalCase(type);
 
     if (namedIndividuals != null) {
       this.namedIndividuals = Object.entries(namedIndividuals).map(

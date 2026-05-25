@@ -11,7 +11,7 @@ export const GovernanceArtifact = z
     "@id": Iri,
     "@type": z.literal("GovernanceArtifact"),
     description: Description.optional(),
-    governanceArtifactType: Iri.meta(
+    governanceArtifactType: GovernanceArtifactType.shape["@id"].meta(
       new PropertyMeta({
         description:
           "The type of durable source document from which an event was reconstructed.",

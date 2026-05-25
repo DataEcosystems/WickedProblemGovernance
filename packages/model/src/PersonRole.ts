@@ -17,7 +17,7 @@ export const PersonRole = RoleBase.extend({
       title: "Member Of",
     }),
   ),
-  roleName: Iri.optional().meta(
+  roleName: PersonRoleName.shape["@id"].optional().meta(
     new PropertyMeta({
       description: "The role this person plays.",
       range: PersonRoleName,

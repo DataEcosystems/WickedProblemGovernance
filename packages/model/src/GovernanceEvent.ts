@@ -28,7 +28,7 @@ export const GovernanceEvent = z
         title: "Episode",
       }),
     ),
-    governanceEventType: Iri.meta(
+    governanceEventType: GovernanceEventType.shape["@id"].meta(
       new PropertyMeta({
         description: "The governance function this event performs.",
         range: GovernanceEventType,

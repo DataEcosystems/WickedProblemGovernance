@@ -13,7 +13,7 @@ export const Project = z
   .object({
     "@id": Iri,
     "@type": z.literal("Project"),
-    architecture: Iri.meta(
+    architecture: Architecture.shape["@id"].meta(
       new PropertyMeta({
         description:
           "The data architecture governing how records are held and linked.",
@@ -21,7 +21,7 @@ export const Project = z
         title: "Architecture",
       }),
     ),
-    areaServed: Iri.optional().meta(
+    areaServed: Place.shape["@id"].optional().meta(
       new PropertyMeta({
         description: "The geographic area served by this project.",
         range: Place,
@@ -46,7 +46,7 @@ export const Project = z
       }),
     ),
     description: Description.optional(),
-    ecosystem: Iri.optional().meta(
+    ecosystem: Ecosystem.shape["@id"].optional().meta(
       new PropertyMeta({
         description: "The ecosystem this project belongs to.",
         range: Ecosystem,

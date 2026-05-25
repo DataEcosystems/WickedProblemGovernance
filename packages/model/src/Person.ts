@@ -11,7 +11,7 @@ export const Person = z
     "@id": Iri,
     "@type": z.literal("Person"),
     description: Description.optional(),
-    memberOf: z.array(Iri).meta(
+    memberOf: z.array(PersonRole.shape["@id"]).meta(
       new PropertyMeta({
         description: "The person roles this person fills.",
         range: PersonRole,
