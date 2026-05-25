@@ -22,7 +22,7 @@ const namedIndividuals = {
 
 export const InstitutionalLayer = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "InstitutionalLayer"),
     "@type": z.literal("InstitutionalLayer"),
     description: Description,
     name: Name,

@@ -20,7 +20,7 @@ const namedIndividuals = {
 
 export const OrganizationRoleCategory = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "OrganizationRoleCategory"),
     "@type": z.literal("OrganizationRoleCategory"),
     description: Description,
     name: Name,

@@ -41,7 +41,7 @@ const namedIndividuals = {
 
 export const GovernanceEventType = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "GovernanceEventType"),
     "@type": z.literal("GovernanceEventType"),
     description: Description,
     name: Name,

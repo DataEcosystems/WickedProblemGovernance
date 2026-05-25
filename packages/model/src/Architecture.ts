@@ -17,7 +17,7 @@ const namedIndividuals = {
 
 export const Architecture = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "Architecture"),
     "@type": z.literal("Architecture"),
     description: Description,
     name: Name,

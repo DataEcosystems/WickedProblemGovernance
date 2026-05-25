@@ -54,7 +54,7 @@ const namedIndividuals = {
 
 export const OrganizationRoleName = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "OrganizationRoleName"),
     "@type": z.literal("OrganizationRoleName"),
     additionalType: Iri.meta(
       new PropertyMeta({

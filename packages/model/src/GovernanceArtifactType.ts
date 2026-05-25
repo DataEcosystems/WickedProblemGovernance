@@ -20,7 +20,7 @@ const namedIndividuals = {
 
 export const GovernanceArtifactType = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "GovernanceArtifactType"),
     "@type": z.literal("GovernanceArtifactType"),
     description: Description,
     name: Name,

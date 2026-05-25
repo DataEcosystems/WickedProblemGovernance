@@ -32,7 +32,7 @@ const namedIndividuals = {
 
 export const Domain = z
   .object({
-    "@id": namedIndividualIriEnum(namedIndividuals),
+    "@id": namedIndividualIriEnum(namedIndividuals, "Domain"),
     "@type": z.literal("Domain"),
     description: Description,
     name: Name,
