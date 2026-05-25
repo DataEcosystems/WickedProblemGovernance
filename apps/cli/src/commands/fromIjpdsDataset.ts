@@ -1,4 +1,13 @@
-import type { GovernanceArtifactType, Resource } from "@wpg/model";
+import {
+  Architecture,
+  Domain,
+  type GovernanceArtifactType,
+  GovernanceEpisodeType,
+  GovernanceEventType,
+  InstitutionalLayer,
+  namespaces,
+  type Resource,
+} from "@wpg/model";
 import { z } from "zod";
 
 const IjpdsEventLog = z
@@ -88,32 +97,42 @@ export const IjpdsDataset = z
 
 export type IjpdsDataset = z.infer<typeof IjpdsDataset>;
 
-const NS = "https://purl.dataecosystems.org/wpg/data/ijpds/";
+const NS = `${namespaces.WPG_DATA}ijpds/`;
 
 function iri(type: string, id: string): string {
   return `${NS}${type}/${encodeURIComponent(id)}`;
 }
 
-const EVENT_TYPE_MAP: Record<string, string> = {
-  APPROVAL: "wpg:AgreementExecutedGovernanceEventType",
-  ESCALATION: "wpg:EscalationGovernanceEventType",
-  FORMAL_APPROVAL: "wpg:ApprovalIssuedGovernanceEventType",
-  INITIATION: "wpg:RequestSubmittedGovernanceEventType",
-  REVIEW: "wpg:ReviewGovernanceEventType",
-  WITHDRAWAL: "wpg:WithdrawalGovernanceEventType",
+const EVENT_TYPE_MAP: Record<string, GovernanceEventType["@id"]> = {
+  APPROVAL:
+    "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType",
+  ESCALATION:
+    "https://purl.dataecosystems.org/wpg/cbox#EscalationGovernanceEventType",
+  FORMAL_APPROVAL:
+    "https://purl.dataecosystems.org/wpg/cbox#ApprovalIssuedGovernanceEventType",
+  INITIATION:
+    "https://purl.dataecosystems.org/wpg/cbox#RequestSubmittedGovernanceEventType",
+  REVIEW: "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
+  WITHDRAWAL:
+    "https://purl.dataecosystems.org/wpg/cbox#WithdrawalGovernanceEventType",
 };
 
-const EPISODE_TYPE_MAP: Record<string, string> = {
-  AGREEMENT: "wpg:AgreementGovernanceEpisodeType",
-  ALLOCATION: "wpg:AllocationGovernanceEpisodeType",
-  POLICY_ADOPTION: "wpg:PolicyAdoptionGovernanceEpisodeType",
-  PRODUCT: "wpg:ProductGovernanceEpisodeType",
+const EPISODE_TYPE_MAP: Record<string, GovernanceEpisodeType["@id"]> = {
+  AGREEMENT:
+    "https://purl.dataecosystems.org/wpg/cbox#AgreementGovernanceEpisodeType",
+  ALLOCATION:
+    "https://purl.dataecosystems.org/wpg/cbox#AllocationGovernanceEpisodeType",
+  POLICY_ADOPTION:
+    "https://purl.dataecosystems.org/wpg/cbox#PolicyAdoptionGovernanceEpisodeType",
+  PRODUCT:
+    "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType",
 };
 
 const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   "Action item decision log": [
     {
-      "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Minutes, agendas, or decision logs from governance committee meetings.",
@@ -122,7 +141,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   Email: [
     {
-      "@id": "wpg:EmailGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Email correspondence documenting governance requests, approvals, or decisions.",
@@ -131,7 +151,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   Emails: [
     {
-      "@id": "wpg:EmailGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Email correspondence documenting governance requests, approvals, or decisions.",
@@ -140,14 +161,16 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "Emails and SOW Draft": [
     {
-      "@id": "wpg:EmailGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
     {
-      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
@@ -155,14 +178,16 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "Emails and sow/proposal": [
     {
-      "@id": "wpg:EmailGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Email correspondence documenting governance requests, approvals, or decisions.",
       name: "Email",
     },
     {
-      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
@@ -170,13 +195,15 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "Project sign-off and email charter approval.": [
     {
-      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
     },
     {
-      "@id": "wpg:EmailGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Email correspondence documenting governance requests, approvals, or decisions.",
@@ -185,7 +212,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "SOW Signed": [
     {
-      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
@@ -193,7 +221,8 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "Status report": [
     {
-      "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Minutes, agendas, or decision logs from governance committee meetings.",
@@ -202,14 +231,16 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
   ],
   "Status report, signed agreement": [
     {
-      "@id": "wpg:CommitteeMinutesGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#CommitteeMinutesGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description:
         "Minutes, agendas, or decision logs from governance committee meetings.",
       name: "Committee Minutes",
     },
     {
-      "@id": "wpg:SignedAgreementGovernanceArtifactType",
+      "@id":
+        "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
       "@type": "GovernanceArtifactType",
       description: "A signed legal instrument such as a DSA, DUA, MOU, or SOW.",
       name: "Signed Agreement",
@@ -219,27 +250,55 @@ const ARTIFACT_TYPE_MAP: Record<string, readonly GovernanceArtifactType[]> = {
 
 const DOMAIN_SLOTS: readonly {
   readonly domain: string;
-  readonly domainIri: string;
+  readonly domainIri: Domain["@id"];
   readonly field: keyof IjpdsEpisodeLog;
 }[] = [
-  { domain: "education", domainIri: "wpg:EducationDomain", field: "Edu_n" },
-  { domain: "health", domainIri: "wpg:HealthDomain", field: "Health_n" },
+  {
+    domain: "education",
+    domainIri: "https://purl.dataecosystems.org/wpg/cbox#EducationDomain",
+    field: "Edu_n",
+  },
+  {
+    domain: "health",
+    domainIri: "https://purl.dataecosystems.org/wpg/cbox#HealthDomain",
+    field: "Health_n",
+  },
   {
     domain: "human_services",
-    domainIri: "wpg:HumanServicesDomain",
+    domainIri: "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain",
     field: "H_Services_n",
   },
-  { domain: "justice", domainIri: "wpg:JusticeDomain", field: "Justice_n" },
-  { domain: "other", domainIri: "wpg:OtherDomain", field: "Other_n" },
+  {
+    domain: "justice",
+    domainIri: "https://purl.dataecosystems.org/wpg/cbox#JusticeDomain",
+    field: "Justice_n",
+  },
+  {
+    domain: "other",
+    domainIri: "https://purl.dataecosystems.org/wpg/cbox#OtherDomain",
+    field: "Other_n",
+  },
 ];
 
 const LAYER_SLOTS: readonly {
   readonly field: keyof IjpdsEpisodeLog;
-  readonly layerIri: string;
+  readonly layerIri: InstitutionalLayer["@id"];
 }[] = [
-  { field: "Local_n", layerIri: "wpg:LocalInstitutionalLayer" },
-  { field: "regional_n", layerIri: "wpg:RegionalInstitutionalLayer" },
-  { field: "State_n", layerIri: "wpg:StateInstitutionalLayer" },
+  {
+    field: "Local_n",
+    layerIri:
+      "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer",
+  },
+  {
+    field: "regional_n",
+    layerIri:
+      "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer",
+  },
+  {
+    field: "State_n",
+    layerIri:
+      "https://purl.dataecosystems.org/wpg/cbox#StateInstitutionalLayer",
+  },
 ];
 
 function mapEventType(sourceType: string): string {
@@ -338,8 +397,8 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
       "@type": "Project" as const,
       architecture:
         a.Federated_Arch === 1
-          ? "wpg:FederatedArchitecture"
-          : "wpg:CustodialArchitecture",
+          ? "https://purl.dataecosystems.org/wpg/cbox#FederatedArchitecture"
+          : ("https://purl.dataecosystems.org/wpg/cbox#CustodialArchitecture" satisfies Architecture["@id"]),
       areaServed: iri("Place", a.Geo),
       ...(cep != null ? { deliveryCouplingProxy: cep } : {}),
       ...(ecoId != null ? { ecosystem: iri("Ecosystem", ecoId) } : {}),
@@ -396,7 +455,8 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
             ? ARTIFACT_TYPE_MAP[sourceEpisode.primary_artifacts]
             : undefined;
         const artifactTypeIri =
-          artifactTypes?.[0]?.["@id"] ?? "wpg:EmailGovernanceArtifactType";
+          artifactTypes?.[0]?.["@id"] ??
+          "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType";
 
         yield {
           "@id": artifactId,
@@ -441,7 +501,8 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
           );
           const orgId = iri("Organization", `${ep.episode_id}-${domain}-${i}`);
           const layer =
-            layerAssignment[partnerIndex] ?? "wpg:LocalInstitutionalLayer";
+            layerAssignment[partnerIndex] ??
+            "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer";
 
           if (!emittedOrgRoles.has(orgRoleId)) {
             emittedOrgRoles.add(orgRoleId);
@@ -450,7 +511,8 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
               "@type": "OrganizationRole" as const,
               domain: domainIri,
               memberOf: projectIri,
-              roleName: "wpg:DataContributorOrganizationRoleName",
+              roleName:
+                "https://purl.dataecosystems.org/wpg/cbox#DataContributorOrganizationRoleName",
             };
           }
 
