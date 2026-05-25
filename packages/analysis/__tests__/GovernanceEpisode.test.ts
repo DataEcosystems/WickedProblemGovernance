@@ -75,4 +75,51 @@ describe("GovernanceEpisode", () => {
       expect(result).toBe("2023-01-01");
     });
   });
+
+  describe("t1", () => {
+    it("returns the earliest authorization event timestamp", () => {
+      const result = GovernanceEpisode.t1({
+        governanceEvents: committedGovernanceEpisodeEvents,
+      });
+      expect(result).toBe("2023-04-20");
+    });
+
+    it("returns undefined when there are no authorization events", () => {
+      const result = GovernanceEpisode.t1({
+        governanceEvents: stalledGovernanceEpisodeEvents,
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("returns undefined when there are no events", () => {
+      const result = GovernanceEpisode.t1({
+        governanceEvents: [],
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("picks the earliest among multiple authorization events", () => {
+      const result = GovernanceEpisode.t1({
+        governanceEvents: [
+          {
+            "@id": "https://example.com/test/GovernanceEvent/approval",
+            "@type": "GovernanceEvent",
+            episode:
+              "https://example.com/test/GovernanceEpisode/governance-episode-1",
+            governanceEventType: "wpg:ApprovalIssuedGovernanceEventType",
+            timestamp: "2023-06-01",
+          },
+          {
+            "@id": "https://example.com/test/GovernanceEvent/agreement",
+            "@type": "GovernanceEvent",
+            episode:
+              "https://example.com/test/GovernanceEpisode/governance-episode-1",
+            governanceEventType: "wpg:AgreementExecutedGovernanceEventType",
+            timestamp: "2023-03-15",
+          },
+        ],
+      });
+      expect(result).toBe("2023-03-15");
+    });
+  });
 });

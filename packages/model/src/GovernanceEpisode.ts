@@ -86,6 +86,7 @@ export const GovernanceEpisode = ResourceBase.extend({
     new PropertyMeta({
       description:
         "Timestamp of earliest qualifying authorization event for core scope.",
+      formula: "min(t_auth)",
       title: "First Durable Authorization",
     }),
   ),
