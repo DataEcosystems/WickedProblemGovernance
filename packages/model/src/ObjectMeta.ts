@@ -1,4 +1,5 @@
 import { NamedIndividual } from "./NamedIndividual.js";
+import { WPG_CBOX } from "./namespaces.js";
 import { ResourceType } from "./ResourceType.js";
 
 export class ObjectMeta {
@@ -31,7 +32,7 @@ export class ObjectMeta {
     if (namedIndividuals != null) {
       this.namedIndividuals = namedIndividuals.map(
         ({ description, id: individualId, name, ...rest }) => ({
-          "@id": `wpg:${individualId}${type}`,
+          "@id": `${WPG_CBOX}${individualId}${type}`,
           description,
           name: name ?? individualId,
           ...rest,

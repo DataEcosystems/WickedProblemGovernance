@@ -1,5 +1,7 @@
+import { Iri } from "./Iri.js";
+
 export type NamedIndividual = {
-  readonly "@id": string;
+  readonly "@id": Iri;
   readonly description: string;
   readonly name: string;
 };

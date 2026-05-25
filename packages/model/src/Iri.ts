@@ -5,3 +5,5 @@ export const Iri = z.string().meta({
     "An Internationalized Resource Identifier (IRI). May be a full IRI or a compact IRI (CURIE) resolved by the JSON-LD context.",
   title: "IRI",
 });
+
+export type Iri = z.infer<typeof Iri>;
