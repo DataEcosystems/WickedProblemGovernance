@@ -23,7 +23,8 @@ export const ecosystem: Ecosystem = {
 export const project: Project = {
   "@id": iri("Project", "project-1"),
   "@type": "Project",
-  architecture: "wpg:FederatedArchitecture",
+  architecture:
+    "https://purl.dataecosystems.org/wpg/cbox#FederatedArchitecture",
   ecosystem: ecosystem["@id"],
   episodeCount: 2,
   name: "Test Project",
@@ -35,32 +36,36 @@ export const project: Project = {
 export const organizationRole1: OrganizationRole = {
   "@id": iri("OrganizationRole", "organization-role-1"),
   "@type": "OrganizationRole",
-  domain: "wpg:EducationDomain",
+  domain: "https://purl.dataecosystems.org/wpg/cbox#EducationDomain",
   memberOf: project["@id"],
-  roleName: "wpg:DataContributorOrganizationRoleName",
+  roleName:
+    "https://purl.dataecosystems.org/wpg/cbox#DataContributorOrganizationRoleName",
 };
 
 export const organizationRole2: OrganizationRole = {
   "@id": iri("OrganizationRole", "organization-role-2"),
   "@type": "OrganizationRole",
-  domain: "wpg:HealthDomain",
+  domain: "https://purl.dataecosystems.org/wpg/cbox#HealthDomain",
   memberOf: project["@id"],
-  roleName: "wpg:DataContributorOrganizationRoleName",
+  roleName:
+    "https://purl.dataecosystems.org/wpg/cbox#DataContributorOrganizationRoleName",
 };
 
 export const organizationRole3: OrganizationRole = {
   "@id": iri("OrganizationRole", "organization-role-3"),
   "@type": "OrganizationRole",
-  domain: "wpg:HumanServicesDomain",
+  domain: "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain",
   memberOf: project["@id"],
-  roleName: "wpg:InfrastructurePartnerOrganizationRoleName",
+  roleName:
+    "https://purl.dataecosystems.org/wpg/cbox#InfrastructurePartnerOrganizationRoleName",
 };
 
 export const organization1: Organization = {
   "@id": iri("Organization", "organization-1"),
   "@type": "Organization",
-  domains: ["wpg:EducationDomain"],
-  institutionalLayer: "wpg:LocalInstitutionalLayer",
+  domains: ["https://purl.dataecosystems.org/wpg/cbox#EducationDomain"],
+  institutionalLayer:
+    "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer",
   memberOf: [organizationRole1["@id"]],
   name: "Local School District",
 };
@@ -68,8 +73,9 @@ export const organization1: Organization = {
 export const organization2: Organization = {
   "@id": iri("Organization", "organization-2"),
   "@type": "Organization",
-  domains: ["wpg:HealthDomain"],
-  institutionalLayer: "wpg:RegionalInstitutionalLayer",
+  domains: ["https://purl.dataecosystems.org/wpg/cbox#HealthDomain"],
+  institutionalLayer:
+    "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer",
   memberOf: [organizationRole2["@id"]],
   name: "Regional Health Authority",
 };
@@ -77,8 +83,9 @@ export const organization2: Organization = {
 export const organization3: Organization = {
   "@id": iri("Organization", "organization-3"),
   "@type": "Organization",
-  domains: ["wpg:HumanServicesDomain"],
-  institutionalLayer: "wpg:LocalInstitutionalLayer",
+  domains: ["https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain"],
+  institutionalLayer:
+    "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer",
   memberOf: [organizationRole3["@id"]],
   name: "Community Services Agency",
 };
@@ -86,21 +93,24 @@ export const organization3: Organization = {
 export const governanceArtifact1: GovernanceArtifact = {
   "@id": iri("GovernanceArtifact", "governance-artifact-1"),
   "@type": "GovernanceArtifact",
-  governanceArtifactType: "wpg:EmailGovernanceArtifactType",
+  governanceArtifactType:
+    "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
   name: "Initial request email",
 };
 
 export const governanceArtifact2: GovernanceArtifact = {
   "@id": iri("GovernanceArtifact", "governance-artifact-2"),
   "@type": "GovernanceArtifact",
-  governanceArtifactType: "wpg:SignedAgreementGovernanceArtifactType",
+  governanceArtifactType:
+    "https://purl.dataecosystems.org/wpg/cbox#SignedAgreementGovernanceArtifactType",
   name: "Executed DSA",
 };
 
 export const governanceArtifact3: GovernanceArtifact = {
   "@id": iri("GovernanceArtifact", "governance-artifact-3"),
   "@type": "GovernanceArtifact",
-  governanceArtifactType: "wpg:EmailGovernanceArtifactType",
+  governanceArtifactType:
+    "https://purl.dataecosystems.org/wpg/cbox#EmailGovernanceArtifactType",
   name: "Charter review email",
 };
 
@@ -109,7 +119,8 @@ export const committedGovernanceEpisode: GovernanceEpisode = {
   "@type": "GovernanceEpisode",
   couplingProxy: 6.75,
   domainHeterogeneity: 0.667,
-  governanceEpisodeType: "wpg:AgreementGovernanceEpisodeType",
+  governanceEpisodeType:
+    "https://purl.dataecosystems.org/wpg/cbox#AgreementGovernanceEpisodeType",
   layerHeterogeneity: 0.5,
   name: "DSA Negotiation",
   partnerCount: 3,
@@ -125,7 +136,8 @@ export const stalledGovernanceEpisode: GovernanceEpisode = {
   "@type": "GovernanceEpisode",
   couplingProxy: 4.5,
   domainHeterogeneity: 0.5,
-  governanceEpisodeType: "wpg:PolicyAdoptionGovernanceEpisodeType",
+  governanceEpisodeType:
+    "https://purl.dataecosystems.org/wpg/cbox#PolicyAdoptionGovernanceEpisodeType",
   layerHeterogeneity: 0.5,
   name: "Charter Approval",
   partnerCount: 2,
@@ -140,14 +152,16 @@ export const committedGovernanceEpisodeEvents: GovernanceEvent[] = [
     "@type": "GovernanceEvent",
     artifact: governanceArtifact1["@id"],
     episode: committedGovernanceEpisode["@id"],
-    governanceEventType: "wpg:RequestSubmittedGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#RequestSubmittedGovernanceEventType",
     timestamp: "2023-01-15",
   },
   {
     "@id": iri("GovernanceEvent", "governance-event-2"),
     "@type": "GovernanceEvent",
     episode: committedGovernanceEpisode["@id"],
-    governanceEventType: "wpg:ReviewGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
     timestamp: "2023-03-01",
   },
   {
@@ -155,7 +169,8 @@ export const committedGovernanceEpisodeEvents: GovernanceEvent[] = [
     "@type": "GovernanceEvent",
     artifact: governanceArtifact2["@id"],
     episode: committedGovernanceEpisode["@id"],
-    governanceEventType: "wpg:AgreementExecutedGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType",
     timestamp: "2023-04-20",
   },
 ];
@@ -166,21 +181,24 @@ export const stalledGovernanceEpisodeEvents: GovernanceEvent[] = [
     "@type": "GovernanceEvent",
     artifact: governanceArtifact3["@id"],
     episode: stalledGovernanceEpisode["@id"],
-    governanceEventType: "wpg:RequestSubmittedGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#RequestSubmittedGovernanceEventType",
     timestamp: "2022-06-01",
   },
   {
     "@id": iri("GovernanceEvent", "governance-event-5"),
     "@type": "GovernanceEvent",
     episode: stalledGovernanceEpisode["@id"],
-    governanceEventType: "wpg:ReviewGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
     timestamp: "2022-09-15",
   },
   {
     "@id": iri("GovernanceEvent", "governance-event-6"),
     "@type": "GovernanceEvent",
     episode: stalledGovernanceEpisode["@id"],
-    governanceEventType: "wpg:ReviewGovernanceEventType",
+    governanceEventType:
+      "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
     timestamp: "2023-01-10",
   },
 ];

@@ -36,7 +36,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:RequestSubmittedGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#RequestSubmittedGovernanceEventType",
           },
         ],
       });
@@ -51,7 +52,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:ReviewGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
             timestamp: "2023-12-01",
           },
           {
@@ -59,7 +61,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:RequestSubmittedGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#RequestSubmittedGovernanceEventType",
             timestamp: "2023-01-01",
           },
           {
@@ -67,7 +70,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:ReviewGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
             timestamp: "2023-06-15",
           },
         ],
@@ -106,7 +110,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:ApprovalIssuedGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#ApprovalIssuedGovernanceEventType",
             timestamp: "2023-06-01",
           },
           {
@@ -114,7 +119,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:AgreementExecutedGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType",
             timestamp: "2023-03-15",
           },
         ],
@@ -132,7 +138,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:OutputDeliveredGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType",
             timestamp: "2023-08-15",
           },
           {
@@ -140,7 +147,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:OutputDeliveredGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType",
             timestamp: "2023-07-01",
           },
         ],
@@ -170,7 +178,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:ReviewGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#ReviewGovernanceEventType",
             timestamp: "2023-01-01",
           },
           {
@@ -178,7 +187,8 @@ describe("GovernanceEpisode", () => {
             "@type": "GovernanceEvent",
             episode:
               "https://example.com/test/GovernanceEpisode/governance-episode-1",
-            governanceEventType: "wpg:OutputDeliveredGovernanceEventType",
+            governanceEventType:
+              "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType",
             timestamp: "2023-09-01",
           },
         ],

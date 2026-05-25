@@ -29,8 +29,9 @@ export namespace GovernanceEpisode {
       .filter(
         (e) =>
           e.governanceEventType ===
-            "wpg:AgreementExecutedGovernanceEventType" ||
-          e.governanceEventType === "wpg:ApprovalIssuedGovernanceEventType",
+            "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType" ||
+          e.governanceEventType ===
+            "https://purl.dataecosystems.org/wpg/cbox#ApprovalIssuedGovernanceEventType",
       )
       .map((e) => e.timestamp)
       .filter((t): t is string => t != null)
@@ -52,7 +53,8 @@ export namespace GovernanceEpisode {
     const t_del = governanceEvents
       .filter(
         (e) =>
-          e.governanceEventType === "wpg:OutputDeliveredGovernanceEventType",
+          e.governanceEventType ===
+          "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType",
       )
       .map((e) => e.timestamp)
       .filter((t): t is string => t != null)
