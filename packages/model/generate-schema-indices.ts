@@ -35,6 +35,7 @@ fs.writeFileSync(
 export { default as contextJson } from "./context.json" with { type: "json" };
 export * from "./dateToTimestamp.js";
 export * from "./NamedIndividual.js";
+export * as namespaces from "./namespaces.js";
 export * from "./ObjectMeta.js";
 export * from "./PropertyMeta.js";
 export * from "./Resource.js";
