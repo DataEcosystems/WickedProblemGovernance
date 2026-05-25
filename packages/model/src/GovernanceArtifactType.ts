@@ -9,7 +9,7 @@ const namedIndividuals = {
     description:
       "Minutes, agendas, or decision logs from governance committee meetings.",
   },
-  EMail: {
+  Email: {
     description:
       "Email correspondence documenting governance requests, approvals, or decisions.",
   },
