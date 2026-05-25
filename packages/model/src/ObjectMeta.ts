@@ -1,3 +1,4 @@
+import { capitalCase } from "change-case";
 import { NamedIndividual } from "./NamedIndividual.js";
 import { WPG_CBOX } from "./namespaces.js";
 import { ResourceType } from "./ResourceType.js";
@@ -5,37 +6,37 @@ import { ResourceType } from "./ResourceType.js";
 export class ObjectMeta {
   readonly "@type": ResourceType;
   readonly description: string;
+  readonly name: string;
   readonly namedIndividuals?: readonly NamedIndividual[];
-  readonly title: string;
   [key: string]: unknown;
 
   constructor({
     "@type": type,
     description,
+    name,
     namedIndividuals,
-    title,
   }: {
     readonly "@type": ResourceType;
     readonly description: string;
-    readonly namedIndividuals?: readonly {
-      readonly [key: string]: string | undefined;
-      readonly description: string;
-      readonly id: string;
-      readonly name?: string;
-    }[];
-    readonly title?: string;
+    readonly name?: string;
+    readonly namedIndividuals?: Record<
+      string,
+      {
+        readonly description: string;
+        readonly name?: string;
+      }
+    >;
   }) {
     this["@type"] = type;
     this.description = description;
-    this.title = title ?? type;
+    this.name = name ?? capitalCase(type);
 
     if (namedIndividuals != null) {
-      this.namedIndividuals = namedIndividuals.map(
-        ({ description, id: individualId, name, ...rest }) => ({
-          "@id": `${WPG_CBOX}${individualId}${type}`,
+      this.namedIndividuals = Object.entries(namedIndividuals).map(
+        ([id, { description, name }]) => ({
+          "@id": `${WPG_CBOX}${id}${type}`,
           description,
-          name: name ?? individualId,
-          ...rest,
+          name: name ?? capitalCase(id),
         }),
       );
     }

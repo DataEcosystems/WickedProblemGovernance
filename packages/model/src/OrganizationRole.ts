@@ -67,7 +67,6 @@ export const OrganizationRole = RoleBase.extend({
     "@type": "OrganizationRole",
     description:
       "A role an organization plays as a member of a project. The organization points to this role via schema:memberOf. See https://blog.schema.org/2014/06/16/introducing-role/",
-    title: "Organization Role",
   }),
 );
 
