@@ -1,19 +1,18 @@
 {
   "dependencies": {
-    "change-case": "~5.4.4",
+    "@wpg/model": "0.0.0",
+    "mathjs": "~15.2.0",
     "zod": "~4.1.12"
   },
   "devDependencies": {},
   "author": "Asemio",
   "files": [
-    "README.md",
     "dist/*.d.ts",
-    "dist/*.js",
-    "dist/context.json"
+    "dist/*.js"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
-  "name": "@wpg/model",
+  "name": "@wpg/analysis",
   "private": true,
   "repository": {
     "type": "git",

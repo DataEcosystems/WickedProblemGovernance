@@ -16,16 +16,19 @@ function resolveRange(range: z.ZodType | ResourceType): ResourceType {
 
 export class PropertyMeta {
   readonly description: string;
+  readonly formula?: string;
   readonly range?: ResourceType | readonly ResourceType[];
   readonly title: string;
   [key: string]: unknown;
 
   constructor({
     description,
+    formula,
     range,
     title,
   }: {
     readonly description: string;
+    readonly formula?: string;
     readonly range?:
       | z.ZodType
       | ResourceType
@@ -33,15 +36,18 @@ export class PropertyMeta {
     readonly title: string;
   }) {
     this.description = description;
+    this.formula = formula;
     this.title = title;
 
     if (range != null) {
       if (Array.isArray(range)) {
         this.range = (range as readonly (z.ZodType | ResourceType)[]).map(
           resolveRange,
-        );
+        ) as readonly ResourceType[];
       } else {
-        this.range = resolveRange(range as z.ZodType | ResourceType);
+        this.range = resolveRange(
+          range as z.ZodType | ResourceType,
+        ) as ResourceType;
       }
     }
   }

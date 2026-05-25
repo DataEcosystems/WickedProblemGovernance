@@ -29,7 +29,7 @@ export const OrganizationRole = RoleBase.extend({
         title: "Coordinates",
       }),
     ),
-  domain: Iri.meta(
+  domain: Domain.shape["@id"].meta(
     new PropertyMeta({
       description:
         "The domain the organization is bringing to the project in this role. Must be one of the organization's domains.",
@@ -37,7 +37,7 @@ export const OrganizationRole = RoleBase.extend({
       title: "Domain",
     }),
   ),
-  memberOf: Iri.meta(
+  memberOf: Project.shape["@id"].meta(
     new PropertyMeta({
       description: "The project this organization role is a membership of.",
       range: Project,
@@ -55,7 +55,7 @@ export const OrganizationRole = RoleBase.extend({
         title: "Provides Technical Assistance To",
       }),
     ),
-  roleName: Iri.meta(
+  roleName: OrganizationRoleName.shape["@id"].meta(
     new PropertyMeta({
       description: "The role this organization plays.",
       range: OrganizationRoleName,
@@ -67,7 +67,6 @@ export const OrganizationRole = RoleBase.extend({
     "@type": "OrganizationRole",
     description:
       "A role an organization plays as a member of a project. The organization points to this role via schema:memberOf. See https://blog.schema.org/2014/06/16/introducing-role/",
-    title: "Organization Role",
   }),
 );
 

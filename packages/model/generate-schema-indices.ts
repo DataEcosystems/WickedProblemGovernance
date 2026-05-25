@@ -33,12 +33,15 @@ fs.writeFileSync(
   path.join(thisDirectoryPath, "src", "index.ts"),
   `\
 export { default as contextJson } from "./context.json" with { type: "json" };
+export * from "./dateToTimestamp.js";
 export * from "./NamedIndividual.js";
+export * as namespaces from "./namespaces.js";
 export * from "./ObjectMeta.js";
 export * from "./PropertyMeta.js";
 export * from "./Resource.js";
 export * from "./schemas.js";
 export * from "./schemasByName.js";
+export * from "./timestampToDate.js";
 
 ${schemaNames.map((schemaName) => `export * from "./${schemaName}.js";`).join("\n")}
 `,

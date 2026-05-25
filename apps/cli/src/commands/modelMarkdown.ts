@@ -1,5 +1,5 @@
-import type { ObjectMeta, PropertyMeta } from "@wpg/model";
-import { schemas, schemasByName } from "@wpg/model";
+import type { NamedIndividual, ObjectMeta, PropertyMeta } from "@wpg/model";
+import { schemasByName } from "@wpg/model";
 import type {
   Heading,
   InlineCode,
@@ -18,7 +18,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 // =============================================================================
 // MDAST HELPERS
@@ -69,6 +69,7 @@ function yaml(value: string): Yaml {
 
 interface PropertyInfo {
   readonly description: string;
+  readonly formula?: string;
   readonly name: string;
   readonly optional: boolean;
   readonly range?: string;
@@ -156,24 +157,22 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
     const meta = propSchema.meta() as PropertyMeta | undefined;
     const { optional, type } = resolveType(propSchema);
 
-    let range: string | undefined;
-    switch (typeof meta?.range) {
-      case "object":
-        range = meta.range.join(" | ");
-        break;
-      case "string":
-        range = meta.range;
-        break;
-      case "undefined":
-        range = undefined;
-        break;
+    const rawRange = meta?.range;
+    let rangeStr: string | undefined;
+    if (rawRange == null) {
+      rangeStr = undefined;
+    } else if (typeof rawRange === "string") {
+      rangeStr = rawRange;
+    } else {
+      rangeStr = rawRange.join(" | ");
     }
 
     properties.push({
       description: meta?.description ?? "",
+      formula: meta?.formula,
       name,
       optional,
-      range,
+      range: rangeStr,
       title: meta?.title ?? name,
       type,
     });
@@ -186,19 +185,15 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
 // DOCUMENT GENERATION
 // =============================================================================
 
-function schemaAnchor(schemaName: string): string {
-  const schema = (schemasByName as Record<string, z.ZodType>)[schemaName];
-  const meta = schema?.meta() as ObjectMeta | undefined;
+function schemaAnchor(schemaName: keyof typeof schemasByName): string {
+  const schema = schemasByName[schemaName];
+  const meta = schema.meta() as ObjectMeta | undefined;
   const title = meta?.title ?? schemaName;
   return `#${title.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
 function buildNamedIndividualsTable(
-  individuals: readonly {
-    readonly "@id": string;
-    readonly description: string;
-    readonly name: string;
-  }[],
+  individuals: readonly NamedIndividual[],
 ): RootContent[] {
   const headerRow = row([
     cell([text("IRI")]),
@@ -215,7 +210,7 @@ function buildNamedIndividualsTable(
   );
 
   return [
-    heading(3, [text("Possible values")]),
+    heading(3, [text("Named Individuals")]),
     table(["left", "left", "left"], [headerRow, ...dataRows]),
   ];
 }
@@ -227,12 +222,24 @@ function buildPropertiesTable(properties: PropertyInfo[]): RootContent[] {
     cell([text("Type")]),
     cell([text("Required")]),
     cell([text("Range")]),
+    cell([text("Formula")]),
     cell([text("Description")]),
   ]);
 
   const dataRows = properties.map((prop) => {
     const rangeContent: PhrasingContent[] = prop.range
-      ? [link(schemaAnchor(prop.range), [text(prop.range)])]
+      ? prop.range
+          .split(" | ")
+          .flatMap((r, i) => [
+            ...(i > 0 ? [text(" | ")] : []),
+            link(schemaAnchor(r.trim() as keyof typeof schemasByName), [
+              text(r.trim()),
+            ]),
+          ])
+      : [text("—")];
+
+    const formulaContent: PhrasingContent[] = prop.formula
+      ? [inlineCode(prop.formula)]
       : [text("—")];
 
     return row([
@@ -241,6 +248,7 @@ function buildPropertiesTable(properties: PropertyInfo[]): RootContent[] {
       cell([text(prop.type)]),
       cell([text(prop.optional ? "No" : "Yes")]),
       cell(rangeContent),
+      cell(formulaContent),
       cell([text(prop.description)]),
     ]);
   });
@@ -248,13 +256,16 @@ function buildPropertiesTable(properties: PropertyInfo[]): RootContent[] {
   return [
     heading(3, [text("Properties")]),
     table(
-      ["left", "left", "left", "center", "left", "left"],
+      ["left", "left", "left", "center", "left", "left", "left"],
       [headerRow, ...dataRows],
     ),
   ];
 }
 
-function buildSchemaSection(name: string, schema: z.ZodType): RootContent[] {
+function buildSchemaSection(
+  name: keyof typeof schemasByName,
+  schema: z.ZodType,
+): RootContent[] {
   const meta = schema.meta() as ObjectMeta | undefined;
   const nodes: RootContent[] = [];
 
@@ -283,21 +294,22 @@ function buildSchemaSection(name: string, schema: z.ZodType): RootContent[] {
 export function modelMarkdown(): string {
   const children: RootContent[] = [];
 
+  children.push(yaml("title: Wicked Problem Governance — Model Reference"));
   children.push(
-    yaml("title: IDS Governance Measurement Framework — Schema Reference"),
-  );
-  children.push(
-    heading(1, [
-      text("IDS Governance Measurement Framework — Schema Reference"),
-    ]),
+    heading(1, [text("Wicked Problem Governance — Model Reference")]),
   );
 
-  const sortedEntries = Object.entries(schemas).sort(([a], [b]) =>
+  const sortedEntries = Object.entries(schemasByName).sort(([a], [b]) =>
     a.localeCompare(b),
   );
 
   for (const [name, schema] of sortedEntries) {
-    children.push(...buildSchemaSection(name, schema as z.ZodType));
+    children.push(
+      ...buildSchemaSection(
+        name as keyof typeof schemasByName,
+        schema as z.ZodType,
+      ),
+    );
   }
 
   const tree: Root = { type: "root", children };

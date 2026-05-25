@@ -2,7 +2,13 @@
   "files": [],
   "references": [
     {
+      "path": "./tsconfig.scripts.json"
+    },
+    {
       "path": "apps/cli"
+    },
+    {
+      "path": "packages/analysis"
     },
     {
       "path": "packages/model"

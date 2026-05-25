@@ -17,7 +17,7 @@ export const PersonRole = RoleBase.extend({
       title: "Member Of",
     }),
   ),
-  roleName: Iri.optional().meta(
+  roleName: PersonRoleName.shape["@id"].optional().meta(
     new PropertyMeta({
       description: "The role this person plays.",
       range: PersonRoleName,
@@ -29,7 +29,6 @@ export const PersonRole = RoleBase.extend({
     "@type": "PersonRole",
     description:
       "A role a person plays as a member of a project or organization. The person points to this role via schema:memberOf. See https://blog.schema.org/2014/06/16/introducing-role/",
-    title: "Person Role",
   }),
 );
 

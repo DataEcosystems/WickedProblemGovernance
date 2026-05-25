@@ -3,15 +3,18 @@
 import fs from "node:fs";
 import path from "node:path";
 import url from "node:url";
+import { CompilerOptions } from "typescript";
 
 const VERSION = "0.0.0";
 
 const externalDependencies = {
   "@protobi/exceljs": "4.4.0-protobi.10",
   "@types/mdast": "~4.0.4",
+  "change-case": "~5.4.4",
   "cmd-ts": "~0.15.0",
   glob: "~13.0.6", // To fix warning on glob@10.5.0 from exceljs
   jsonld: "~9.0.0",
+  mathjs: "~15.2.0",
   pino: "~10.3.1",
   "pino-pretty": "~13.1.3",
   "remark-frontmatter": "~5.0.0",
@@ -22,7 +25,7 @@ const externalDependencies = {
   zod: "~4.1.12",
 } as const;
 
-type PackageName = "model";
+type PackageName = "analysis" | "model";
 
 interface Workspace {
   bin?: Record<string, string>;
@@ -37,9 +40,15 @@ interface Workspace {
 }
 
 const packages: Readonly<Record<PackageName, Workspace>> = {
+  analysis: {
+    dependencies: {
+      external: ["mathjs", "zod"],
+      internal: ["model"],
+    },
+  },
   model: {
     dependencies: {
-      external: ["zod"],
+      external: ["change-case", "zod"],
     },
   },
 } as const;
@@ -204,20 +213,20 @@ for (const [workspacesDirectoryAny, workspaces_] of Object.entries(
             exactOptionalPropertyTypes: false,
             forceConsistentCasingInFileNames: true,
             lib: ["ES2022"],
-            module: "nodenext",
-            moduleResolution: "nodenext",
+            module: "nodenext" as any,
+            moduleResolution: "nodenext" as any,
             noUncheckedIndexedAccess: false,
             outDir: "dist",
             resolveJsonModule: true,
             rootDir: "src",
             // sourceMap:
             //   workspacesDirectoryName === "packages" ? true : undefined,
-            target: "es2022",
+            target: "es2022" as any,
             types:
               workspacesDirectoryName === "apps" && workspaceName === "cli"
                 ? ["node"]
-                : undefined,
-          },
+                : [],
+          } satisfies CompilerOptions,
           extends: ["@tsconfig/strictest/tsconfig.json"],
           include: ["src/**/*.ts", "src/**/*.json"],
         },
@@ -234,11 +243,13 @@ fs.writeFileSync(
   JSON.stringify(
     {
       files: [],
-      references: Object.entries(workspaces).flatMap(
-        ([workspacesDirectoryName, workspaces]) =>
-          Object.keys(workspaces).map((workspaceName) => ({
-            path: `${workspacesDirectoryName}/${workspaceName}`,
-          })),
+      references: [{ path: "./tsconfig.scripts.json" }].concat(
+        Object.entries(workspaces).flatMap(
+          ([workspacesDirectoryName, workspaces]) =>
+            Object.keys(workspaces).map((workspaceName) => ({
+              path: `${workspacesDirectoryName}/${workspaceName}`,
+            })),
+        ),
       ),
     },
     undefined,
