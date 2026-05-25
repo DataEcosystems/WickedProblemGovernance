@@ -78,7 +78,7 @@ export const GovernanceEpisode = ResourceBase.extend({
     new PropertyMeta({
       description:
         "Timestamp of earliest event indicating entry into an approval workflow.",
-      formula: "min(event_timestamps)",
+      formula: "min(t_ev)",
       title: "Episode Start",
     }),
   ),

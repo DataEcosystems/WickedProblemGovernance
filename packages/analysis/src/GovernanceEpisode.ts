@@ -10,15 +10,15 @@ export namespace GovernanceEpisode {
       "timestamp"
     >[];
   }): string | undefined {
-    const event_timestamps = governanceEvents
+    const t_ev = governanceEvents
       .map((e) => e.timestamp)
       .filter((t): t is string => t != null)
       .map((t) => model.timestampToDate(t).getTime());
-    if (event_timestamps.length === 0) {
+    if (t_ev.length === 0) {
       return undefined;
     }
     const result = evaluateFormula(model.GovernanceEpisode, "t0", {
-      event_timestamps,
+      t_ev,
     }) as number;
     return model.dateToTimestamp(new Date(result));
   }
