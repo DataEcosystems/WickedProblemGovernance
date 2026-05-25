@@ -43,4 +43,26 @@ export namespace GovernanceEpisode {
     }) as number;
     return model.dateToTimestamp(new Date(result));
   }
+
+  export function t2({
+    governanceEvents,
+  }: {
+    readonly governanceEvents: readonly model.GovernanceEvent[];
+  }): string | undefined {
+    const t_del = governanceEvents
+      .filter(
+        (e) =>
+          e.governanceEventType === "wpg:OutputDeliveredGovernanceEventType",
+      )
+      .map((e) => e.timestamp)
+      .filter((t): t is string => t != null)
+      .map((t) => model.timestampToDate(t).getTime());
+    if (t_del.length === 0) {
+      return undefined;
+    }
+    const result = evaluateFormula(model.GovernanceEpisode, "t2", {
+      t_del,
+    }) as number;
+    return model.dateToTimestamp(new Date(result));
+  }
 }

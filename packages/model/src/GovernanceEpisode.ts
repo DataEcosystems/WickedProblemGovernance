@@ -94,6 +94,7 @@ export const GovernanceEpisode = ResourceBase.extend({
     new PropertyMeta({
       description:
         "Timestamp of earliest analytic output answering a stakeholder question.",
+      formula: "min(t_del)",
       title: "First Delivered Value",
     }),
   ),
