@@ -301,7 +301,7 @@ const LAYER_SLOTS: readonly {
   },
 ];
 
-function mapEventType(sourceType: string): string {
+function mapEventType(sourceType: string): GovernanceEventType["@id"] {
   const mapped = EVENT_TYPE_MAP[sourceType];
   if (mapped == null) {
     throw new Error(`Unknown event type: ${sourceType}`);
@@ -309,7 +309,7 @@ function mapEventType(sourceType: string): string {
   return mapped;
 }
 
-function mapEpisodeType(sourceType: string): string {
+function mapEpisodeType(sourceType: string): GovernanceEpisodeType["@id"] {
   const mapped = EPISODE_TYPE_MAP[sourceType];
   if (mapped == null) {
     throw new Error(`Unknown episode type: ${sourceType}`);
@@ -325,8 +325,10 @@ function daysBetween(a: string | null, b: string | null): number | undefined {
   return Math.round((new Date(b).getTime() - new Date(a).getTime()) / msPerDay);
 }
 
-function buildLayerAssignment(episode: IjpdsEpisodeLog): readonly string[] {
-  const layers: string[] = [];
+function buildLayerAssignment(
+  episode: IjpdsEpisodeLog,
+): readonly InstitutionalLayer["@id"][] {
+  const layers: InstitutionalLayer["@id"][] = [];
   for (const { field, layerIri } of LAYER_SLOTS) {
     const count = episode[field] as number | null;
     if (count != null && count > 0) {

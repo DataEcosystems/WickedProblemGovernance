@@ -188,8 +188,8 @@ function extractProperties(schema: z.ZodType): PropertyInfo[] {
 function schemaAnchor(schemaName: keyof typeof schemasByName): string {
   const schema = schemasByName[schemaName];
   const meta = schema.meta() as ObjectMeta | undefined;
-  const name = meta?.name ?? schemaName;
-  return `#${name.toLowerCase().replace(/\s+/g, "-")}`;
+  const title = meta?.title ?? schemaName;
+  return `#${title.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
 function buildNamedIndividualsTable(
@@ -269,7 +269,7 @@ function buildSchemaSection(
   const meta = schema.meta() as ObjectMeta | undefined;
   const nodes: RootContent[] = [];
 
-  nodes.push(heading(2, [text(meta?.name ?? name)]));
+  nodes.push(heading(2, [text(meta?.title ?? name)]));
 
   if (meta?.description) {
     nodes.push(paragraph([text(meta.description)]));
