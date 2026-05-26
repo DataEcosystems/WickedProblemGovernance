@@ -79,7 +79,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest event indicating entry into an approval workflow.",
-        formula: "min(t_ev)",
+        formula: "min(map(E, f(e) = e.timestamp))",
         title: "Episode Start",
       }),
     ),
@@ -87,7 +87,8 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest qualifying authorization event for core scope.",
-        formula: "min(t_auth)",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType") or equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#ApprovalIssuedGovernanceEventType")), f(e) = e.timestamp))',
         title: "First Durable Authorization",
       }),
     ),
@@ -95,7 +96,8 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest analytic output answering a stakeholder question.",
-        formula: "min(t_del)",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType")), f(e) = e.timestamp))',
         title: "First Delivered Value",
       }),
     ),
@@ -106,6 +108,7 @@ export const GovernanceEpisode = z
         new PropertyMeta({
           description:
             "Calendar days from episode initiation to first durable authorization.",
+          formula: "t1 - t0",
           title: "Authorization Latency",
         }),
       ),

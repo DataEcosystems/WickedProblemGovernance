@@ -9,28 +9,28 @@ describe("GovernanceEpisode", () => {
   describe("t0", () => {
     it("returns the earliest event timestamp", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBe("2023-01-15");
     });
 
     it("returns the earliest event timestamp for a stalled episode", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: stalledGovernanceEpisodeEvents,
+        E: stalledGovernanceEpisodeEvents,
       });
       expect(result).toBe("2022-06-01");
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when no events have timestamps", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/no-timestamp",
             "@type": "GovernanceEvent",
@@ -46,7 +46,7 @@ describe("GovernanceEpisode", () => {
 
     it("picks the earliest when events are out of order", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/late",
             "@type": "GovernanceEvent",
@@ -83,28 +83,28 @@ describe("GovernanceEpisode", () => {
   describe("t1", () => {
     it("returns the earliest authorization event timestamp", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBe("2023-04-20");
     });
 
     it("returns undefined when there are no authorization events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: stalledGovernanceEpisodeEvents,
+        E: stalledGovernanceEpisodeEvents,
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("picks the earliest among multiple authorization events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/approval",
             "@type": "GovernanceEvent",
@@ -132,7 +132,7 @@ describe("GovernanceEpisode", () => {
   describe("t2", () => {
     it("returns the earliest output delivered timestamp", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/output-1",
             "@type": "GovernanceEvent",
@@ -158,21 +158,21 @@ describe("GovernanceEpisode", () => {
 
     it("returns undefined when there are no output delivered events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("ignores non-output events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/review",
             "@type": "GovernanceEvent",
