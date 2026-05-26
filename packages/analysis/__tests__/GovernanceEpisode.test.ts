@@ -196,4 +196,20 @@ describe("GovernanceEpisode", () => {
       expect(result).toBe("2023-09-01");
     });
   });
+
+  it("tau1", ({ expect }) => {
+    const result = GovernanceEpisode.tau1({
+      t0: "2023-09-01",
+      t1: "2023-09-10",
+    });
+    expect(result).toBe(777600000);
+  });
+
+  it("tau2", ({ expect }) => {
+    const result = GovernanceEpisode.tau2({
+      t0: "2023-09-01",
+      t2: "2023-09-10",
+    });
+    expect(result).toBe(777600000);
+  });
 });

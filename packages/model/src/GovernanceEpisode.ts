@@ -108,7 +108,7 @@ export const GovernanceEpisode = z
         new PropertyMeta({
           description:
             "Calendar days from episode initiation to first durable authorization.",
-          formula: "t1 - t0",
+          formula: "t_1 - t_0",
           title: "Authorization Latency",
         }),
       ),
@@ -119,6 +119,7 @@ export const GovernanceEpisode = z
         new PropertyMeta({
           description:
             "Calendar days from episode initiation to first delivered analytic output.",
+          formula: "t_2 - t_0",
           title: "Time to Delivered Value",
         }),
       ),

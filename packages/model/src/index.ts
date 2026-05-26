@@ -27,4 +27,5 @@ export * from "./PropertyMeta.js";
 export * from "./Resource.js";
 export * from "./schemas.js";
 export * from "./schemasByName.js";
+export * from "./Timestamp.js";
 export * from "./timestampToDate.js";
