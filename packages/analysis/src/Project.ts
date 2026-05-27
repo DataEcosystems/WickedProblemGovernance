@@ -1,9 +1,17 @@
 import * as model from "@wpg/model";
+import { couplingLoad as _couplingLoad } from "./couplingLoad.js";
 import { domainHeterogeneity as _domainHeterogeneity } from "./domainHeterogeneity.js";
 import { evaluateFormula } from "./evaluateFormula.js";
 import { layerHeterogeneity as _layerHeterogeneity } from "./layerHeterogeneity.js";
+import { normalizedBurden as _normalizedBurden } from "./normalizedBurden.js";
+import { tau2 as _tau2 } from "./tau2.js";
 
 export namespace Project {
+  /**
+   * Calculate the project coupling load from the domain and layer heterogeneity and the total partner count.
+   */
+  export const couplingLoad = _couplingLoad;
+
   /**
    * Calculate the domain heterogeneity of a project from a map of domain -> partners in that domain associated with the project.
    */
@@ -13,6 +21,11 @@ export namespace Project {
    * Calculate the institutional layer heterogeneity of a project from a map of domain -> partners in that domain associated with the project.
    */
   export const layerHeterogeneity = _layerHeterogeneity;
+
+  /**
+   * Calculate the normalized burden for an episode.
+   */
+  export const normalizedBurden = _normalizedBurden;
 
   /**
    * Calculate the project start timestamp from the set of episodes associated with a project.
@@ -81,16 +94,5 @@ export namespace Project {
   /**
    * Calculate the delivery latency for a project given the project's start and first delivered value timestamps.
    */
-  export function tau2({
-    t0,
-    t2,
-  }: {
-    t0: model.Timestamp;
-    t2: model.Timestamp;
-  }): number {
-    return evaluateFormula(model.Project, "tau2", {
-      t_0: model.timestampToDate(t0).getTime(),
-      t_2: model.timestampToDate(t2).getTime(),
-    }) as number;
-  }
+  export const tau2 = _tau2;
 }

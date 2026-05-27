@@ -1,26 +1,16 @@
 import * as model from "@wpg/model";
+import { couplingLoad as _couplingLoad } from "./couplingLoad.js";
 import { domainHeterogeneity as _domainHeterogeneity } from "./domainHeterogeneity.js";
 import { evaluateFormula } from "./evaluateFormula.js";
 import { layerHeterogeneity as _layerHeterogeneity } from "./layerHeterogeneity.js";
+import { normalizedBurden as _normalizedBurden } from "./normalizedBurden.js";
+import { tau2 as _tau2 } from "./tau2.js";
 
 export namespace GovernanceEpisode {
   /**
    * Calculate the episode coupling load from the domain and layer heterogeneity and the total partner count.
    */
-  export function couplingLoad({
-    domainHeterogeneity,
-    layerHeterogeneity,
-    partnerCount,
-  }: Pick<
-    model.GovernanceEpisode,
-    "domainHeterogeneity" | "layerHeterogeneity" | "partnerCount"
-  >): number {
-    return evaluateFormula(model.GovernanceEpisode, "couplingLoad", {
-      h_d: domainHeterogeneity,
-      h_l: layerHeterogeneity,
-      n: partnerCount,
-    }) as number;
-  }
+  export const couplingLoad = _couplingLoad;
 
   /**
    * Calculate the domain heterogeneity of an episode from a map of domain -> partners in that domain associated with the episode.
@@ -45,15 +35,7 @@ export namespace GovernanceEpisode {
   /**
    * Calculate the normalized burden for an episode.
    */
-  export function normalizedBurden({
-    couplingLoad,
-    tau2,
-  }: Pick<model.GovernanceEpisode, "couplingLoad" | "tau2">) {
-    return evaluateFormula(model.GovernanceEpisode, "normalizedBurden", {
-      c: couplingLoad,
-      tau_2: tau2,
-    }) as number;
-  }
+  export const normalizedBurden = _normalizedBurden;
 
   /**
    * Calculate the episode start timestamp from the set of events associated with an episode.
@@ -155,16 +137,5 @@ export namespace GovernanceEpisode {
   /**
    * Calculate the delivery latency for an episode given the episode's start and first delivered value timestamps.
    */
-  export function tau2({
-    t0,
-    t2,
-  }: {
-    t0: model.Timestamp;
-    t2: model.Timestamp;
-  }): number {
-    return evaluateFormula(model.GovernanceEpisode, "tau2", {
-      t_0: model.timestampToDate(t0).getTime(),
-      t_2: model.timestampToDate(t2).getTime(),
-    }) as number;
-  }
+  export const tau2 = _tau2;
 }

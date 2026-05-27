@@ -2,7 +2,7 @@ import * as model from "@wpg/model";
 import { evaluateFormula } from "./evaluateFormula.js";
 
 /**
- * Calculate the layer heterogeneity of an episode or project from a map of domain -> partners in that domain associated with the episode or project.
+ * Calculate layer heterogeneity from a map of domain -> partners in that domain.
  */
 export function layerHeterogeneity({
   L,
