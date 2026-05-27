@@ -424,7 +424,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
     yield {
       "@id": id,
       "@type": "GovernanceEpisode" as const,
-      couplingProxy: ep.Ce ?? 0,
+      couplingLoad: ep.Ce ?? 0,
       domainHeterogeneity: ep.Het_Dom ?? 0,
       governanceEpisodeType: mapEpisodeType(ep.episode_type),
       layerHeterogeneity: ep.Het_Layer ?? 0,

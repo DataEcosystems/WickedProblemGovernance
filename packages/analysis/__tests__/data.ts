@@ -117,7 +117,7 @@ export const governanceArtifact3: GovernanceArtifact = {
 export const committedGovernanceEpisode: GovernanceEpisode = {
   "@id": iri("GovernanceEpisode", "governance-episode-1"),
   "@type": "GovernanceEpisode",
-  couplingProxy: 6.75,
+  couplingLoad: 6.75,
   domainHeterogeneity: 0.667,
   governanceEpisodeType:
     "https://purl.dataecosystems.org/wpg/cbox#AgreementGovernanceEpisodeType",
@@ -134,7 +134,7 @@ export const committedGovernanceEpisode: GovernanceEpisode = {
 export const stalledGovernanceEpisode: GovernanceEpisode = {
   "@id": iri("GovernanceEpisode", "governance-episode-2"),
   "@type": "GovernanceEpisode",
-  couplingProxy: 4.5,
+  couplingLoad: 4.5,
   domainHeterogeneity: 0.5,
   governanceEpisodeType:
     "https://purl.dataecosystems.org/wpg/cbox#PolicyAdoptionGovernanceEpisodeType",

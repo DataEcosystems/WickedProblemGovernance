@@ -12,11 +12,11 @@ export const GovernanceEpisode = z
   .object({
     "@id": Iri,
     "@type": z.literal("GovernanceEpisode"),
-    couplingProxy: z.number().meta(
+    couplingLoad: z.number().meta(
       new PropertyMeta({
         description:
           "Composite measure of scale and structural heterogeneity of governance coordination demands.",
-        title: "Coupling Proxy",
+        title: "Coupling Load",
       }),
     ),
     description: Description.optional(),

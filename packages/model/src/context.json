@@ -56,7 +56,7 @@
       "@type": "@id",
       "@container": "@set"
     },
-    "couplingProxy": "wpg:couplingProxy",
+    "couplingLoad": "wpg:couplingLoad",
     "deliveryCouplingProxy": "wpg:deliveryCouplingProxy",
     "deliveryEpisode": {
       "@id": "wpg:deliveryEpisode",
