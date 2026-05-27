@@ -402,7 +402,7 @@ export function* fromIjpdsDataset(data: IjpdsDataset): Iterable<Resource> {
           ? "https://purl.dataecosystems.org/wpg/cbox#FederatedArchitecture"
           : ("https://purl.dataecosystems.org/wpg/cbox#CustodialArchitecture" satisfies Architecture["@id"]),
       areaServed: iri("Place", a.Geo),
-      ...(cep != null ? { deliveryCouplingProxy: cep } : {}),
+      ...(cep != null ? { deliveryCouplingLoad: cep } : {}),
       ...(ecoId != null ? { ecosystem: iri("Ecosystem", ecoId) } : {}),
       episodeCount: a.Episode_Count,
       name: a.Project,
