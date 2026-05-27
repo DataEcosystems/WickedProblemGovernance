@@ -54,6 +54,7 @@ export namespace Project {
       governanceEpisode.t2 !== undefined
         ? [
             {
+              governanceEpisodeType: governanceEpisode.governanceEpisodeType,
               t2: model.timestampToDate(governanceEpisode.t2).getTime(),
             },
           ]
@@ -63,10 +64,33 @@ export namespace Project {
       return undefined;
     }
 
-    const result = evaluateFormula(model.Project, "t2", {
-      E: mappedE,
-    }) as number;
+    try {
+      const result = evaluateFormula(model.Project, "t2", {
+        E: mappedE,
+      }) as number;
 
-    return model.dateToTimestamp(new Date(result));
+      return model.dateToTimestamp(new Date(result));
+    } catch (e) {
+      if ((e as Error).message === "Cannot calculate min of an empty array") {
+        return undefined;
+      }
+      throw e;
+    }
+  }
+
+  /**
+   * Calculate the delivery latency for a project given the project's start and first delivered value timestamps.
+   */
+  export function tau2({
+    t0,
+    t2,
+  }: {
+    t0: model.Timestamp;
+    t2: model.Timestamp;
+  }): number {
+    return evaluateFormula(model.Project, "tau2", {
+      t_0: model.timestampToDate(t0).getTime(),
+      t_2: model.timestampToDate(t2).getTime(),
+    }) as number;
   }
 }

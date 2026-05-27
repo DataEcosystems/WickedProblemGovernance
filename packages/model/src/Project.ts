@@ -108,11 +108,11 @@ export const Project = z
       new PropertyMeta({
         description:
           "Timestamp of earliest analytic output answering a stakeholder question.",
-        formula: "min(map(E, f(e) = e.t2))",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEpisodeType, "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType")), f(e) = e.t2))',
         title: "First Delivered Value",
       }),
     ),
-
     tau2: z
       .number()
       .optional()

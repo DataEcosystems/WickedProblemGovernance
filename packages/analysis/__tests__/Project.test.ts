@@ -58,10 +58,14 @@ describe("Project", () => {
         E: [
           {
             ...committedGovernanceEpisode,
+            governanceEpisodeType:
+              "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType",
             t2: "2023-08-15",
           },
           {
             ...committedGovernanceEpisode,
+            governanceEpisodeType:
+              "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType",
             t2: "2023-07-01",
           },
         ],
@@ -89,6 +93,8 @@ describe("Project", () => {
           stalledGovernanceEpisode,
           {
             ...committedGovernanceEpisode,
+            governanceEpisodeType:
+              "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType",
             t2: "2023-09-01",
           },
         ],
