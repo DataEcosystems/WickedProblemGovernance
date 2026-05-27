@@ -100,7 +100,17 @@ export const Project = z
       new PropertyMeta({
         description:
           "The earliest episode initiation timestamp across all episodes in the project.",
+        formula: "min(map(E, f(e) = e.t0))",
         title: "Project Start",
+      }),
+    ),
+    t2: Timestamp.optional().meta(
+      new PropertyMeta({
+        description:
+          "Timestamp of earliest analytic output answering a stakeholder question.",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEpisodeType, "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType")), f(e) = e.t2))',
+        title: "First Delivered Value",
       }),
     ),
     tau2: z
@@ -110,6 +120,7 @@ export const Project = z
         new PropertyMeta({
           description:
             "Calendar days from the earliest episode initiation to delivery of the first analytic output.",
+          formula: "t_2 - t_0",
           title: "Time to Delivered Value",
         }),
       ),
