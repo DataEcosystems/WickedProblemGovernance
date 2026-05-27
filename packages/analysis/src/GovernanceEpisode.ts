@@ -1,9 +1,11 @@
 import * as model from "@wpg/model";
+import { domainHeterogeneity as _domainHeterogeneity } from "./domainHeterogeneity.js";
 import { evaluateFormula } from "./evaluateFormula.js";
+import { layerHeterogeneity as _layerHeterogeneity } from "./layerHeterogeneity.js";
 
 export namespace GovernanceEpisode {
   /**
-   * Calculate the coupling load from the domain and layer heterogeneity and the total partner count.
+   * Calculate the episode coupling load from the domain and layer heterogeneity and the total partner count.
    */
   export function couplingLoad({
     domainHeterogeneity,
@@ -21,23 +23,9 @@ export namespace GovernanceEpisode {
   }
 
   /**
-   * Calculate the domain heterogeneity of the episode from a map of domain -> partners in that domain associated with this episode.
+   * Calculate the domain heterogeneity of an episode from a map of domain -> partners in that domain associated with the episode.
    */
-  export function domainHeterogeneity({
-    D,
-  }: {
-    D: Partial<Record<model.Domain["@id"], number>>;
-  }): number | undefined {
-    if (Object.keys(D).length === 0) {
-      return undefined;
-    }
-    if (Object.values(D).reduce((acc, value) => acc + value, 0) === 0) {
-      return undefined;
-    }
-    return evaluateFormula(model.GovernanceEpisode, "domainHeterogeneity", {
-      D,
-    }) as number;
-  }
+  export const domainHeterogeneity = _domainHeterogeneity;
 
   function governanceEvent(governanceEvent: model.GovernanceEvent): {
     governanceEventType: model.GovernanceEvent["governanceEventType"];
@@ -52,23 +40,9 @@ export namespace GovernanceEpisode {
   }
 
   /**
-   * Calculate the institutional layer heterogeneity of the episode from a map of domain -> partners in that domain associated with this episode.
+   * Calculate the institutional layer heterogeneity of an episode from a map of domain -> partners in that domain associated with the episode.
    */
-  export function layerHeterogeneity({
-    L,
-  }: {
-    L: Partial<Record<model.InstitutionalLayer["@id"], number>>;
-  }): number | undefined {
-    if (Object.keys(L).length === 0) {
-      return undefined;
-    }
-    if (Object.values(L).reduce((acc, value) => acc + value, 0) === 0) {
-      return undefined;
-    }
-    return evaluateFormula(model.GovernanceEpisode, "layerHeterogeneity", {
-      L,
-    }) as number;
-  }
+  export const layerHeterogeneity = _layerHeterogeneity;
 
   /**
    * Calculate the normalized burden for an episode.
@@ -84,7 +58,7 @@ export namespace GovernanceEpisode {
   }
 
   /**
-   * Calculate the episode start timestamp from the set of events associated with the episode.
+   * Calculate the episode start timestamp from the set of events associated with an episode.
    */
   export function t0({
     E,
@@ -157,6 +131,9 @@ export namespace GovernanceEpisode {
     }
   }
 
+  /**
+   * Calculate the authorization latency for an episode given the episode's start and first durable authorization timestamps.
+   */
   export function tau1({
     t0,
     t1,
@@ -170,6 +147,9 @@ export namespace GovernanceEpisode {
     }) as number;
   }
 
+  /**
+   * Calculate the delivery latency for an episode given the episode's start and first delivered value timestamps.
+   */
   export function tau2({
     t0,
     t2,
