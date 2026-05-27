@@ -6,6 +6,26 @@ import {
 } from "./data.js";
 
 describe("GovernanceEpisode", () => {
+  it("coupling load", () => {
+    const result = GovernanceEpisode.couplingLoad({
+      domainHeterogeneity: GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+        },
+      })!,
+      layerHeterogeneity: GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 6,
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 1,
+        },
+      })!,
+      partnerCount: 7,
+    });
+    expect(Math.round(result)).toBe(12);
+  });
+
   describe("domainHeterogeneity", () => {
     it("should return undefined for an empty domain -> partner map", () => {
       const result = GovernanceEpisode.domainHeterogeneity({ D: {} });
@@ -285,7 +305,7 @@ describe("GovernanceEpisode", () => {
     });
   });
 
-  it("tau1", ({ expect }) => {
+  it("tau1", () => {
     const result = GovernanceEpisode.tau1({
       t0: "2023-09-01",
       t1: "2023-09-10",
@@ -293,7 +313,7 @@ describe("GovernanceEpisode", () => {
     expect(result).toBe(777600000);
   });
 
-  it("tau2", ({ expect }) => {
+  it("tau2", () => {
     const result = GovernanceEpisode.tau2({
       t0: "2023-09-01",
       t2: "2023-09-10",

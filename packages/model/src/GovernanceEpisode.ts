@@ -16,6 +16,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Composite measure of scale and structural heterogeneity of governance coordination demands.",
+        formula: "n * (1 + h_d) * (1 + h_l)",
         title: "Coupling Load",
       }),
     ),

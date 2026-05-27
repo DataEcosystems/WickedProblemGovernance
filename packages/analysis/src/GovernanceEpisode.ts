@@ -3,6 +3,24 @@ import { evaluateFormula } from "./evaluateFormula.js";
 
 export namespace GovernanceEpisode {
   /**
+   * Calculate the coupling load from the domain and layer heterogeneity and the total partner count.
+   */
+  export function couplingLoad({
+    domainHeterogeneity,
+    layerHeterogeneity,
+    partnerCount,
+  }: Pick<
+    model.GovernanceEpisode,
+    "domainHeterogeneity" | "layerHeterogeneity" | "partnerCount"
+  >): number {
+    return evaluateFormula(model.GovernanceEpisode, "couplingLoad", {
+      h_d: domainHeterogeneity,
+      h_l: layerHeterogeneity,
+      n: partnerCount,
+    }) as number;
+  }
+
+  /**
    * Calculate the domain heterogeneity of the episode from a map of domain -> partners in that domain associated with this episode.
    */
   export function domainHeterogeneity({
