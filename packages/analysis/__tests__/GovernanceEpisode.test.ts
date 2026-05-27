@@ -48,6 +48,52 @@ describe("GovernanceEpisode", () => {
     });
   });
 
+  describe("layerHeterogeneity", () => {
+    it("should return undefined for an empty layer -> partner map", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({ L: {} });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return undefined if the counts add up to 0", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 0,
+        },
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return 0 if there's only one layer", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+        },
+      });
+      expect(result).toBe(0);
+    });
+
+    it("should return 0.5 if two layers are evenly split", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 2,
+        },
+      });
+      expect(result).toBe(0.5);
+    });
+
+    it("should handle unevenly-split layers", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#StateInstitutionalLayer": 3,
+        },
+      })!;
+      expect(Math.floor(result * 100.0)).toBe(65);
+    });
+  });
+
   describe("t0", () => {
     it("returns the earliest event timestamp", () => {
       const result = GovernanceEpisode.t0({

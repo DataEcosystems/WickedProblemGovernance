@@ -3,7 +3,7 @@ import { evaluateFormula } from "./evaluateFormula.js";
 
 export namespace GovernanceEpisode {
   /**
-   * Calculate domain heterogeneity from a map of domain -> partner count.
+   * Calculate the domain heterogeneity of the episode from a map of domain -> partners in that domain associated with this episode.
    */
   export function domainHeterogeneity({
     D,
@@ -33,6 +33,28 @@ export namespace GovernanceEpisode {
     };
   }
 
+  /**
+   * Calculate the institutional layer heterogeneity of the episode from a map of domain -> partners in that domain associated with this episode.
+   */
+  export function layerHeterogeneity({
+    L,
+  }: {
+    L: Partial<Record<model.InstitutionalLayer["@id"], number>>;
+  }): number | undefined {
+    if (Object.keys(L).length === 0) {
+      return undefined;
+    }
+    if (Object.values(L).reduce((acc, value) => acc + value, 0) === 0) {
+      return undefined;
+    }
+    return evaluateFormula(model.GovernanceEpisode, "layerHeterogeneity", {
+      L,
+    }) as number;
+  }
+
+  /**
+   * Calculate the episode start timestamp from the set of events associated with the episode.
+   */
   export function t0({
     E,
   }: {
@@ -50,6 +72,9 @@ export namespace GovernanceEpisode {
     return model.dateToTimestamp(new Date(result));
   }
 
+  /**
+   * Calculate the episode first durable authorization timestamp from the set of events associated with the episode.
+   */
   export function t1({
     E,
   }: {
@@ -74,6 +99,9 @@ export namespace GovernanceEpisode {
     }
   }
 
+  /**
+   * Calculate the episode first delivered value timestamp from the set of events associated with the episode.
+   */
   export function t2({
     E,
   }: {

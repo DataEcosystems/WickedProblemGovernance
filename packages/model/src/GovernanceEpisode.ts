@@ -39,6 +39,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Simpson-style diversity index measuring how evenly partners are distributed across institutional layers.",
+        formula: "1 - sum(values(L) .^ 2) / sum(values(L)) ^ 2",
         title: "Layer Heterogeneity",
       }),
     ),
