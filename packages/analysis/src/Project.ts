@@ -9,22 +9,6 @@ export namespace Project {
    */
   export const domainHeterogeneity = _domainHeterogeneity;
 
-  function governanceEpisode(governanceEpisode: model.GovernanceEpisode): {
-    governanceEpisodeType: model.GovernanceEpisode["governanceEpisodeType"];
-    t0: number;
-    t2: number;
-  } {
-    return {
-      governanceEpisodeType: governanceEpisode.governanceEpisodeType,
-      t0: governanceEpisode.t0
-        ? model.timestampToDate(governanceEpisode.t0).getTime()
-        : -1,
-      t2: governanceEpisode.t0
-        ? model.timestampToDate(governanceEpisode.t0).getTime()
-        : -1,
-    };
-  }
-
   /**
    * Calculate the institutional layer heterogeneity of a project from a map of domain -> partners in that domain associated with the project.
    */
@@ -38,15 +22,51 @@ export namespace Project {
   }: {
     readonly E: readonly model.GovernanceEpisode[];
   }): model.Timestamp | undefined {
-    if (E.length === 0) {
+    const mappedE = E.flatMap((governanceEpisode) =>
+      governanceEpisode.t0 !== undefined
+        ? [
+            {
+              t0: model.timestampToDate(governanceEpisode.t0).getTime(),
+            },
+          ]
+        : [],
+    );
+    if (mappedE.length === 0) {
       return undefined;
     }
+
     const result = evaluateFormula(model.Project, "t0", {
-      E: E.map(governanceEpisode),
+      E: mappedE,
     }) as number;
-    if (result === -1) {
+
+    return model.dateToTimestamp(new Date(result));
+  }
+
+  /**
+   * Calculate the project first delivered value timestamp from the set of episodes associated with the project.
+   */
+  export function t2({
+    E,
+  }: {
+    readonly E: readonly model.GovernanceEpisode[];
+  }): model.Timestamp | undefined {
+    const mappedE = E.flatMap((governanceEpisode) =>
+      governanceEpisode.t2 !== undefined
+        ? [
+            {
+              t2: model.timestampToDate(governanceEpisode.t2).getTime(),
+            },
+          ]
+        : [],
+    );
+    if (mappedE.length === 0) {
       return undefined;
     }
+
+    const result = evaluateFormula(model.Project, "t2", {
+      E: mappedE,
+    }) as number;
+
     return model.dateToTimestamp(new Date(result));
   }
 }

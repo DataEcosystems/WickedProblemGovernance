@@ -33,9 +33,7 @@ export namespace GovernanceEpisode {
   } {
     return {
       governanceEventType: governanceEvent.governanceEventType,
-      timestamp: governanceEvent.timestamp
-        ? model.timestampToDate(governanceEvent.timestamp).getTime()
-        : -1,
+      timestamp: model.timestampToDate(governanceEvent.timestamp!).getTime(),
     };
   }
 
@@ -68,13 +66,20 @@ export namespace GovernanceEpisode {
     if (E.length === 0) {
       return undefined;
     }
-    const result = evaluateFormula(model.GovernanceEpisode, "t0", {
-      E: E.map(governanceEvent),
-    }) as number;
-    if (result === -1) {
-      return undefined;
+    try {
+      const result = evaluateFormula(model.GovernanceEpisode, "t0", {
+        E: E.filter(
+          (governanceEvent) => governanceEvent.timestamp !== undefined,
+        ).map(governanceEvent),
+      }) as number;
+
+      return model.dateToTimestamp(new Date(result));
+    } catch (e) {
+      if ((e as Error).message === "Cannot calculate min of an empty array") {
+        return undefined;
+      }
+      throw e;
     }
-    return model.dateToTimestamp(new Date(result));
   }
 
   /**
@@ -90,11 +95,11 @@ export namespace GovernanceEpisode {
     }
     try {
       const result = evaluateFormula(model.GovernanceEpisode, "t1", {
-        E: E.map(governanceEvent),
+        E: E.filter(
+          (governanceEvent) => governanceEvent.timestamp !== undefined,
+        ).map(governanceEvent),
       }) as number;
-      if (result === -1) {
-        return undefined;
-      }
+
       return model.dateToTimestamp(new Date(result));
     } catch (e) {
       if ((e as Error).message === "Cannot calculate min of an empty array") {
@@ -117,11 +122,11 @@ export namespace GovernanceEpisode {
     }
     try {
       const result = evaluateFormula(model.GovernanceEpisode, "t2", {
-        E: E.map(governanceEvent),
+        E: E.filter(
+          (governanceEvent) => governanceEvent.timestamp !== undefined,
+        ).map(governanceEvent),
       }) as number;
-      if (result === -1) {
-        return undefined;
-      }
+
       return model.dateToTimestamp(new Date(result));
     } catch (e) {
       if ((e as Error).message === "Cannot calculate min of an empty array") {

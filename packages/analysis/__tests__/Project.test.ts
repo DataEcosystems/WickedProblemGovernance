@@ -51,4 +51,49 @@ describe("Project", () => {
       expect(result).toBe(stalledGovernanceEpisode.t0);
     });
   });
+
+  describe("t2", () => {
+    it("returns the earliest output delivered timestamp", () => {
+      const result = Project.t2({
+        E: [
+          {
+            ...committedGovernanceEpisode,
+            t2: "2023-08-15",
+          },
+          {
+            ...committedGovernanceEpisode,
+            t2: "2023-07-01",
+          },
+        ],
+      });
+      expect(result).toBe("2023-07-01");
+    });
+
+    it("returns undefined when there are no output delivered events", () => {
+      const result = Project.t2({
+        E: [committedGovernanceEpisode],
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("returns undefined when there are no events", () => {
+      const result = Project.t2({
+        E: [],
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("ignores non-output events", () => {
+      const result = Project.t2({
+        E: [
+          stalledGovernanceEpisode,
+          {
+            ...committedGovernanceEpisode,
+            t2: "2023-09-01",
+          },
+        ],
+      });
+      expect(result).toBe("2023-09-01");
+    });
+  });
 });
