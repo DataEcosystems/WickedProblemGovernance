@@ -24,6 +24,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Simpson-style diversity index measuring how evenly partners are distributed across domains.",
+        formula: "1 - sum(values(D) .^ 2) / sum(values(D)) ^ 2",
         title: "Domain Heterogeneity",
       }),
     ),

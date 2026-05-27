@@ -6,6 +6,48 @@ import {
 } from "./data.js";
 
 describe("GovernanceEpisode", () => {
+  describe("domainHeterogeneity", () => {
+    it("should return undefined for an empty domain -> partner map", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({ D: {} });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return undefined if the counts add up to 0", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: { "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 0 },
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return 0 if there's only one domain", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: { "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2 },
+      });
+      expect(result).toBe(0);
+    });
+
+    it("should return 0.5 if two domains are evenly split", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+        },
+      });
+      expect(result).toBe(0.5);
+    });
+
+    it("should handle unevenly-split domains", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+        },
+      })!;
+      expect(Math.floor(result * 100.0)).toBe(65);
+    });
+  });
+
   describe("t0", () => {
     it("returns the earliest event timestamp", () => {
       const result = GovernanceEpisode.t0({
