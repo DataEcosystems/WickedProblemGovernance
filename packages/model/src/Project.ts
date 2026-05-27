@@ -100,6 +100,7 @@ export const Project = z
       new PropertyMeta({
         description:
           "The earliest episode initiation timestamp across all episodes in the project.",
+        formula: "min(map(E, f(e) = e.t0))",
         title: "Project Start",
       }),
     ),
