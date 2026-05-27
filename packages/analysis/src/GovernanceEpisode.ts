@@ -71,6 +71,19 @@ export namespace GovernanceEpisode {
   }
 
   /**
+   * Calculate the normalized burden for an episode.
+   */
+  export function normalizedBurden({
+    couplingLoad,
+    tau2,
+  }: Pick<model.GovernanceEpisode, "couplingLoad" | "tau2">) {
+    return evaluateFormula(model.GovernanceEpisode, "normalizedBurden", {
+      c: couplingLoad,
+      tau_2: tau2,
+    }) as number;
+  }
+
+  /**
    * Calculate the episode start timestamp from the set of events associated with the episode.
    */
   export function t0({

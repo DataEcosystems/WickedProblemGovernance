@@ -51,6 +51,7 @@ export const GovernanceEpisode = z
       .meta(
         new PropertyMeta({
           description: "Time to delivered value per unit of coupling load.",
+          formula: "tau_2 / c",
           title: "Normalized Burden",
         }),
       ),

@@ -18,12 +18,12 @@ describe("GovernanceEpisode", () => {
       layerHeterogeneity: GovernanceEpisode.layerHeterogeneity({
         L: {
           "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 6,
-          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 1,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 1,
         },
       })!,
       partnerCount: 7,
     });
-    expect(Math.round(result)).toBe(12);
+    expect(Math.round(result)).toBe(14);
   });
 
   describe("domainHeterogeneity", () => {
@@ -112,6 +112,32 @@ describe("GovernanceEpisode", () => {
       })!;
       expect(Math.floor(result * 100.0)).toBe(65);
     });
+  });
+
+  it("normalized burden", () => {
+    const result = GovernanceEpisode.normalizedBurden({
+      couplingLoad: GovernanceEpisode.couplingLoad({
+        domainHeterogeneity: GovernanceEpisode.domainHeterogeneity({
+          D: {
+            "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+            "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+            "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+          },
+        })!,
+        layerHeterogeneity: GovernanceEpisode.layerHeterogeneity({
+          L: {
+            "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 6,
+            "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 1,
+          },
+        })!,
+        partnerCount: 7,
+      }),
+      tau2: GovernanceEpisode.tau2({
+        t0: "2023-09-01",
+        t2: "2023-09-10",
+      }),
+    });
+    expect(Math.round(result)).toBe(53980328);
   });
 
   describe("t0", () => {
