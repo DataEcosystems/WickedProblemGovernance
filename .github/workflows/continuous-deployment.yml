@@ -34,4 +34,4 @@ jobs:
         name: "Commit generated documentation"
         with:
           commit_message: "generated docs"
-          file_pattern: "docs/model/**"
+          file_pattern: "packages/model/doc/**"
