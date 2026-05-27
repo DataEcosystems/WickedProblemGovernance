@@ -28,13 +28,13 @@ export const Project = z
         title: "Area Served",
       }),
     ),
-    deliveryCouplingProxy: z
+    deliveryCouplingLoad: z
       .number()
       .optional()
       .meta(
         new PropertyMeta({
-          description: "The coupling proxy of the delivery episode.",
-          title: "Delivery Coupling Proxy",
+          description: "The coupling load of the delivery episode.",
+          title: "Delivery Coupling Load",
         }),
       ),
     deliveryEpisode: Iri.optional().meta(

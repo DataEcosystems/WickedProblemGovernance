@@ -6,31 +6,165 @@ import {
 } from "./data.js";
 
 describe("GovernanceEpisode", () => {
+  it("coupling load", () => {
+    const result = GovernanceEpisode.couplingLoad({
+      domainHeterogeneity: GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+        },
+      })!,
+      layerHeterogeneity: GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 6,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 1,
+        },
+      })!,
+      partnerCount: 7,
+    });
+    expect(Math.round(result)).toBe(14);
+  });
+
+  describe("domainHeterogeneity", () => {
+    it("should return undefined for an empty domain -> partner map", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({ D: {} });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return undefined if the counts add up to 0", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: { "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 0 },
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return 0 if there's only one domain", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: { "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2 },
+      });
+      expect(result).toBe(0);
+    });
+
+    it("should return 0.5 if two domains are evenly split", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+        },
+      });
+      expect(result).toBe(0.5);
+    });
+
+    it("should handle unevenly-split domains", () => {
+      const result = GovernanceEpisode.domainHeterogeneity({
+        D: {
+          "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+        },
+      })!;
+      expect(Math.floor(result * 100.0)).toBe(65);
+    });
+  });
+
+  describe("layerHeterogeneity", () => {
+    it("should return undefined for an empty layer -> partner map", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({ L: {} });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return undefined if the counts add up to 0", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 0,
+        },
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it("should return 0 if there's only one layer", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+        },
+      });
+      expect(result).toBe(0);
+    });
+
+    it("should return 0.5 if two layers are evenly split", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 2,
+        },
+      });
+      expect(result).toBe(0.5);
+    });
+
+    it("should handle unevenly-split layers", () => {
+      const result = GovernanceEpisode.layerHeterogeneity({
+        L: {
+          "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 2,
+          "https://purl.dataecosystems.org/wpg/cbox#StateInstitutionalLayer": 3,
+        },
+      })!;
+      expect(Math.floor(result * 100.0)).toBe(65);
+    });
+  });
+
+  it("normalized burden", () => {
+    const result = GovernanceEpisode.normalizedBurden({
+      couplingLoad: GovernanceEpisode.couplingLoad({
+        domainHeterogeneity: GovernanceEpisode.domainHeterogeneity({
+          D: {
+            "https://purl.dataecosystems.org/wpg/cbox#EducationDomain": 2,
+            "https://purl.dataecosystems.org/wpg/cbox#HealthDomain": 2,
+            "https://purl.dataecosystems.org/wpg/cbox#HumanServicesDomain": 3,
+          },
+        })!,
+        layerHeterogeneity: GovernanceEpisode.layerHeterogeneity({
+          L: {
+            "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer": 6,
+            "https://purl.dataecosystems.org/wpg/cbox#RegionalInstitutionalLayer": 1,
+          },
+        })!,
+        partnerCount: 7,
+      }),
+      tau2: GovernanceEpisode.tau2({
+        t0: "2023-09-01",
+        t2: "2023-09-10",
+      }),
+    });
+    expect(Math.round(result)).toBe(53980328);
+  });
+
   describe("t0", () => {
     it("returns the earliest event timestamp", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBe("2023-01-15");
     });
 
     it("returns the earliest event timestamp for a stalled episode", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: stalledGovernanceEpisodeEvents,
+        E: stalledGovernanceEpisodeEvents,
       });
       expect(result).toBe("2022-06-01");
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when no events have timestamps", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/no-timestamp",
             "@type": "GovernanceEvent",
@@ -46,7 +180,7 @@ describe("GovernanceEpisode", () => {
 
     it("picks the earliest when events are out of order", () => {
       const result = GovernanceEpisode.t0({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/late",
             "@type": "GovernanceEvent",
@@ -83,28 +217,28 @@ describe("GovernanceEpisode", () => {
   describe("t1", () => {
     it("returns the earliest authorization event timestamp", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBe("2023-04-20");
     });
 
     it("returns undefined when there are no authorization events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: stalledGovernanceEpisodeEvents,
+        E: stalledGovernanceEpisodeEvents,
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("picks the earliest among multiple authorization events", () => {
       const result = GovernanceEpisode.t1({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/approval",
             "@type": "GovernanceEvent",
@@ -132,7 +266,7 @@ describe("GovernanceEpisode", () => {
   describe("t2", () => {
     it("returns the earliest output delivered timestamp", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/output-1",
             "@type": "GovernanceEvent",
@@ -158,21 +292,21 @@ describe("GovernanceEpisode", () => {
 
     it("returns undefined when there are no output delivered events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: committedGovernanceEpisodeEvents,
+        E: committedGovernanceEpisodeEvents,
       });
       expect(result).toBeUndefined();
     });
 
     it("returns undefined when there are no events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [],
+        E: [],
       });
       expect(result).toBeUndefined();
     });
 
     it("ignores non-output events", () => {
       const result = GovernanceEpisode.t2({
-        governanceEvents: [
+        E: [
           {
             "@id": "https://example.com/test/GovernanceEvent/review",
             "@type": "GovernanceEvent",
@@ -195,5 +329,21 @@ describe("GovernanceEpisode", () => {
       });
       expect(result).toBe("2023-09-01");
     });
+  });
+
+  it("tau1", () => {
+    const result = GovernanceEpisode.tau1({
+      t0: "2023-09-01",
+      t1: "2023-09-10",
+    });
+    expect(result).toBe(777600000);
+  });
+
+  it("tau2", () => {
+    const result = GovernanceEpisode.tau2({
+      t0: "2023-09-01",
+      t2: "2023-09-10",
+    });
+    expect(result).toBe(777600000);
   });
 });

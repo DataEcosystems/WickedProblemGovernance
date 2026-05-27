@@ -12,11 +12,12 @@ export const GovernanceEpisode = z
   .object({
     "@id": Iri,
     "@type": z.literal("GovernanceEpisode"),
-    couplingProxy: z.number().meta(
+    couplingLoad: z.number().meta(
       new PropertyMeta({
         description:
           "Composite measure of scale and structural heterogeneity of governance coordination demands.",
-        title: "Coupling Proxy",
+        formula: "n * (1 + h_d) * (1 + h_l)",
+        title: "Coupling Load",
       }),
     ),
     description: Description.optional(),
@@ -24,6 +25,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Simpson-style diversity index measuring how evenly partners are distributed across domains.",
+        formula: "1 - sum(values(D) .^ 2) / sum(values(D)) ^ 2",
         title: "Domain Heterogeneity",
       }),
     ),
@@ -38,6 +40,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Simpson-style diversity index measuring how evenly partners are distributed across institutional layers.",
+        formula: "1 - sum(values(L) .^ 2) / sum(values(L)) ^ 2",
         title: "Layer Heterogeneity",
       }),
     ),
@@ -48,6 +51,7 @@ export const GovernanceEpisode = z
       .meta(
         new PropertyMeta({
           description: "Time to delivered value per unit of coupling load.",
+          formula: "tau_2 / c",
           title: "Normalized Burden",
         }),
       ),
@@ -79,7 +83,7 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest event indicating entry into an approval workflow.",
-        formula: "min(t_ev)",
+        formula: "min(map(E, f(e) = e.timestamp))",
         title: "Episode Start",
       }),
     ),
@@ -87,7 +91,8 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest qualifying authorization event for core scope.",
-        formula: "min(t_auth)",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#AgreementExecutedGovernanceEventType") or equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#ApprovalIssuedGovernanceEventType")), f(e) = e.timestamp))',
         title: "First Durable Authorization",
       }),
     ),
@@ -95,7 +100,8 @@ export const GovernanceEpisode = z
       new PropertyMeta({
         description:
           "Timestamp of earliest analytic output answering a stakeholder question.",
-        formula: "min(t_del)",
+        formula:
+          'min(map(filter(E, f(e) = equalText(e.governanceEventType, "https://purl.dataecosystems.org/wpg/cbox#OutputDeliveredGovernanceEventType")), f(e) = e.timestamp))',
         title: "First Delivered Value",
       }),
     ),
@@ -106,6 +112,7 @@ export const GovernanceEpisode = z
         new PropertyMeta({
           description:
             "Calendar days from episode initiation to first durable authorization.",
+          formula: "t_1 - t_0",
           title: "Authorization Latency",
         }),
       ),
@@ -116,6 +123,7 @@ export const GovernanceEpisode = z
         new PropertyMeta({
           description:
             "Calendar days from episode initiation to first delivered analytic output.",
+          formula: "t_2 - t_0",
           title: "Time to Delivered Value",
         }),
       ),
