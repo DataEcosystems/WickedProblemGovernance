@@ -21,6 +21,15 @@ describe("Domain", () => {
     expect(result.error?.message).toContain("invalid_value");
   });
 
+  it("should accept a well-formed IRI @id in its range", ({ expect }) => {
+    const domain = Domain.shape["@id"].parse(
+      "https://purl.dataecosystems.org/wpg/cbox#EducationDomain",
+    );
+    expect(domain).toStrictEqual(
+      "https://purl.dataecosystems.org/wpg/cbox#EducationDomain",
+    );
+  });
+
   it("should reject a well-formed IRI @id outside its range", ({ expect }) => {
     const result = Domain.shape["@id"].safeParse(
       "https://purl.dataecosystems.org/wpg/cbox#NonextantDomain",
