@@ -11,6 +11,7 @@ export * from "./GovernanceEvent.js";
 export * from "./GovernanceEventType.js";
 export * from "./InstitutionalLayer.js";
 export * from "./NamedIndividual.js";
+export * from "./namedIndividuals.js";
 export * as namespaces from "./namespaces.js";
 export * from "./ObjectMeta.js";
 export * from "./Organization.js";

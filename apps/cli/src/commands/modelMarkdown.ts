@@ -128,6 +128,29 @@ function resolveType(schema: z.ZodType): { type: string; optional: boolean } {
     return { optional: false, type: "boolean" };
   }
 
+  if (def.type === "pipe") {
+    // For `transform().pipe(enum)`, the user-facing type is the output side.
+    // `def.out` holds the output schema; older Zod versions used `def.right`.
+    const output = def.out ?? def.right;
+    return resolveType(output);
+  }
+
+  if (def.type === "enum") {
+    // ZodEnum stores values as { [key]: value }; we want the values.
+    const values = Object.values(def.entries ?? {}) as Array<string | number>;
+    const formatted = values.map((v) =>
+      typeof v === "string" ? `"${v}"` : String(v),
+    );
+    return { optional: false, type: formatted.join(" | ") };
+  }
+
+  if (def.type === "transform") {
+    // Bare transform (no pipe). Best-effort: report as the input type.
+    // In Zod 4 this is rare since transforms are usually wrapped in pipes.
+    const inner = def.schema ?? def.innerType;
+    return inner ? resolveType(inner) : { optional: false, type: "unknown" };
+  }
+
   return { optional: false, type: def.type ?? "unknown" };
 }
 
