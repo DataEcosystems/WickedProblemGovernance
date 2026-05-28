@@ -12,23 +12,29 @@ export const GovernanceEpisode = z
   .object({
     "@id": Iri,
     "@type": z.literal("GovernanceEpisode"),
-    couplingLoad: z.number().meta(
-      new PropertyMeta({
-        description:
-          "Composite measure of scale and structural heterogeneity of governance coordination demands.",
-        formula: "n * (1 + h_d) * (1 + h_l)",
-        title: "Coupling Load",
-      }),
-    ),
+    couplingLoad: z
+      .number()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description:
+            "Composite measure of scale and structural heterogeneity of governance coordination demands.",
+          formula: "n * (1 + h_d) * (1 + h_l)",
+          title: "Coupling Load",
+        }),
+      ),
     description: Description.optional(),
-    domainHeterogeneity: z.number().meta(
-      new PropertyMeta({
-        description:
-          "Simpson-style diversity index measuring how evenly partners are distributed across domains.",
-        formula: "1 - sum(values(D) .^ 2) / sum(values(D)) ^ 2",
-        title: "Domain Heterogeneity",
-      }),
-    ),
+    domainHeterogeneity: z
+      .number()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description:
+            "Simpson-style diversity index measuring how evenly partners are distributed across domains.",
+          formula: "1 - sum(values(D) .^ 2) / sum(values(D)) ^ 2",
+          title: "Domain Heterogeneity",
+        }),
+      ),
     governanceEpisodeType: GovernanceEpisodeType.shape["@id"].meta(
       new PropertyMeta({
         description: "The type of governance authorization attempt.",
@@ -36,14 +42,17 @@ export const GovernanceEpisode = z
         title: "Governance Episode Type",
       }),
     ),
-    layerHeterogeneity: z.number().meta(
-      new PropertyMeta({
-        description:
-          "Simpson-style diversity index measuring how evenly partners are distributed across institutional layers.",
-        formula: "1 - sum(values(L) .^ 2) / sum(values(L)) ^ 2",
-        title: "Layer Heterogeneity",
-      }),
-    ),
+    layerHeterogeneity: z
+      .number()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description:
+            "Simpson-style diversity index measuring how evenly partners are distributed across institutional layers.",
+          formula: "1 - sum(values(L) .^ 2) / sum(values(L)) ^ 2",
+          title: "Layer Heterogeneity",
+        }),
+      ),
     name: Name.optional(),
     normalizedBurden: z
       .number()
@@ -58,6 +67,7 @@ export const GovernanceEpisode = z
     partnerCount: z
       .number()
       .int()
+      .optional()
       .meta(
         new PropertyMeta({
           description:
@@ -72,13 +82,16 @@ export const GovernanceEpisode = z
         title: "Project",
       }),
     ),
-    stall: z.boolean().meta(
-      new PropertyMeta({
-        description:
-          "Whether the episode shows sustained governance engagement but no qualifying durable authorization.",
-        title: "Stall",
-      }),
-    ),
+    stall: z
+      .boolean()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description:
+            "Whether the episode shows sustained governance engagement but no qualifying durable authorization.",
+          title: "Stall",
+        }),
+      ),
     t0: Timestamp.optional().meta(
       new PropertyMeta({
         description:
