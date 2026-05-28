@@ -1,7 +1,7 @@
 import { WPG_CBOX, WPG_O } from "./namespaces.js";
 
 const PREFIXES = {
-  wpg: WPG_O,
+  wpg: WPG_CBOX,
   "wpg-cbox": WPG_CBOX,
   "wpg-o": WPG_O,
 } as const;
