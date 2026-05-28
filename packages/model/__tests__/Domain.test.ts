@@ -13,19 +13,19 @@ describe("Domain", () => {
     );
   });
 
-  it("should reject a well-formed CURIE @id outside in its range", ({
+  it("should reject a well-formed CURIE @id outside its range", ({
     expect,
   }) => {
-    expect(() => Domain.shape["@id"].parse("wpg:NonExtantDomain")).toThrow();
+    const result = Domain.shape["@id"].safeParse("wpg:NonExtantDomain");
+    expect(result.success).toBe(false);
+    expect(result.error?.message).toContain("invalid_value");
   });
 
-  it("should reject a well-formed IRI @id outside in its range", ({
-    expect,
-  }) => {
-    expect(() =>
-      Domain.shape["@id"].parse(
-        "https://purl.dataecosystems.org/wpg/cbox#NonextantDomain",
-      ),
-    ).toThrow();
+  it("should reject a well-formed IRI @id outside its range", ({ expect }) => {
+    const result = Domain.shape["@id"].safeParse(
+      "https://purl.dataecosystems.org/wpg/cbox#NonextantDomain",
+    );
+    expect(result.success).toBe(false);
+    expect(result.error?.message).toContain("invalid_value");
   });
 });
