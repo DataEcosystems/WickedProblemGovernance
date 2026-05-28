@@ -56,6 +56,7 @@ export const Project = z
     episodeCount: z
       .number()
       .int()
+      .optional()
       .meta(
         new PropertyMeta({
           description: "Number of governance episodes in this project.",
@@ -76,6 +77,7 @@ export const Project = z
     partnerCount: z
       .number()
       .int()
+      .optional()
       .meta(
         new PropertyMeta({
           description:
@@ -83,19 +85,25 @@ export const Project = z
           title: "Partner Count",
         }),
       ),
-    stallFraction: z.number().meta(
-      new PropertyMeta({
-        description: "Proportion of episodes in the project that stalled.",
-        title: "Stall Fraction",
-      }),
-    ),
-    stewardPresence: z.boolean().meta(
-      new PropertyMeta({
-        description:
-          "Whether the project includes an authorized domain representative who mediates governance requests.",
-        title: "Steward Presence",
-      }),
-    ),
+    stallFraction: z
+      .number()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description: "Proportion of episodes in the project that stalled.",
+          title: "Stall Fraction",
+        }),
+      ),
+    stewardPresence: z
+      .boolean()
+      .optional()
+      .meta(
+        new PropertyMeta({
+          description:
+            "Whether the project includes an authorized domain representative who mediates governance requests.",
+          title: "Steward Presence",
+        }),
+      ),
     t0: Timestamp.optional().meta(
       new PropertyMeta({
         description:
