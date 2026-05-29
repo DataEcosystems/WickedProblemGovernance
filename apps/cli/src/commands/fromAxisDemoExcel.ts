@@ -8,6 +8,29 @@ import {
 
 const BASE_IRI = "https://purl.dataecosystems.org/wpg/data/axis-demo/";
 
+function deserializeExcelCellValue(
+  cellValue: ExcelJS.CellValue,
+): bigint | boolean | Date | null | number | string {
+  if (cellValue == null) {
+    return null;
+  }
+  switch (typeof cellValue) {
+    case "bigint":
+    case "boolean":
+    case "number":
+    case "string":
+      return cellValue;
+    case "object":
+      if (cellValue instanceof Date) {
+        return cellValue;
+      }
+      if ((cellValue as any)["text"]) {
+        return (cellValue as any).text;
+      }
+      throw new Error(`not implemented: ${JSON.stringify(cellValue)}`);
+  }
+}
+
 function encodeIriComponent(iriComponent: string): string {
   return Buffer.from(iriComponent).toString("base64url");
 }
@@ -27,11 +50,26 @@ function* transformOrganizationWorksheet({
       continue;
     }
     const organizationId = row["@id"] as string;
-    yield Organization.parse({
+
+    const organizationRoles =
+      organizationRolesByOrganizationId[organizationId] ?? [];
+    if (organizationRoles.length === 0) {
+      continue;
+    }
+
+    const partialOrganization: Partial<Organization> = {
       "@id": organizationId,
-      memberOf: organizationRolesByOrganizationId[organizationId],
-      name: row["name"],
-    });
+      "@type": "Organization",
+      domains: [organizationRoles[0].domain],
+      institutionalLayer:
+        "https://purl.dataecosystems.org/wpg/cbox#LocalInstitutionalLayer",
+      memberOf: organizationRoles.map(
+        (organizationRole) => organizationRole["@id"],
+      ),
+      name: row["name"] as string,
+    };
+
+    yield Organization.parse(partialOrganization);
   }
 }
 
@@ -59,6 +97,7 @@ function transformOrganizationRoleWorksheet(
 
     const partialOrganizationRole: Partial<OrganizationRole> = {
       "@id": organizationRoleId(organizationId, projectId),
+      "@type": "OrganizationRole",
       domain: row["domain"] as OrganizationRole["domain"] | undefined,
       memberOf: projectId,
       roleName: row["roleName"] as OrganizationRole["roleName"],
@@ -98,7 +137,7 @@ function transformOrganizationRoleWorksheet(
 
 function* worksheetRows(
   worksheet: ExcelJS.Worksheet,
-): Iterable<Record<string, ExcelJS.CellValue>> {
+): Iterable<Record<string, ReturnType<typeof deserializeExcelCellValue>>> {
   const headerRow = worksheet.getRow(1);
   const headers: string[] = [];
   headerRow.eachCell((cell, colNumber) => {
@@ -106,13 +145,18 @@ function* worksheetRows(
   });
 
   for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber++) {
-    const record: Record<string, ExcelJS.CellValue> = {};
+    const record: Record<
+      string,
+      ReturnType<typeof deserializeExcelCellValue>
+    > = {};
     const worksheetRow = worksheet.getRow(rowNumber);
     for (const [colNumber, key] of headers.entries()) {
       if (key == null) {
         continue;
       }
-      const value = worksheetRow.getCell(colNumber).value;
+      const value = deserializeExcelCellValue(
+        worksheetRow.getCell(colNumber).value,
+      );
       if (value == null || value === "") {
         continue;
       }
