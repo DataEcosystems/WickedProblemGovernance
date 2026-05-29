@@ -36,10 +36,10 @@ function encodeIriComponent(iriComponent: string): string {
 }
 
 function* transformOrganizationWorksheet({
-  organizationRolesByOrganizationId,
+  organizationRolesByOrganizationIri,
   worksheet,
 }: {
-  organizationRolesByOrganizationId: Record<
+  organizationRolesByOrganizationIri: Record<
     Organization["@id"],
     readonly OrganizationRole[]
   >;
@@ -49,16 +49,16 @@ function* transformOrganizationWorksheet({
     if (!row["@id"]) {
       continue;
     }
-    const organizationId = row["@id"] as string;
+    const organizationIri = row["@id"] as string;
 
     const organizationRoles =
-      organizationRolesByOrganizationId[organizationId] ?? [];
+      organizationRolesByOrganizationIri[organizationIri] ?? [];
     if (organizationRoles.length === 0) {
       continue;
     }
 
     const partialOrganization: Partial<Organization> = {
-      "@id": organizationId,
+      "@id": organizationIri,
       "@type": "Organization",
       domains: [organizationRoles[0].domain],
       institutionalLayer:
@@ -76,14 +76,14 @@ function* transformOrganizationWorksheet({
 function transformOrganizationRoleWorksheet(
   worksheet: ExcelJS.Worksheet,
 ): Record<Organization["@id"], readonly OrganizationRole[]> {
-  function organizationRoleId(
-    organizationId: Organization["@id"],
+  function organizationRoleIri(
+    organizationIri: Organization["@id"],
     projectId: Project["@id"],
   ): OrganizationRole["@id"] {
-    return `${BASE_IRI}/OrganizationRole/${encodeIriComponent(organizationId)}/${encodeIriComponent(projectId)}`;
+    return `${BASE_IRI}OrganizationRole/${encodeIriComponent(organizationIri)}/${encodeIriComponent(projectId)}`;
   }
 
-  const organizationRolesByOrganizationId: Record<
+  const organizationRolesByOrganizationIri: Record<
     Organization["@id"],
     OrganizationRole[]
   > = {};
@@ -92,18 +92,18 @@ function transformOrganizationRoleWorksheet(
       continue;
     }
 
-    const organizationId = row["organization"] as string;
+    const organizationIri = row["organization"] as string;
     const projectId = row["memberOf"] as string;
 
     const partialOrganizationRole: Partial<OrganizationRole> = {
-      "@id": organizationRoleId(organizationId, projectId),
+      "@id": organizationRoleIri(organizationIri, projectId),
       "@type": "OrganizationRole",
       domain: row["domain"] as OrganizationRole["domain"] | undefined,
       memberOf: projectId,
       roleName: row["roleName"] as OrganizationRole["roleName"],
     };
 
-    for (const [predicate, targetOrganizationIds] of [
+    for (const [predicate, targetOrganizationIris] of [
       [
         "contributesDataTo",
         row["contributesDataTo"] ? [row["contributesDataTo"]] : [],
@@ -119,20 +119,20 @@ function transformOrganizationRoleWorksheet(
           : [],
       ],
     ] as const) {
-      for (const targetOrganizationId of targetOrganizationIds) {
+      for (const targetOrganizationIri of targetOrganizationIris) {
         partialOrganizationRole[predicate] = (
           partialOrganizationRole[predicate] ?? []
-        ).concat(organizationRoleId(targetOrganizationId, projectId));
+        ).concat(organizationRoleIri(targetOrganizationIri, projectId));
       }
     }
 
     const organizationRole = OrganizationRole.parse(partialOrganizationRole);
-    organizationRolesByOrganizationId[organizationId] = (
-      organizationRolesByOrganizationId[organizationId] ?? []
+    organizationRolesByOrganizationIri[organizationIri] = (
+      organizationRolesByOrganizationIri[organizationIri] ?? []
     ).concat(organizationRole);
   }
 
-  return organizationRolesByOrganizationId;
+  return organizationRolesByOrganizationIri;
 }
 
 function* worksheetRows(
@@ -169,17 +169,17 @@ function* worksheetRows(
 export function* fromAxisDemoExcel(
   workbook: ExcelJS.Workbook,
 ): Iterable<Resource> {
-  const organizationRolesByOrganizationId = transformOrganizationRoleWorksheet(
+  const organizationRolesByOrganizationIri = transformOrganizationRoleWorksheet(
     workbook.getWorksheet("OrganizationRole")!,
   );
   for (const organizationRoles of Object.values(
-    organizationRolesByOrganizationId,
+    organizationRolesByOrganizationIri,
   )) {
     yield* organizationRoles;
   }
 
   yield* transformOrganizationWorksheet({
-    organizationRolesByOrganizationId,
+    organizationRolesByOrganizationIri,
     worksheet: workbook.getWorksheet("Organization")!,
   });
 }
