@@ -3,10 +3,12 @@
     "wpg": "dist/cli.js"
   },
   "dependencies": {
+    "@wpg/analysis": "0.0.0",
     "@wpg/model": "0.0.0",
     "@protobi/exceljs": "4.4.0-protobi.10",
     "@types/mdast": "~4.0.4",
     "cmd-ts": "~0.15.0",
+    "date-fns": "4.3.0",
     "glob": "~13.0.6",
     "jsonld": "~9.0.0",
     "pino": "~10.3.1",

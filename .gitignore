@@ -1,8 +1,9 @@
 .env
 .env.*
-data/ijpds/*.json*
-data/ijpds/*.ttl
-data/ijpds/*.xlsx
+data/axis-demo/*
+!data/axis-demo/.gitkeep
+data/ijpds/*
+!data/ijpds/.gitkeep
 dist/
 node_modules/
 *.tsbuildinfo

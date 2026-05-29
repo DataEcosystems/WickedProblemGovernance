@@ -7,6 +7,7 @@ import ExcelJS from "@protobi/exceljs";
 import { Resource } from "@wpg/model";
 import { command, option, positional, run, subcommands } from "cmd-ts";
 import { diff } from "./commands/diff.js";
+import { fromAxisDemoExcel } from "./commands/fromAxisDemoExcel.js";
 import { fromExcel } from "./commands/fromExcel.js";
 import { fromIjpdsDataset, IjpdsDataset } from "./commands/fromIjpdsDataset.js";
 // import { pino } from "pino";
@@ -112,6 +113,22 @@ run(
       }),
       from: subcommands({
         cmds: {
+          "axis-demo-excel": command({
+            args: {
+              input: positional({
+                description: "path to an .xlsx file or a Google Sheets URL",
+              }),
+            },
+            handler: async ({ input }) => {
+              for (const resource of fromAxisDemoExcel(
+                await readExcelWorkbook(input),
+              )) {
+                process.stdout.write(JSON.stringify(resource));
+                process.stdout.write("\n");
+              }
+            },
+            name: "axis-demo-excel",
+          }),
           excel: command({
             args: {
               input: positional({
