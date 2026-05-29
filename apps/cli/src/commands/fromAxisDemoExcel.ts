@@ -1,10 +1,13 @@
 import ExcelJS from "@protobi/exceljs";
 import {
+  GovernanceEpisode,
   Organization,
   OrganizationRole,
   Project,
   type Resource,
+  timestampToDate,
 } from "@wpg/model";
+import { differenceInDays } from "date-fns";
 
 const BASE_IRI = "https://purl.dataecosystems.org/wpg/data/axis-demo/";
 
@@ -35,7 +38,87 @@ function encodeIriComponent(iriComponent: string): string {
   return Buffer.from(iriComponent).toString("base64url");
 }
 
-function* transformOrganizationWorksheet({
+function transformGovernanceEpisodeWorksheet({
+  governanceEpisodeOrganizations,
+  worksheet,
+}: {
+  governanceEpisodeOrganizations: Record<
+    GovernanceEpisode["@id"],
+    readonly Organization["@id"][]
+  >;
+  worksheet: ExcelJS.Worksheet;
+}): readonly GovernanceEpisode[] {
+  const governanceEpisodes: GovernanceEpisode[] = [];
+  const projectGovernanceEpisodeCounts: Record<Project["@id"], number> = {};
+  for (const row of worksheetRows(worksheet)) {
+    const governanceEpisodeIri = row["@id"] as string;
+
+    const organizations =
+      governanceEpisodeOrganizations[governanceEpisodeIri] ?? [];
+    if (organizations.length === 0) {
+      throw new Error(
+        `governance episode ${governanceEpisodeIri} has no associated organizations`,
+      );
+    }
+
+    const projectIri = row["project"] as string;
+
+    projectGovernanceEpisodeCounts[projectIri] =
+      (projectGovernanceEpisodeCounts[projectIri] ?? 0) + 1;
+
+    const partialGovernanceEpisode: Partial<GovernanceEpisode> = {
+      "@id": governanceEpisodeIri,
+      "@type": "GovernanceEpisode",
+      couplingLoad: row["couplingLoad"] as number,
+      domainHeterogeneity: row["domainHeterogeneity"] as number,
+      governanceEpisodeType: row[
+        "governanceEpisodeType"
+      ] as GovernanceEpisode["governanceEpisodeType"],
+      layerHeterogeneity: row["layerHeterogeneity"] as number,
+      name: row["name"] as string,
+      normalizedBurden: row["normalizedBurden"] as number | undefined,
+      partnerCount: organizations.length,
+      project: projectIri,
+      stall: row["stall"]?.toString().toUpperCase() === "TRUE",
+      t0: row["t0"] as string,
+      t1: row["t1"] as string | undefined,
+      t2: row["t1"] as string | undefined,
+      tau1: row["tau1"] as number | undefined,
+      tau2: row["tau2"] as number | undefined,
+    };
+
+    governanceEpisodes.push(GovernanceEpisode.parse(partialGovernanceEpisode));
+  }
+  return governanceEpisodes;
+}
+
+function transformGovernanceEpisodeOrganizationWorksheet({
+  organizationIris,
+  worksheet,
+}: {
+  organizationIris: Set<Organization["@id"]>;
+  worksheet: ExcelJS.Worksheet;
+}): Record<GovernanceEpisode["@id"], readonly Organization["@id"][]> {
+  const result: Record<GovernanceEpisode["@id"], Organization["@id"][]> = {};
+  for (const row of worksheetRows(worksheet)) {
+    if (!row["episode"] || !row["organization"]) {
+      continue;
+    }
+
+    const episodeIri = row["episode"] as string;
+    const organizationIri = row["organization"] as string;
+    if (!organizationIris.has(organizationIri)) {
+      throw new Error(
+        `GovernanceEpisodeOrganization row references missing organization IRI ${organizationIri}`,
+      );
+    }
+
+    result[episodeIri] = (result[episodeIri] ?? []).concat(organizationIri);
+  }
+  return result;
+}
+
+function transformOrganizationWorksheet({
   organizationRolesByOrganizationIri,
   worksheet,
 }: {
@@ -44,7 +127,8 @@ function* transformOrganizationWorksheet({
     readonly OrganizationRole[]
   >;
   worksheet: ExcelJS.Worksheet;
-}): Iterable<Organization> {
+}): readonly Organization[] {
+  const organizations: Organization[] = [];
   for (const row of worksheetRows(worksheet)) {
     if (!row["@id"]) {
       continue;
@@ -54,7 +138,7 @@ function* transformOrganizationWorksheet({
     const organizationRoles =
       organizationRolesByOrganizationIri[organizationIri] ?? [];
     if (organizationRoles.length === 0) {
-      continue;
+      throw new Error(`organization ${organizationIri} has no roles`);
     }
 
     const partialOrganization: Partial<Organization> = {
@@ -69,8 +153,9 @@ function* transformOrganizationWorksheet({
       name: row["name"] as string,
     };
 
-    yield Organization.parse(partialOrganization);
+    organizations.push(Organization.parse(partialOrganization));
   }
+  return organizations;
 }
 
 function transformOrganizationRoleWorksheet(
@@ -135,6 +220,64 @@ function transformOrganizationRoleWorksheet(
   return organizationRolesByOrganizationIri;
 }
 
+function* transformProjectWorksheet({
+  governanceEpisodes,
+  worksheet,
+}: {
+  governanceEpisodes: readonly GovernanceEpisode[];
+  worksheet: ExcelJS.Worksheet;
+}): Iterable<Project> {
+  for (const row of worksheetRows(worksheet)) {
+    if (!row["@id"]) {
+      continue;
+    }
+
+    const projectIri = row["@id"] as string;
+    const projectGovernanceEpisodes = governanceEpisodes.filter(
+      (governanceEpisode) => governanceEpisode.project === projectIri,
+    );
+
+    const deliveryEpisode = projectGovernanceEpisodes.find(
+      (governanceEpisode) =>
+        governanceEpisode.governanceEpisodeType ===
+        "https://purl.dataecosystems.org/wpg/cbox#ProductGovernanceEpisodeType",
+    );
+
+    const governanceEpisodeT0s = projectGovernanceEpisodes
+      .filter((governanceEpisode) => governanceEpisode.t0)
+      .map((governanceEpisode) => ({
+        date: timestampToDate(governanceEpisode.t0!),
+        timestamp: governanceEpisode.t0!,
+      }))
+      .sort((left, right) => left.date.getTime() - right.date.getTime());
+
+    const partialProject: Partial<Project> = {
+      "@id": projectIri,
+      "@type": "Project",
+      architecture: row["architecture"] as Project["architecture"],
+      deliveryCouplingLoad: deliveryEpisode?.couplingLoad,
+      deliveryEpisode: deliveryEpisode?.["@id"],
+      episodeCount: projectGovernanceEpisodes.length,
+      name: row["name"] as string,
+      stallFraction:
+        projectGovernanceEpisodes.reduce(
+          (acc, governanceEpisode) => (governanceEpisode.stall ? acc + 1 : acc),
+          0,
+        ) / governanceEpisodes.length,
+      t0: governanceEpisodeT0s[0].timestamp,
+      t2: deliveryEpisode?.t2,
+      tau2: deliveryEpisode?.t2
+        ? differenceInDays(
+            timestampToDate(deliveryEpisode?.t2),
+            governanceEpisodeT0s[0].date,
+          )
+        : undefined,
+    };
+
+    yield Project.parse(partialProject);
+  }
+}
+
 function* worksheetRows(
   worksheet: ExcelJS.Worksheet,
 ): Iterable<Record<string, ReturnType<typeof deserializeExcelCellValue>>> {
@@ -178,8 +321,24 @@ export function* fromAxisDemoExcel(
     yield* organizationRoles;
   }
 
-  yield* transformOrganizationWorksheet({
+  const organizations = transformOrganizationWorksheet({
     organizationRolesByOrganizationIri,
     worksheet: workbook.getWorksheet("Organization")!,
+  });
+  yield* organizations;
+
+  const governanceEpisodes = transformGovernanceEpisodeWorksheet({
+    governanceEpisodeOrganizations:
+      transformGovernanceEpisodeOrganizationWorksheet({
+        organizationIris: new Set(organizations.map((_) => _["@id"])),
+        worksheet: workbook.getWorksheet("GovernanceEpisodeOrganization")!,
+      }),
+    worksheet: workbook.getWorksheet("GovernanceEpisode")!,
+  });
+  yield* governanceEpisodes;
+
+  yield* transformProjectWorksheet({
+    governanceEpisodes,
+    worksheet: workbook.getWorksheet("Project")!,
   });
 }
