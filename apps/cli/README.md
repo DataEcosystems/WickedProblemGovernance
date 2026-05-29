@@ -31,6 +31,21 @@ npm exec wpg -- diff ../../data/ijpds/ijpds.jsonl ../../data/ijpds/ijpds-from-xl
 
 Sub-commands to produce interchange JSONL `from` other data formats.
 
+#### axis-demo-excel
+
+Produce interchange JSONL from the Mosaic Axis demo data spreadsheet.
+
+```
+npm exec -- wpg from axis-demo-excel
+```
+
+Example:
+
+```
+npm exec -- wpg from axis-demo-excel ../../data/axis-demo/demo\ data\ backfill.xlsx
+```
+
+
 #### `ijpds`
 
 Produce interchange JSONL from the IJPDS dataset.
