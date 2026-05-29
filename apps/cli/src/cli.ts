@@ -112,6 +112,22 @@ run(
       }),
       from: subcommands({
         cmds: {
+          "axis-demo-excel": command({
+            args: {
+              input: positional({
+                description: "path to an .xlsx file or a Google Sheets URL",
+              }),
+            },
+            handler: async ({ input }) => {
+              for (const resource of fromExcel(
+                await readExcelWorkbook(input),
+              )) {
+                process.stdout.write(JSON.stringify(resource));
+                process.stdout.write("\n");
+              }
+            },
+            name: "axis-demo-excel",
+          }),
           excel: command({
             args: {
               input: positional({
